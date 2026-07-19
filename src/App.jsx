@@ -119,7 +119,7 @@ function App() {
                 disabled={transitionState !== null}
                 aria-label="Toggle Theme"
               >
-                {transitionState === 'theme' ? <Loader2 className="spin-icon" /> : (theme === 'dark' ? <Sun /> : <Moon />)}
+                {transitionState === 'theme' ? <Loader2 className="spin-icon" /> : (theme === 'dark' ? <Moon /> : <Sun />)}
               </button>
             </div>
             <p>{t('subtitle')}</p>
