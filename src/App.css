@@ -283,11 +283,14 @@
   top: 0; left: 0; right: 0; bottom: 0;
   background-color: var(--bg-main);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   z-index: 999;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
+  visibility: hidden;
+  will-change: opacity, transform;
 }
 
 @keyframes spin {

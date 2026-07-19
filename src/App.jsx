@@ -94,9 +94,8 @@ function App() {
         setTimeout(() => {
           if (type === 'theme') {
              gsap.to('.theme-overlay', { 
-               opacity: 0, 
-               duration: 0.6, 
-               onComplete: () => gsap.set('.theme-overlay', { display: 'none' }) 
+               autoAlpha: 0, 
+               duration: 0.5 
              });
           }
           
@@ -113,8 +112,7 @@ function App() {
     });
 
     if (type === 'theme') {
-      gsap.set('.theme-overlay', { display: 'flex' });
-      tl.to('.theme-overlay', { opacity: 1, duration: 0.4 }, 0);
+      tl.to('.theme-overlay', { autoAlpha: 1, duration: 0.3 }, 0);
     }
 
     // Fade out content before switching
