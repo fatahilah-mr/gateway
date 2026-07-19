@@ -18,6 +18,8 @@
 
 This repository contains the source code for the personal link portal (Gateway) of Fatahilah Miftahul Rahman. Designed as a modern, high-speed alternative to Linktree, this gateway serves as a central hub to route visitors to my portfolio, journal, GitHub, LinkedIn, and direct contact channels.
 
+**🌐 Live Website:** [https://g.fatahmr.my.id](https://g.fatahmr.my.id)
+
 > [!TIP]
 > The UI has been heavily optimized for mobile devices, moving away from heavy `backdrop-filter` GPU usage to a "Solid Translucency" design, ensuring a consistent 60 FPS scrolling experience.
 
