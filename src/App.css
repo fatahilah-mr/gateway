@@ -22,26 +22,26 @@
 /* Light mode defaults */
 @media (orientation: portrait) {
   .bg-mesh {
-    background-image: url('/bg-potrait-light.png');
+    background-image: url('/bg-potrait-light.webp');
   }
 }
 
 @media (orientation: landscape) {
   .bg-mesh {
-    background-image: url('/bg-landscape-light.png');
+    background-image: url('/bg-landscape-light.webp');
   }
 }
 
 /* Dark mode overrides */
 @media (orientation: portrait) {
   [data-theme='dark'] .bg-mesh {
-    background-image: url('/bg-potrait-dark.png');
+    background-image: url('/bg-potrait-dark.webp');
   }
 }
 
 @media (orientation: landscape) {
   [data-theme='dark'] .bg-mesh {
-    background-image: url('/bg-landscape-dark.png');
+    background-image: url('/bg-landscape-dark.webp');
   }
 }
 
