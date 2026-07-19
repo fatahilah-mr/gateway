@@ -23,10 +23,10 @@ function App() {
       icon: Globe
     },
     {
-      id: 'journal',
-      url: 'https://jurnal.fatahmr.my.id',
-      titleKey: 'journal',
-      descKey: 'journalDesc',
+      id: 'blog',
+      url: 'https://blog.fatahmr.my.id',
+      titleKey: 'blog',
+      descKey: 'blogDesc',
       icon: BookOpen
     },
     {
