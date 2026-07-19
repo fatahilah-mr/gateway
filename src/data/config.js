@@ -8,6 +8,7 @@ export const USER_CONFIG = {
   en: {
     subtitle: "Network Engineer & Web Developer",
     hint: "Tap the icons above to change language or theme",
+    footer: `© ${new Date().getFullYear()} Fatahilah Miftahul Rahman. All Rights Reserved.`,
     portfolio: "Web Portfolio",
     portfolioDesc: "My projects and experiences",
     blog: "Web Blog",
@@ -28,6 +29,7 @@ export const USER_CONFIG = {
   id: {
     subtitle: "Teknisi Jaringan & Pengembang Web",
     hint: "Ketuk ikon di atas untuk mengubah bahasa atau tema",
+    footer: `© ${new Date().getFullYear()} Fatahilah Miftahul Rahman. Hak Cipta Dilindungi.`,
     portfolio: "Portofolio Web",
     portfolioDesc: "Proyek dan pengalaman saya",
     blog: "Blog Web",

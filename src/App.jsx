@@ -38,7 +38,12 @@ function App() {
           duration: 0.8,
           stagger: 0.1,
           ease: `custom(${customEase})`
-        }, "-=0.6");
+        }, "-=0.6")
+        .to('.footer', {
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power2.out'
+        }, "-=0.4");
       }, mainRef);
 
       return () => ctx.revert();
@@ -81,7 +86,7 @@ function App() {
     }
 
     // Fade out content before switching
-    tl.to(['.header h1', '.header p', '.link-card'], {
+    tl.to(['.header h1', '.header p', '.link-card', '.footer'], {
       opacity: 0,
       y: -10,
       duration: 0.4,
@@ -137,6 +142,10 @@ function App() {
               />
             ))}
           </main>
+
+          <footer className="footer">
+            <p>{t('footer')}</p>
+          </footer>
         </div>
       </div>
     </>
