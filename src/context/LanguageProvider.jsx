@@ -17,7 +17,11 @@ const translations = {
     linkedin: "LinkedIn",
     linkedinDesc: "Professional network & resume",
     threads: "Threads",
-    threadsDesc: "Short thoughts and updates"
+    threadsDesc: "Short thoughts and updates",
+    email: "Email",
+    emailDesc: "Send me a message or business inquiry via email",
+    whatsapp: "WhatsApp",
+    whatsappDesc: "Contact me directly for a fast response"
   },
   id: {
     title: "FATAH",
@@ -31,7 +35,11 @@ const translations = {
     linkedin: "LinkedIn",
     linkedinDesc: "Jaringan profesional & resume",
     threads: "Threads",
-    threadsDesc: "Pikiran singkat dan pembaruan"
+    threadsDesc: "Pikiran singkat dan pembaruan",
+    email: "Email",
+    emailDesc: "Kirim pesan atau tawaran kerja melalui email",
+    whatsapp: "WhatsApp",
+    whatsappDesc: "Hubungi saya secara langsung untuk respons cepat"
   }
 };
 

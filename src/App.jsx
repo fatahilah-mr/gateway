@@ -4,7 +4,7 @@ import { useLanguage } from './context/LanguageProvider';
 import { useTheme } from './context/ThemeProvider';
 import Loader from './components/Loader';
 import LinkCard from './components/LinkCard';
-import { Globe, BookOpen, Github, Linkedin, MessageCircle, Sun, Moon, Loader2 } from 'lucide-react';
+import { Globe, BookOpen, Github, Linkedin, MessageCircle, Mail, Smartphone, Sun, Moon, Loader2 } from 'lucide-react';
 import './App.css';
 
 function App() {
@@ -49,6 +49,20 @@ function App() {
       titleKey: 'threads',
       descKey: 'threadsDesc',
       icon: MessageCircle
+    },
+    {
+      id: 'email',
+      url: 'mailto:fatahilah.f10@gmail.com',
+      titleKey: 'email',
+      descKey: 'emailDesc',
+      icon: Mail
+    },
+    {
+      id: 'whatsapp',
+      url: 'https://wa.me/6285117470256',
+      titleKey: 'whatsapp',
+      descKey: 'whatsappDesc',
+      icon: Smartphone
     }
   ];
 
