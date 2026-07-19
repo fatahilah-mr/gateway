@@ -50,6 +50,10 @@ export const LanguageProvider = ({ children }) => {
     setLang(prev => prev === 'en' ? 'id' : 'en');
   };
 
+  React.useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   const t = (key) => translations[lang][key] || key;
 
   return (
