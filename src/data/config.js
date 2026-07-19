@@ -88,7 +88,7 @@ export const USER_CONFIG = {
     },
     {
       id: 'whatsapp',
-      url: 'https://wa.me/6285117470256',
+      url: 'https://wa.me/6285117470256?text=%3E%20_from%20gateway_%0AHello%20Fatah!',
       titleKey: 'whatsapp',
       descKey: 'whatsappDesc',
       icon: Smartphone
