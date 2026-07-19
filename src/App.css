@@ -175,13 +175,15 @@
 }
 
 /* Hover effects */
-.link-card:hover {
-  border-color: var(--accent);
-}
+@media (hover: hover) {
+  .link-card:hover {
+    border-color: var(--accent);
+  }
 
-.link-card:hover .link-arrow {
-  transform: translateX(4px) scale(1.1);
-  color: var(--accent);
+  .link-card:hover .link-arrow {
+    transform: translateX(4px) scale(1.1);
+    color: var(--accent);
+  }
 }
 
 /* Controls */
@@ -221,14 +223,16 @@
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.control-btn:hover {
-  transform: scale(1.1) translateY(-4px);
-  background-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
+@media (hover: hover) {
+  .control-btn:hover {
+    transform: scale(1.1) translateY(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
 
-.control-btn:hover svg {
-  transform: rotate(15deg);
+  .control-btn:hover svg {
+    transform: rotate(15deg);
+  }
 }
 
 .control-btn:active {
@@ -242,8 +246,10 @@
   transform: scale(0.9);
 }
 
-[data-theme='dark'] .control-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+@media (hover: hover) {
+  [data-theme='dark'] .control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 /* Loader */
