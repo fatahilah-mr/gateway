@@ -14,7 +14,7 @@ const Loader = ({ onComplete }) => {
           // Slide out up
           gsap.to(containerRef.current, {
             yPercent: -100,
-            duration: 0.8,
+            duration: 0.4,
             ease: 'power3.inOut',
             onComplete
           });
@@ -23,7 +23,7 @@ const Loader = ({ onComplete }) => {
 
       tl.to({ val: 0 }, {
         val: 100,
-        duration: 2,
+        duration: 0.5,
         ease: 'power2.out',
         onUpdate: function() {
           setProgress(Math.floor(this.targets()[0].val));
