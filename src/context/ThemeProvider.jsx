@@ -8,15 +8,10 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
   
   useEffect(() => {
-    // Check local storage first
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme) {
-      setTheme(storedTheme);
-      document.documentElement.setAttribute('data-theme', storedTheme);
-      return;
-    }
-    
-    // Otherwise check system preference
+    // Remove any previously saved theme to ensure it always follows the system
+    localStorage.removeItem('theme');
+
+    // Always check and follow system preference on load
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e) => {
       const newTheme = e.matches ? 'dark' : 'light';
@@ -36,7 +31,6 @@ export const ThemeProvider = ({ children }) => {
   const toggleTheme = () => {
     setTheme(prev => {
       const newTheme = prev === 'light' ? 'dark' : 'light';
-      localStorage.setItem('theme', newTheme);
       document.documentElement.setAttribute('data-theme', newTheme);
       return newTheme;
     });
