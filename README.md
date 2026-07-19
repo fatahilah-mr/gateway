@@ -16,7 +16,7 @@
 
 </div>
 
-This repository contains the source code for the personal link portal (Gateway) of Fatahilah Miftahul Rahman. Designed as a modern, high-speed alternative to Linktree, this gateway serves as a central hub to route visitors to my portfolio, journal, GitHub, LinkedIn, and direct contact channels.
+This repository contains the source code for the personal link portal (Gateway) of Fatahilah Miftahul Rahman. Designed as a modern, high-speed alternative to Linktree, this gateway serves as a central hub to route visitors to my portfolio, blog, GitHub, LinkedIn, and direct contact channels.
 
 **🌐 Live Website:** [https://g.fatahmr.my.id](https://g.fatahmr.my.id)
 
@@ -28,6 +28,7 @@ This repository contains the source code for the personal link portal (Gateway) 
 - ⚡ **High Performance** - Optimized with WebP assets and resource preloading for near-instant Largest Contentful Paint (LCP) scores.
 - 🎬 **Cinematic Animations** - Smooth entrance animations and a custom page preloader powered by GSAP.
 - 🌐 **Bilingual Support** - Instant language switching (ID/EN) managed dynamically via React Context.
+- ⚙️ **Easy Configuration** - All personal data, links, and translations are centralized in a single `src/data/config.js` file, making it easy to use as a template.
 - 🎨 **Minimalist UI** - Sleek dark/light modes and tailored color palettes.
 - 📱 **Mobile-First UX** - Mobile sticky-hover states eliminated using pointer-device CSS media queries for a flawless touch experience.
 - 📦 **PWA Ready** - Fully configured Web App Manifest and custom favicons for mobile installation.
