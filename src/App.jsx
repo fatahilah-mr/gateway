@@ -110,7 +110,7 @@ function App() {
                 disabled={transitionState !== null}
                 aria-label="Toggle Language"
               >
-                {transitionState === 'lang' ? <Loader2 className="spin-icon" /> : lang.toUpperCase()}
+                {transitionState === 'lang' ? <Loader2 className="spin-icon" /> : (lang === 'en' ? '🇬🇧' : '🇮🇩')}
               </button>
               <h1>{t('title')}</h1>
               <button 
