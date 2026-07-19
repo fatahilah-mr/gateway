@@ -4,8 +4,8 @@
   --bg-gradient: radial-gradient(circle at top left, rgba(230,240,255,0.8), rgba(245,248,255,0.9));
   --text-primary: #0a0a0a;
   --text-secondary: rgba(10, 10, 10, 0.85);
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.4);
   --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   --accent: #2563eb;
   --text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
