@@ -98,11 +98,21 @@
   line-height: 1;
 }
 
-.header p {
+.header .subtitle {
   font-size: 1.125rem;
   color: var(--text-secondary);
   font-weight: 500;
   text-shadow: var(--text-shadow);
+  margin-bottom: 0.5rem;
+}
+
+.header .feature-hint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  font-weight: 400;
+  text-shadow: var(--text-shadow);
+  margin-top: 0;
 }
 
 .links-container {

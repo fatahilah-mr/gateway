@@ -122,7 +122,8 @@ function App() {
                 {transitionState === 'theme' ? <Loader2 className="spin-icon" /> : (theme === 'dark' ? <Moon /> : <Sun />)}
               </button>
             </div>
-            <p>{t('subtitle')}</p>
+            <p className="subtitle">{t('subtitle')}</p>
+            <p className="feature-hint">{t('hint')}</p>
           </header>
 
           <main className="links-container">

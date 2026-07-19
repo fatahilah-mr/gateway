@@ -12,7 +12,7 @@ const translations = {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [lang, setLang] = useState('en'); // default EN
+  const [lang, setLang] = useState('id'); // default ID
   
   const toggleLanguage = () => {
     setLang(prev => prev === 'en' ? 'id' : 'en');
