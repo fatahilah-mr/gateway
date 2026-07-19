@@ -6,7 +6,7 @@ export const USER_CONFIG = {
   
   // English Translations
   en: {
-    subtitle: "Network Administrator & AI Prompt Specialist",
+    subtitle: "Network Engineer & Web Developer",
     hint: "Tap the icons above to change language or theme",
     portfolio: "Web Portfolio",
     portfolioDesc: "My projects and experiences",
@@ -26,7 +26,7 @@ export const USER_CONFIG = {
 
   // Indonesian Translations
   id: {
-    subtitle: "Administrator Jaringan & Spesialis AI Prompt",
+    subtitle: "Teknisi Jaringan & Pengembang Web",
     hint: "Ketuk ikon di atas untuk mengubah bahasa atau tema",
     portfolio: "Portofolio Web",
     portfolioDesc: "Proyek dan pengalaman saya",
