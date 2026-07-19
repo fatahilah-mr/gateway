@@ -4,43 +4,11 @@ const LanguageContext = createContext();
 
 export const useLanguage = () => useContext(LanguageContext);
 
+import { USER_CONFIG } from '../data/config';
+
 const translations = {
-  en: {
-    title: "FATAH",
-    subtitle: "Network Administrator & AI Prompt Specialist",
-    portfolio: "Web Portfolio",
-    portfolioDesc: "My projects and experiences",
-    blog: "Web Blog",
-    blogDesc: "Articles, tutorials, and tech insights",
-    github: "GitHub",
-    githubDesc: "Open source contributions & code",
-    linkedin: "LinkedIn",
-    linkedinDesc: "Professional network & resume",
-    threads: "Threads",
-    threadsDesc: "Short thoughts and updates",
-    email: "Email",
-    emailDesc: "Send me a message or business inquiry via email",
-    whatsapp: "WhatsApp",
-    whatsappDesc: "Contact me directly for a fast response"
-  },
-  id: {
-    title: "FATAH",
-    subtitle: "Administrator Jaringan & Spesialis AI Prompt",
-    portfolio: "Portofolio Web",
-    portfolioDesc: "Proyek dan pengalaman saya",
-    blog: "Blog Web",
-    blogDesc: "Tulisan, tutorial, dan wawasan teknologi",
-    github: "GitHub",
-    githubDesc: "Kontribusi kode sumber terbuka",
-    linkedin: "LinkedIn",
-    linkedinDesc: "Jaringan profesional & resume",
-    threads: "Threads",
-    threadsDesc: "Pikiran singkat dan pembaruan",
-    email: "Email",
-    emailDesc: "Kirim pesan atau tawaran kerja melalui email",
-    whatsapp: "WhatsApp",
-    whatsappDesc: "Hubungi saya secara langsung untuk respons cepat"
-  }
+  en: { title: USER_CONFIG.name, ...USER_CONFIG.en },
+  id: { title: USER_CONFIG.name, ...USER_CONFIG.id }
 };
 
 export const LanguageProvider = ({ children }) => {
