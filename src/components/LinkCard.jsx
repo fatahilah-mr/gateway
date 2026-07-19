@@ -70,7 +70,6 @@ const LinkCard = ({ url, title, description, icon: Icon }) => {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ touchAction: 'none' }}
     >
       <div className="link-card-inner">
         <div className="link-icon">
