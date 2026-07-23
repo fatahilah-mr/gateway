@@ -6,21 +6,27 @@ import Loader from './components/Loader';
 import LinkCard from './components/LinkCard';
 import SEOHead from './components/SEOHead';
 import { Sun, Moon, Loader2 } from 'lucide-react';
-import { USER_CONFIG } from './data/config';
+import { ICON_MAP } from './data/iconMap';
 import './App.css';
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [transitionState, setTransitionState] = useState(null);
-  const { t, lang, toggleLanguage } = useLanguage();
+  const { t, lang, toggleLanguage, config, configLoading } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const mainRef = useRef(null);
 
-  const links = USER_CONFIG.links;
+  const links = config?.links.map(link => ({
+    id: link.id,
+    url: link.url,
+    titleKey: lang === 'en' ? link.en_title : link.id_title,
+    descKey: lang === 'en' ? link.en_description : link.id_description,
+    icon: ICON_MAP[link.icon] || ICON_MAP.link
+  })) ?? [];
 
   // GSAP Entrance Animation
   useEffect(() => {
-    if (!loading && mainRef.current) {
+    if (!configLoading && !loading && mainRef.current) {
       const ctx = gsap.context(() => {
         gsap.registerPlugin();
         const customEase = "M0,0 C0.16,1 0.3,1 1,1";
@@ -49,7 +55,7 @@ function App() {
 
       return () => ctx.revert();
     }
-  }, [loading]);
+  }, [loading, configLoading]);
 
   const handleToggle = (type, action) => {
     if (transitionState) return; // Prevent multiple clicks
@@ -99,7 +105,7 @@ function App() {
   return (
     <>
       <SEOHead />
-      {loading && <Loader onComplete={() => setLoading(false)} />}
+      {(loading || configLoading) && <Loader onComplete={() => setLoading(false)} />}
       
       <div className="theme-overlay">
         <Loader2 className="spin-icon large-spinner" />
@@ -139,8 +145,8 @@ function App() {
               <LinkCard 
                 key={link.id}
                 url={link.url}
-                title={t(link.titleKey)}
-                description={t(link.descKey)}
+                title={link.titleKey}
+                description={link.descKey}
                 icon={link.icon}
               />
             ))}

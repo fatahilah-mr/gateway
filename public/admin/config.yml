@@ -1,0 +1,66 @@
+backend:
+  name: github
+  repo: fatahilah-mr/gateway
+  branch: main
+  base_url: https://fatahmr.my.id
+  auth_endpoint: api/auth
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: "config"
+    label: "Site Configuration"
+    files:
+      - name: "main"
+        label: "⚙️ Main Config"
+        file: "public/content/config.json"
+        format: json
+        fields:
+          - { label: "Full Name (SEO)", name: "name", widget: "string" }
+          - { label: "Short Name (header display)", name: "shortName", widget: "string" }
+          
+          - label: "🇬🇧 English"
+            name: "en"
+            widget: "object"
+            fields:
+              - { label: "Title (H1)", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Hint Text", name: "hint", widget: "string" }
+              - { label: "Card Hint Text", name: "cardHint", widget: "string" }
+              - { label: "Footer", name: "footer", widget: "string" }
+          
+          - label: "🇮🇩 Indonesian"
+            name: "id"
+            widget: "object"
+            fields:
+              - { label: "Title (H1)", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Hint Text", name: "hint", widget: "string" }
+              - { label: "Card Hint Text", name: "cardHint", widget: "string" }
+              - { label: "Footer", name: "footer", widget: "string" }
+          
+          - label: "🃏 Link Cards"
+            name: "links"
+            widget: "list"
+            summary: "{{fields.en_title}} → {{fields.url}}"
+            fields:
+              - { label: "ID (unik, tanpa spasi)", name: "id", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - label: "Icon"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "🌐 Globe", value: "globe" }
+                  - { label: "📖 Book", value: "book" }
+                  - { label: "GitHub", value: "github" }
+                  - { label: "LinkedIn", value: "linkedin" }
+                  - { label: "💬 Message", value: "message" }
+                  - { label: "✉️ Email", value: "mail" }
+                  - { label: "📱 Phone / WhatsApp", value: "phone" }
+                  - { label: "▶️ YouTube", value: "youtube" }
+                  - { label: "🔗 Generic Link", value: "link" }
+              - { label: "🇬🇧 Title (English)", name: "en_title", widget: "string" }
+              - { label: "🇬🇧 Description (English)", name: "en_description", widget: "string" }
+              - { label: "🇮🇩 Title (Indonesian)", name: "id_title", widget: "string" }
+              - { label: "🇮🇩 Description (Indonesian)", name: "id_description", widget: "string" }

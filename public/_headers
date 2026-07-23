@@ -1,0 +1,6 @@
+/content/config.json
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/admin/*
+  X-Robots-Tag: noindex
+  X-Frame-Options: SAMEORIGIN
