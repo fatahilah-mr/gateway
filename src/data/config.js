@@ -2,10 +2,12 @@ import { Globe, BookOpen, Github, Linkedin, MessageCircle, Mail, Smartphone } fr
 
 export const USER_CONFIG = {
   // Personal Info
-  name: "FATAH",
+  name: "Fatahilah Miftahul Rahman",
+  shortName: "FATAH",
   
   // English Translations
   en: {
+    title: "Fatahilah Miftahul Rahman",
     subtitle: "Network Engineer & Web Developer",
     hint: "Tap the icons above to change language or theme",
     footer: `© ${new Date().getFullYear()} Fatahilah Miftahul Rahman. All Rights Reserved.`,
@@ -27,6 +29,7 @@ export const USER_CONFIG = {
 
   // Indonesian Translations
   id: {
+    title: "Fatahilah Miftahul Rahman",
     subtitle: "Teknisi Jaringan & Pengembang Web",
     hint: "Ketuk ikon di atas untuk mengubah bahasa atau tema",
     footer: `© ${new Date().getFullYear()} Fatahilah Miftahul Rahman. Hak Cipta Dilindungi.`,

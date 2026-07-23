@@ -65,6 +65,9 @@ const LinkCard = ({ url, title, description, icon: Icon }) => {
   return (
     <a 
       href={url} 
+      target="_blank"
+      rel="me noopener noreferrer"
+      aria-label={`${title}: ${description}`}
       onClick={handleClick}
       className={`glass link-card ${isLoading ? 'is-loading' : ''}`}
       ref={cardRef}

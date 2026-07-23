@@ -4,6 +4,7 @@ import { useLanguage } from './context/LanguageProvider';
 import { useTheme } from './context/ThemeProvider';
 import Loader from './components/Loader';
 import LinkCard from './components/LinkCard';
+import SEOHead from './components/SEOHead';
 import { Sun, Moon, Loader2 } from 'lucide-react';
 import { USER_CONFIG } from './data/config';
 import './App.css';
@@ -97,6 +98,7 @@ function App() {
 
   return (
     <>
+      <SEOHead />
       {loading && <Loader onComplete={() => setLoading(false)} />}
       
       <div className="theme-overlay">
