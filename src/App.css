@@ -312,16 +312,6 @@
   color: var(--text-primary);
 }
 
-.spin-icon {
-  animation: spin 1s linear infinite;
-}
-
-.large-spinner {
-  width: 48px;
-  height: 48px;
-  color: var(--text-primary);
-}
-
 .theme-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -335,9 +325,7 @@
   will-change: opacity, transform;
 }
 
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
+
 
 /* Footer */
 .footer {
