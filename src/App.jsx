@@ -5,7 +5,9 @@ import { useTheme } from './context/ThemeProvider';
 import Loader from './components/Loader';
 import LinkCard from './components/LinkCard';
 import SEOHead from './components/SEOHead';
-import { Sun, Moon, Loader2 } from 'lucide-react';
+import LightMode from '@mui/icons-material/LightMode';
+import DarkMode from '@mui/icons-material/DarkMode';
+import CircularProgress from '@mui/material/CircularProgress';
 import { ICON_MAP } from './data/iconMap';
 import './App.css';
 
@@ -108,7 +110,7 @@ function App() {
       {(loading || configLoading) && <Loader onComplete={() => setLoading(false)} />}
       
       <div className="theme-overlay">
-        <Loader2 className="spin-icon large-spinner" />
+        <CircularProgress size={48} sx={{ color: 'var(--text-primary)' }} />
       </div>
 
       <div className="app-container" ref={mainRef}>
@@ -123,7 +125,7 @@ function App() {
                 disabled={transitionState !== null}
                 aria-label="Toggle Language"
               >
-                {transitionState === 'lang' ? <Loader2 className="spin-icon" /> : (lang === 'en' ? '🇬🇧' : '🇮🇩')}
+                {transitionState === 'lang' ? <CircularProgress size={20} sx={{ color: 'inherit' }} /> : (lang === 'en' ? '🇬🇧' : '🇮🇩')}
               </button>
               <h1>{t('title')}</h1>
               <button 
@@ -132,7 +134,7 @@ function App() {
                 disabled={transitionState !== null}
                 aria-label="Toggle Theme"
               >
-                {transitionState === 'theme' ? <Loader2 className="spin-icon" /> : (theme === 'dark' ? <Moon /> : <Sun />)}
+                {transitionState === 'theme' ? <CircularProgress size={20} sx={{ color: 'inherit' }} /> : (theme === 'dark' ? <DarkMode /> : <LightMode />)}
               </button>
             </div>
             <p className="subtitle">{t('subtitle')}</p>

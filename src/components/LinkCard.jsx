@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import ArrowForward from '@mui/icons-material/ArrowForward';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const LinkCard = ({ url, title, description, icon: Icon }) => {
   const cardRef = useRef(null);
@@ -76,16 +77,16 @@ const LinkCard = ({ url, title, description, icon: Icon }) => {
     >
       <div className="link-card-inner">
         <div className="link-icon">
-          <Icon size={24} />
+          <Icon sx={{ fontSize: 24 }} />
         </div>
         <div className="link-content">
           <h2 className="link-title">{title}</h2>
           <p className="link-desc">{description}</p>
         </div>
         {isLoading ? (
-           <Loader2 className="link-arrow spin-icon" size={20} />
+           <CircularProgress size={20} className="link-arrow" sx={{ color: 'var(--text-secondary)' }} />
         ) : (
-           <ArrowRight className="link-arrow" size={20} />
+           <ArrowForward className="link-arrow" sx={{ fontSize: 20 }} />
         )}
       </div>
     </a>

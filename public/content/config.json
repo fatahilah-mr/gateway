@@ -19,7 +19,7 @@
     {
       "id": "portfolio",
       "url": "https://fatahmr.my.id",
-      "icon": "globe",
+      "icon": "web",
       "en_title": "Web Portfolio",
       "en_description": "My projects and experiences",
       "id_title": "Portofolio Web",
@@ -55,7 +55,7 @@
     {
       "id": "threads",
       "url": "https://www.threads.com/@fatah_f100",
-      "icon": "message",
+      "icon": "chat",
       "en_title": "Threads",
       "en_description": "Short thoughts and updates",
       "id_title": "Threads",
@@ -64,7 +64,7 @@
     {
       "id": "email",
       "url": "mailto:fatahilah.f10@gmail.com",
-      "icon": "mail",
+      "icon": "email",
       "en_title": "Email",
       "en_description": "Send me a message or business inquiry via email",
       "id_title": "Email",
