@@ -3,7 +3,7 @@ backend:
   repo: fatahilah-mr/gateway
   branch: main
   base_url: https://links.fatahmr.my.id
-  auth_endpoint: api/auth
+  auth_endpoint: /api/auth
 
 media_folder: public/images
 public_folder: /images
