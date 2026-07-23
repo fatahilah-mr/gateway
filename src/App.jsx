@@ -70,7 +70,7 @@ function App() {
              });
           }
           
-          gsap.to(['.header h1', '.header p', '.link-card'], {
+          gsap.to(['.header h1', '.header p', '.link-card', '.footer'], {
             opacity: 1,
             y: 0,
             duration: 0.6,
