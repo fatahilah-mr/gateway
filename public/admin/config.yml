@@ -2,7 +2,7 @@ backend:
   name: github
   repo: fatahilah-mr/gateway
   branch: main
-  base_url: https://fatahmr.my.id
+  base_url: https://links.fatahmr.my.id
   auth_endpoint: api/auth
 
 media_folder: public/images

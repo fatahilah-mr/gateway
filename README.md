@@ -5,7 +5,7 @@
   # FATAH | Gateway
   *A high-performance, minimalist personal link portal powered by React, Vite, and GSAP.*
   
-  [![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=flat-square&logo=vercel)](https://g.fatahmr.my.id/)
+  [![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=flat-square&logo=vercel)](https://links.fatahmr.my.id/)
   [![React](https://img.shields.io/badge/React-18.x-61DAFB?style=flat-square&logo=react)](https://react.dev/)
   [![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
   [![GSAP](https://img.shields.io/badge/GSAP-3.x-88CE02?style=flat-square&logo=greensock)](https://greensock.com/gsap/)
@@ -18,7 +18,7 @@
 
 This repository contains the source code for the personal link portal (Gateway) of Fatahilah Miftahul Rahman. Designed as a modern, high-speed alternative to Linktree, this gateway serves as a central hub to route visitors to my portfolio, blog, GitHub, LinkedIn, and direct contact channels.
 
-**🌐 Live Website:** [https://g.fatahmr.my.id](https://g.fatahmr.my.id)
+**🌐 Live Website:** [https://links.fatahmr.my.id](https://links.fatahmr.my.id)
 
 > [!TIP]
 > The UI is heavily optimized for mobile devices, moving away from heavy `backdrop-filter` GPU usage to a "Solid Translucency" design, ensuring a consistent 60 FPS scrolling experience.
