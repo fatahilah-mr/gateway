@@ -15,6 +15,7 @@ collections:
       - name: "main"
         label: "⚙️ Main Config"
         file: "public/content/config.json"
+        extension: json
         format: json
         fields:
           - { label: "Full Name (SEO)", name: "name", widget: "string" }
