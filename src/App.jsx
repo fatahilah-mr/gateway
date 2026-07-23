@@ -131,6 +131,7 @@ function App() {
             </div>
             <p className="subtitle">{t('subtitle')}</p>
             <p className="feature-hint">{t('hint')}</p>
+            <p className="card-hint">{t('cardHint')}</p>
           </header>
 
           <main className="links-container">
