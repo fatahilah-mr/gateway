@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://links.fatahmr.my.id/sitemap.xml
+Sitemap: https://fatah.web.id/sitemap.xml
