@@ -35,6 +35,15 @@
       "id_description": "Tulisan, tutorial, dan wawasan teknologi"
     },
     {
+      "id": "status",
+      "url": "https://status.fatah.web.id/",
+      "icon": "web",
+      "en_title": "Website Status",
+      "en_description": "A page showing real-time availability and status for all Fatah web services.",
+      "id_title": "Status Website",
+      "id_description": "Halaman ketersediaan dan status real-time untuk semua layanan web Fatah."
+    },
+    {
       "id": "github",
       "url": "https://github.com/fatahilah-mr",
       "icon": "github",
