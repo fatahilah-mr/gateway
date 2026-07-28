@@ -1,3 +1,9 @@
+/
+  Link: <https://fatah.web.id/>; rel="canonical"
+
+/index.html
+  Link: <https://fatah.web.id/>; rel="canonical"
+
 /content/config.json
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 

@@ -29,6 +29,22 @@ export default function SEOHead() {
     if (ogDescElem) {
       ogDescElem.setAttribute('content', metaDesc);
     }
+
+    // 4. Canonical URL & Social URL Enforcement
+    const canonicalUrl = 'https://fatah.web.id/';
+    
+    let canonicalElem = document.querySelector('link[rel="canonical"]');
+    if (!canonicalElem) {
+      canonicalElem = document.createElement('link');
+      canonicalElem.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalElem);
+    }
+    canonicalElem.setAttribute('href', canonicalUrl);
+
+    const ogUrlElem = document.querySelector('meta[property="og:url"]');
+    if (ogUrlElem) {
+      ogUrlElem.setAttribute('content', canonicalUrl);
+    }
   }, [lang, t]);
 
   return null;

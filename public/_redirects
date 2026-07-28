@@ -1,0 +1,6 @@
+# Cloudflare Pages 301 Redirects for Canonical Domain Enforcement
+https://www.fatah.web.id/* https://fatah.web.id/:splat 301
+http://www.fatah.web.id/* https://fatah.web.id/:splat 301
+http://fatah.web.id/* https://fatah.web.id/:splat 301
+https://links.fatahmr.my.id/* https://fatah.web.id/:splat 301
+http://links.fatahmr.my.id/* https://fatah.web.id/:splat 301
