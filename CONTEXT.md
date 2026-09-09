@@ -199,14 +199,15 @@ sequenceDiagram
   - **Quality Verification:** Ran `npm run build` (built in 5.9s) and `npm run lint` with zero errors.
 - **Status:** Complete, tested, and pushed to `feat/overhaul-d1-revamp`.
 
-### Session Entry: `2026-09-09 (Part 3)` (Custom Subdomain link.fmr.web.id Setup)
-- **Objective:** Attach custom subdomain `link.fmr.web.id` to the `web-gateway` Cloudflare Pages project.
+### Session Entry: `2026-09-09 (Part 3)` (Custom Subdomain link.fmr.web.id & Production Branch Configuration)
+- **Objective:** Attach custom subdomain `link.fmr.web.id` to the `web-gateway` Cloudflare Pages project and configure `production_branch` to point directly to `feat/overhaul-d1-revamp`.
 - **Completed Work:**
   - Added `link.fmr.web.id` as a custom domain to Pages project `web-gateway` via Cloudflare API.
   - Created CNAME DNS record `link.fmr.web.id` -> `web-gateway-2pd.pages.dev` with Cloudflare proxy (`proxied: true`) in zone `fmr.web.id` (`9731410230e0a0fd4c1b84e0ffa68d7c`).
-  - Verified SSL edge certificate and confirmed HTTP/2 200 OK response on `https://link.fmr.web.id`.
-  - Noted that Cloudflare Pages custom domains serve the production branch (`main`), while the overhaul code is ready on `feat/overhaul-d1-revamp`.
-- **Status:** Subdomain connected, active, and verified.
+  - Configured Cloudflare Pages `production_branch` to `feat/overhaul-d1-revamp` via Cloudflare Pages API `PATCH /accounts/{account_id}/pages/projects/web-gateway`.
+  - Triggered production build deployment (`02756700-eec5-40c0-94c1-ba664c32a8b8`), successfully compiled and deployed to edge.
+  - Verified that both `https://link.fmr.web.id` and `https://fatah.web.id` now directly serve the live production deployment with Cloudflare D1 dynamic API (`/api/data`), Native Admin (`/admin`), and Neo-Brutalism frontend.
+- **Status:** Subdomain connected, production branch switched, and verified live on edge.
 
 ---
 
@@ -222,4 +223,5 @@ sequenceDiagram
 - [x] Neo-Brutalism frontend redesign with small dot grid substrate ("background dot kecil").
 - [x] Verification of legacy data migration into D1 SQLite.
 - [x] Custom subdomain `link.fmr.web.id` connected and active.
-- [ ] Review preview and merge `feat/overhaul-d1-revamp` to `main` for production promotion to `fatah.web.id` & `link.fmr.web.id`.
+- [x] Cloudflare Pages `production_branch` switched to `feat/overhaul-d1-revamp` for live production serving.
+- [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
