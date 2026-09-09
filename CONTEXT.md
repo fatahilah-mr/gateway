@@ -5,7 +5,7 @@
 > 1. Read this entire document before proposing or executing code changes to understand the project architecture, domain models, conventions, and previous session history.
 > 2. Whenever you finish a significant milestone or end a session, update the **Session History & Progress Log** section at the bottom of this file so subsequent sessions maintain continuity.
 > 3. **Mandatory Rule:** At the conclusion of EVERY session or after completing changes, you MUST update this `CONTEXT.md` file with the latest state, files touched, and next actions.
-> 4. **RAM Monitoring Rule:** Always monitor and report VPS RAM usage (`free -h`) and the top memory-consuming processes (`ps aux --sort=-%mem | head -n 11`) at the conclusion of every response or after performing significant operations, ensuring system resources remain healthy and unburdened.
+> 4. **RAM Monitoring Rule:** Always monitor and report VPS RAM usage from `free -h` parsed neatly into a clean Markdown table (never in raw txt format) at the conclusion of every response or after performing operations, ensuring system resources remain healthy and unburdened.
 
 ---
 
