@@ -15,7 +15,7 @@
 - **Active Feature Branch:** `feat/overhaul-d1-revamp`
 - **Live Preview URL:** [https://feat-overhaul-d1-revamp.web-gateway-2pd.pages.dev](https://feat-overhaul-d1-revamp.web-gateway-2pd.pages.dev)
 - **Live Admin Portal:** [https://feat-overhaul-d1-revamp.web-gateway-2pd.pages.dev/admin](https://feat-overhaul-d1-revamp.web-gateway-2pd.pages.dev/admin)
-- **Production Domain:** [https://fatah.web.id](https://fatah.web.id)
+- **Production Domain:** [https://fatah.web.id](https://fatah.web.id) & [https://link.fmr.web.id](https://link.fmr.web.id)
 - **Current Version / Milestone:** `v2.0.0 (D1 Edge Dynamic Portal)`
 - **Core Value Proposition:** An independent, ultra-fast, responsive, and elegant personal link portal and portfolio hub. Powered by Cloudflare Pages + Cloudflare D1 (Edge SQLite) with an integrated Native Admin Control Panel, GitHub OAuth authentication, real-time link click analytics, zero-cache latency, bilingual support (ID/EN), dynamic theming, and GSAP-powered 3D tilt animations.
 - **Primary Users / Consumers:** Recruiters, clients, peers, and the project owner for managing personal and professional links seamlessly.
@@ -160,6 +160,7 @@ sequenceDiagram
 | `2026-08-27` | Antigravity AI | Context Setup | `CONTEXT.md`, `.gitignore` | Created CONTEXT.md template and ignored template folder |
 | `2026-09-09 (Part 1)` | Antigravity AI | Total Overhaul: Cloudflare D1 & Native Admin | `functions/api/*`, `src/components/admin/*`, `src/hooks/useConfig.js`, `src/App.jsx`, `wrangler.toml` | Overhauled to Cloudflare Pages + D1 with Native Admin, GitHub OAuth, click tracking, 0-cache latency. |
 | `2026-09-09 (Part 2)` | Antigravity AI | Frontend Neo-Brutalism & Dot Grid Redesign | `src/App.css`, `src/index.css`, `src/App.jsx`, `src/components/LinkCard.jsx`, `src/components/Loader.jsx`, `src/components/admin/admin.css`, `index.html` | Restyled public portal & admin to high-contrast Neo-Brutalism with 16px small dot grid, tactile physics, accent badges, and confirmed D1 migration. |
+| `2026-09-09 (Part 3)` | Antigravity AI | Custom Subdomain link.fmr.web.id Setup | Cloudflare Pages Custom Domains, Zone `fmr.web.id` DNS | Added `link.fmr.web.id` to `web-gateway`, created CNAME DNS record, and verified SSL edge routing. |
 
 ### Session Entry: `2026-09-09 (Part 1)` (Total Overhaul: Cloudflare D1 & Native Admin)
 - **Objective:** Complete architecture revamp replacing static Git-based CMS with Cloudflare D1 relational database, Cloudflare Pages Functions serverless API, Native Integrated Admin Dashboard (`/admin`), GitHub OAuth security, real-time click tracking, and zero-cache latency.
@@ -198,6 +199,15 @@ sequenceDiagram
   - **Quality Verification:** Ran `npm run build` (built in 5.9s) and `npm run lint` with zero errors.
 - **Status:** Complete, tested, and pushed to `feat/overhaul-d1-revamp`.
 
+### Session Entry: `2026-09-09 (Part 3)` (Custom Subdomain link.fmr.web.id Setup)
+- **Objective:** Attach custom subdomain `link.fmr.web.id` to the `web-gateway` Cloudflare Pages project.
+- **Completed Work:**
+  - Added `link.fmr.web.id` as a custom domain to Pages project `web-gateway` via Cloudflare API.
+  - Created CNAME DNS record `link.fmr.web.id` -> `web-gateway-2pd.pages.dev` with Cloudflare proxy (`proxied: true`) in zone `fmr.web.id` (`9731410230e0a0fd4c1b84e0ffa68d7c`).
+  - Verified SSL edge certificate and confirmed HTTP/2 200 OK response on `https://link.fmr.web.id`.
+  - Noted that Cloudflare Pages custom domains serve the production branch (`main`), while the overhaul code is ready on `feat/overhaul-d1-revamp`.
+- **Status:** Subdomain connected, active, and verified.
+
 ---
 
 ## 📋 7. Backlog & Next Actions
@@ -211,4 +221,5 @@ sequenceDiagram
 - [x] Notifications via Telegram & ntfy.
 - [x] Neo-Brutalism frontend redesign with small dot grid substrate ("background dot kecil").
 - [x] Verification of legacy data migration into D1 SQLite.
-- [ ] Review preview and merge `feat/overhaul-d1-revamp` to `main` for production promotion to `fatah.web.id`.
+- [x] Custom subdomain `link.fmr.web.id` connected and active.
+- [ ] Review preview and merge `feat/overhaul-d1-revamp` to `main` for production promotion to `fatah.web.id` & `link.fmr.web.id`.
