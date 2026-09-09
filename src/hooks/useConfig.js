@@ -25,15 +25,15 @@ export function useConfig() {
             en: data.config.en,
             id: data.config.id,
             links: data.links.map(link => ({
-              id: link.id,
+              id: typeof link.id === 'string' ? link.id : link.url,
               url: link.url,
               icon: link.icon,
               is_highlight: link.is_highlight,
               click_count: link.click_count || 0,
-              en_title: link.en?.title || '',
-              en_description: link.en?.description || '',
-              id_title: link.id?.title || '',
-              id_description: link.id?.description || ''
+              en_title: link.en_title || link.en?.title || '',
+              en_description: link.en_description || link.en?.description || '',
+              id_title: link.id_title || link.id_lang?.title || '',
+              id_description: link.id_description || link.id_lang?.description || ''
             }))
           };
           setConfig(formattedConfig);

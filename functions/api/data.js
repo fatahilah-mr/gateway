@@ -55,11 +55,15 @@ export async function onRequest({ env }) {
       icon: row.icon,
       is_highlight: Boolean(row.is_highlight),
       click_count: row.click_count || 0,
+      en_title: row.en_title,
+      en_description: row.en_description,
+      id_title: row.id_title,
+      id_description: row.id_description,
       en: {
         title: row.en_title,
         description: row.en_description
       },
-      id: {
+      id_lang: {
         title: row.id_title,
         description: row.id_description
       }
