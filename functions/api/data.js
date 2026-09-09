@@ -3,10 +3,13 @@
 
 import { jsonResponse, errorResponse } from './_auth.js';
 
-export async function onRequest({ env }) {
+export async function onRequest({ request, env }) {
   if (!env.DB) {
     return errorResponse('Database binding (DB) is not configured', 500);
   }
+
+  const url = new URL(request.url);
+  const isFresh = url.searchParams.get('fresh') === '1' || url.searchParams.has('nocache');
 
   try {
     // 1. Fetch site_config and active links in parallel batch for maximum performance
@@ -69,12 +72,20 @@ export async function onRequest({ env }) {
       }
     }));
 
+    // Cache strategy: 60s at Cloudflare Edge CDN, 30s in browser, 5m stale-while-revalidate
+    // Surges of visitors will hit Cloudflare Edge cache with 0 D1 read consumption!
+    const cacheHeaders = isFresh ? {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0'
+    } : {
+      'Cache-Control': 'public, max-age=30, s-maxage=60, stale-while-revalidate=300'
+    };
+
     return jsonResponse({
       success: true,
       config,
       links,
       timestamp: Date.now()
-    });
+    }, 200, cacheHeaders);
   } catch (err) {
     return errorResponse(`Failed to load data: ${err.message}`, 500);
   }

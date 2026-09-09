@@ -8,12 +8,10 @@ export function useConfig() {
 
   const fetchConfig = useCallback(async () => {
     try {
-      // 1. Fetch from dynamic D1 API with strict anti-cache
+      // 1. Fetch from dynamic D1 API (Edge cached by Cloudflare CDN to absorb traffic surges)
       const response = await fetch('/api/data', {
-        cache: 'no-store',
         headers: {
-          'Accept': 'application/json',
-          'Cache-Control': 'no-cache'
+          'Accept': 'application/json'
         }
       });
 

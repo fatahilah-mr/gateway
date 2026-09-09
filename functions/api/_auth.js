@@ -9,15 +9,23 @@ const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
  * Standard JSON response with strict anti-cache headers
  */
 export function jsonResponse(data, status = 200, extraHeaders = {}) {
+  const headers = {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+    'Pragma': 'no-cache',
+    'Expires': '0',
+    ...extraHeaders
+  };
+
+  // If custom Cache-Control allows caching, strip legacy anti-cache headers
+  if (extraHeaders['Cache-Control'] && !extraHeaders['Cache-Control'].includes('no-cache')) {
+    delete headers['Pragma'];
+    delete headers['Expires'];
+  }
+
   return new Response(JSON.stringify(data), {
     status,
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
-      'Pragma': 'no-cache',
-      'Expires': '0',
-      ...extraHeaders
-    }
+    headers
   });
 }
 
