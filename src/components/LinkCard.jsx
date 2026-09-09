@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const LinkCard = ({ url, title, description, icon: Icon }) => {
+const LinkCard = ({ id, url, title, description, icon: Icon }) => {
   const cardRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,6 +39,20 @@ const LinkCard = ({ url, title, description, icon: Icon }) => {
     
     setIsLoading(true);
 
+    // Track click asynchronously via Cloudflare D1 without delaying user navigation
+    if (id) {
+      try {
+        fetch('/api/click', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id }),
+          keepalive: true
+        }).catch(() => {});
+      } catch {
+        // ignore tracking failures gracefully
+      }
+    }
+
     // Touch feedback / Push down animation
     gsap.to(cardRef.current, {
       scale: 0.95,
@@ -58,7 +72,7 @@ const LinkCard = ({ url, title, description, icon: Icon }) => {
           
           window.open(url, '_blank', 'noopener,noreferrer');
           setIsLoading(false);
-        }, 500); // 500ms loading delay
+        }, 350);
       }
     });
   };
@@ -77,7 +91,7 @@ const LinkCard = ({ url, title, description, icon: Icon }) => {
     >
       <div className="link-card-inner">
         <div className="link-icon">
-          <Icon sx={{ fontSize: 24 }} />
+          {Icon ? <Icon sx={{ fontSize: 24 }} /> : null}
         </div>
         <div className="link-content">
           <h2 className="link-title">{title}</h2>

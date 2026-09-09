@@ -4,3 +4,7 @@ http://www.fatah.web.id/* https://fatah.web.id/:splat 301
 http://fatah.web.id/* https://fatah.web.id/:splat 301
 https://links.fatahmr.my.id/* https://fatah.web.id/:splat 301
 http://links.fatahmr.my.id/* https://fatah.web.id/:splat 301
+
+# SPA Fallback for Admin Route
+/admin/* /index.html 200
+/admin   /index.html 200

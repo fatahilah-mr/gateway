@@ -1,0 +1,8 @@
+name = "web-gateway"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-09-09"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "gateway-d1"
+database_id = "f71f7c73-a7b9-4166-bfd1-d4bcc84caef8"
