@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ArrowForward from '@mui/icons-material/ArrowForward';
-import CircularProgress from '@mui/material/CircularProgress';
 
 const LinkCard = ({ id, url, title, description, icon: Icon }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (isLoading) return;
-    
-    setIsLoading(true);
-
-    // Track click asynchronously via Cloudflare D1
+  const handleClick = () => {
+    // Track click asynchronously via Cloudflare D1 with keepalive (never blocks navigation)
     if (id) {
       try {
         fetch('/api/click', {
@@ -24,22 +16,16 @@ const LinkCard = ({ id, url, title, description, icon: Icon }) => {
         // ignore tracking errors gracefully
       }
     }
-
-    // Smooth feedback before navigation
-    setTimeout(() => {
-      window.open(url, '_blank', 'noopener,noreferrer');
-      setIsLoading(false);
-    }, 150);
   };
 
   return (
     <a 
       href={url} 
       target="_blank"
-      rel="me noopener noreferrer"
+      rel="noopener noreferrer"
       aria-label={`${title}: ${description}`}
       onClick={handleClick}
-      className={`link-card ${isLoading ? 'is-loading' : ''}`}
+      className="link-card"
       data-link-id={id}
     >
       <div className="link-card-inner">
@@ -51,11 +37,7 @@ const LinkCard = ({ id, url, title, description, icon: Icon }) => {
           <p className="link-desc">{description}</p>
         </div>
         <div className="link-arrow-box">
-          {isLoading ? (
-            <CircularProgress size={14} sx={{ color: 'inherit' }} />
-          ) : (
-            <ArrowForward sx={{ fontSize: 16 }} />
-          )}
+          <ArrowForward sx={{ fontSize: 16 }} />
         </div>
       </div>
     </a>

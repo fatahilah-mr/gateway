@@ -31,7 +31,8 @@ export default function SEOHead() {
     }
 
     // 4. Canonical URL & Social URL Enforcement
-    const canonicalUrl = 'https://fatah.web.id/';
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://link.fmr.web.id';
+    const canonicalUrl = `${origin}${lang === 'id' ? '/id' : '/'}`;
     
     let canonicalElem = document.querySelector('link[rel="canonical"]');
     if (!canonicalElem) {

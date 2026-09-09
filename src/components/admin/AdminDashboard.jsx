@@ -90,6 +90,18 @@ const AdminDashboard = ({ user, onLogout, onBackToHome }) => {
     fetchData();
   }, [fetchData]);
 
+  // Keyboard accessibility: close modal on Escape key press
+  useEffect(() => {
+    if (!modalOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [modalOpen]);
+
   // Reorder Links
   const handleMove = async (index, direction) => {
     const targetIndex = index + direction;
@@ -162,20 +174,31 @@ const AdminDashboard = ({ user, onLogout, onBackToHome }) => {
     }
   };
 
-  // Delete Link
-  const handleDeleteLink = async (id) => {
-    if (!window.confirm(`Hapus tautan '${id}' secara permanen dari Cloudflare D1?`)) return;
-
-    try {
-      const res = await fetch(`/api/admin/links?id=${encodeURIComponent(id)}`, {
-        method: 'DELETE'
-      });
-      if (!res.ok) throw new Error('Gagal menghapus tautan');
-      setLinks(prev => prev.filter(l => l.id !== id));
-      showFeedback('success', `Tautan '${id}' berhasil dihapus`);
-    } catch (err) {
-      showFeedback('error', err.message);
-    }
+  // Delete Link with Sonner Action Confirmation
+  const handleDeleteLink = (id) => {
+    toast(`Hapus tautan '${id}'?`, {
+      description: 'Tautan akan dihapus secara permanen dari Cloudflare D1.',
+      duration: 6000,
+      action: {
+        label: 'Hapus',
+        onClick: async () => {
+          try {
+            const res = await fetch(`/api/admin/links?id=${encodeURIComponent(id)}`, {
+              method: 'DELETE'
+            });
+            if (!res.ok) throw new Error('Gagal menghapus tautan');
+            setLinks(prev => prev.filter(l => l.id !== id));
+            toast.success(`Tautan '${id}' berhasil dihapus`);
+          } catch (err) {
+            toast.error(err.message);
+          }
+        }
+      },
+      cancel: {
+        label: 'Batal',
+        onClick: () => {}
+      }
+    });
   };
 
   // Open Modal for Create or Edit

@@ -51,8 +51,22 @@ export async function onRequest(context) {
         is_highlight = 0
       } = body;
 
+function isValidUrl(urlString) {
+  if (!urlString || typeof urlString !== 'string') return false;
+  try {
+    const parsed = new URL(urlString.trim());
+    return ['http:', 'https:', 'mailto:', 'tel:'].includes(parsed.protocol);
+  } catch {
+    return false;
+  }
+}
+
       if (!id || !url || !en_title || !id_title) {
         return errorResponse('Missing required fields: id, url, en_title, id_title', 400);
+      }
+
+      if (!isValidUrl(url)) {
+        return errorResponse('Invalid URL: must be a valid http(s), mailto, or tel link', 400);
       }
 
       // Check if id already exists
@@ -111,6 +125,10 @@ export async function onRequest(context) {
 
       if (!id) {
         return errorResponse('Missing link id to update', 400);
+      }
+
+      if (url !== undefined && !isValidUrl(url)) {
+        return errorResponse('Invalid URL: must be a valid http(s), mailto, or tel link', 400);
       }
 
       const existing = await env.DB.prepare('SELECT * FROM gw_links WHERE id = ?').bind(id).first();

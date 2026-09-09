@@ -6,9 +6,13 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png" />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
     <link rel="manifest" href="/favicon/site.webmanifest" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#050507" />
     <meta name="color-scheme" content="dark" />
+
+    <!-- LCP Asset Preload (Instant Zero-Flicker Background) -->
+    <link rel="preload" as="image" href="/minimal-liquid-portrait.webp" media="(max-width: 768px)" fetchpriority="high" type="image/webp" />
+    <link rel="preload" as="image" href="/minimal-liquid-landscape.webp" media="(min-width: 769px)" fetchpriority="high" type="image/webp" />
     <title>Fatahilah Miftahul Rahman | Official Gateway & Link Hub</title>
     <meta name="description" content="Official website and link portal of Fatahilah Miftahul Rahman. Access Network Engineering portfolio, tech blog, GitHub projects, LinkedIn profile, and contact details." />
     <meta name="keywords" content="Fatahilah Miftahul Rahman, Fatah, Network Engineer, Web Developer, Portfolio, Gateway, Indonesia" />
@@ -71,7 +75,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>

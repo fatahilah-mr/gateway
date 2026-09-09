@@ -177,7 +177,7 @@ export async function onRequest(context) {
           (function() {
             if (window.opener) {
               const content = JSON.stringify({ token: "${accessToken}", provider: "github" });
-              window.opener.postMessage("authorization:github:success:" + content, "*");
+              window.opener.postMessage("authorization:github:success:" + content, window.location.origin);
               window.close();
             } else {
               window.location.href = "${destination}";
