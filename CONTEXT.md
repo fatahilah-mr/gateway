@@ -209,6 +209,14 @@ sequenceDiagram
   - Verified that both `https://link.fmr.web.id` and `https://fatah.web.id` now directly serve the live production deployment with Cloudflare D1 dynamic API (`/api/data`), Native Admin (`/admin`), and Neo-Brutalism frontend.
 - **Status:** Subdomain connected, production branch switched, and verified live on edge.
 
+### Session Entry: `2026-09-09 (Part 4)` (GitHub OAuth Credentials Injection)
+- **Objective:** Inject user's new GitHub OAuth Client ID and Client Secret into Cloudflare Pages environment variables.
+- **Completed Work:**
+  - Configured `GITHUB_CLIENT_ID` (`Ov23liY7TkeLfzyHzZsA`) and `GITHUB_CLIENT_SECRET` (encrypted secret text) in Cloudflare Pages `deployment_configs` for both `production` and `preview`.
+  - Triggered production deployment (`c83ae9c3`) to bake the updated OAuth credentials into the runtime functions.
+  - Verified authentication redirect at `https://link.fmr.web.id/api/auth/login`.
+- **Status:** GitHub OAuth credentials active and live.
+
 ---
 
 ## 📋 7. Backlog & Next Actions
@@ -224,4 +232,5 @@ sequenceDiagram
 - [x] Verification of legacy data migration into D1 SQLite.
 - [x] Custom subdomain `link.fmr.web.id` connected and active.
 - [x] Cloudflare Pages `production_branch` switched to `feat/overhaul-d1-revamp` for live production serving.
+- [x] GitHub OAuth credentials configured and active.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
