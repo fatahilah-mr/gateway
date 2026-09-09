@@ -418,6 +418,18 @@ sequenceDiagram
     4. **Subtitle & Card Hint Brightness:** Raised `.subtitle` to crisp `#f1f5f9` (weight 500) and `.card-hint` to `#e2e8f0` with ambient shadows.
 - **Verification:** Verified with `npm run lint` and `npm run build` (328 modules transformed, 0 errors, built in 3.97s).
 - **Status:** Complete, tested, and deployed to production.
+### Session Entry: `2026-09-10 (Part 17)` (Removal of Subtitle & Custom Apple-Grade Tactile Touch Feedback)
+- **Objective:** Fulfill user request to remove subtitle text ("Teknisi Jaringan & Pengembang Web" / "Network Engineer & Web Developer" across ID and EN), disable the default mobile browser blue tap highlight rectangle (`-webkit-tap-highlight-color: transparent`), and implement an Apple-grade tactile micro-press touch feedback.
+- **Key Implementations:**
+  - **Removed Subtitle:** Eliminated `<p className="subtitle">{t('subtitle')}</p>` from `src/App.jsx` and cleaned up residual styles in `src/App.css`, achieving a super-focused, distraction-free hero header.
+  - **Disabled Browser Tap Highlight:** Configured `* { -webkit-tap-highlight-color: transparent; }` in `src/index.css` and `.link-card` in `src/App.css`, eradicating the clumsy Android blue flash on touch.
+  - **Tactile Touch Feedback Micro-Interactions (`src/App.css`):**
+    - Configured `.link-card:active` and `.link-card.is-loading` with responsive tactile press `transform: scale(0.975);`.
+    - Added high-end obsidian flash `background: rgba(255, 255, 255, 0.10) !important;` with hairline top rim highlight `inset 0 1px 0 0 rgba(255, 255, 255, 0.20)`.
+    - Configured tactile micro-scaling on icon badge (`scale(0.94)`) and micro-translation on arrow icon (`translateX(2px)`).
+    - Optimized transition durations to `0.15s` for instant, snappy mobile responsiveness.
+- **Verification:** Verified with `npm run lint` and `npm run build` (328 modules transformed, 0 errors, built in 3.88s).
+- **Status:** Complete, tested, and deployed to production.
 
 ---
 
@@ -446,7 +458,9 @@ sequenceDiagram
 - [x] Removal of initial loading screen & instant zero-latency render.
 - [x] Fixed Dark Mode, Cloudflare Edge Geo-Routing (`/id` & `/`), and Option A header language switcher.
 - [x] Removal of status badge and 3-layer header typography contrast enhancement.
+- [x] Removal of subtitle and custom Apple-grade tactile touch feedback.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
+
 
 
 

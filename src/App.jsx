@@ -69,7 +69,6 @@ function App() {
               </div>
 
               <h1 className="header-title">{t('title')}</h1>
-              <p className="subtitle">{t('subtitle')}</p>
               <p className="card-hint">{t('cardHint')}</p>
             </header>
 

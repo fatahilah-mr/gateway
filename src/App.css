@@ -118,27 +118,12 @@
     0 1px 2px #000000;
 }
 
-.header .subtitle {
-  font-size: 0.95rem;
-  color: #f1f5f9;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
-  max-width: 440px;
-  text-wrap: balance;
-  -webkit-text-stroke: 0.3px rgba(0, 0, 0, 0.7);
-  paint-order: stroke fill;
-  text-shadow: 
-    0 1px 6px rgba(0, 0, 0, 0.95),
-    0 2px 16px rgba(0, 0, 0, 0.9);
-}
-
 .header .card-hint {
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-family: var(--font-mono);
   color: #e2e8f0;
   font-weight: 500;
-  margin-top: 0.5rem;
+  margin-top: 0.65rem;
   letter-spacing: 0.03em;
   text-shadow: 
     0 1px 4px rgba(0, 0, 0, 0.95),
@@ -169,10 +154,14 @@
   cursor: pointer;
   position: relative;
   contain: content;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
-              background-color 0.2s ease, 
-              border-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.15s ease, 
+              border-color 0.15s ease;
 }
 
 .link-card:hover {
@@ -182,10 +171,25 @@
   box-shadow: var(--card-shadow-hover), var(--card-inner-highlight);
 }
 
+/* Tactile Apple-Grade Touch / Press Feedback */
 .link-card:active,
 .link-card.is-loading {
-  transform: translateY(1px) scale(0.99);
-  background: var(--card-surface-active);
+  transform: scale(0.975);
+  background: rgba(255, 255, 255, 0.10) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.20) !important;
+}
+
+.link-card:active .link-icon,
+.link-card.is-loading .link-icon {
+  transform: scale(0.94);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.link-card:active .link-arrow-box,
+.link-card.is-loading .link-arrow-box {
+  transform: translateX(2px);
+  color: #ffffff;
 }
 
 .link-card-inner {
