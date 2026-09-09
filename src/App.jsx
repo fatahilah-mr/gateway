@@ -49,29 +49,29 @@ function App() {
   useEffect(() => {
     if (!isAdminRoute && !configLoading && !loading && mainRef.current) {
       const ctx = gsap.context(() => {
-        gsap.registerPlugin();
-        const customEase = "M0,0 C0.16,1 0.3,1 1,1";
-
         const tl = gsap.timeline();
         
         tl.to('.header', {
           y: 0,
           opacity: 1,
-          duration: 1,
-          ease: `custom(${customEase})`
+          duration: 0.8,
+          ease: 'power2.out',
+          clearProps: 'transform'
         })
         .to('.link-card', {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.08,
-          ease: `custom(${customEase})`
-        }, "-=0.6")
+          duration: 0.6,
+          stagger: 0.06,
+          ease: 'power2.out',
+          clearProps: 'transform'
+        }, "-=0.4")
         .to('.footer', {
           opacity: 1,
-          duration: 0.8,
-          ease: 'power2.out'
-        }, "-=0.4");
+          duration: 0.6,
+          ease: 'power2.out',
+          clearProps: 'transform'
+        }, "-=0.3");
       }, mainRef);
 
       return () => ctx.revert();
@@ -86,22 +86,23 @@ function App() {
       onComplete: () => {
         action();
         
-        const delay = type === 'theme' ? 800 : 500;
+        const delay = type === 'theme' ? 600 : 400;
         
         setTimeout(() => {
           if (type === 'theme') {
              gsap.to('.theme-overlay', { 
                autoAlpha: 0, 
-               duration: 0.5 
+               duration: 0.4 
              });
           }
           
-          gsap.to(['.header h1', '.header p', '.link-card', '.footer'], {
+          gsap.to(['.header h1', '.header p', '.status-badge', '.link-card', '.footer'], {
             opacity: 1,
             y: 0,
-            duration: 0.6,
-            stagger: 0.05,
-            ease: "M0,0 C0.16,1 0.3,1 1,1",
+            duration: 0.5,
+            stagger: 0.04,
+            ease: "power2.out",
+            clearProps: 'transform',
             onComplete: () => setTransitionState(null)
           });
         }, delay); 
@@ -109,14 +110,14 @@ function App() {
     });
 
     if (type === 'theme') {
-      tl.to('.theme-overlay', { autoAlpha: 1, duration: 0.3 }, 0);
+      tl.to('.theme-overlay', { autoAlpha: 1, duration: 0.25 }, 0);
     }
 
-    tl.to(['.header h1', '.header p', '.link-card', '.footer'], {
+    tl.to(['.header h1', '.header p', '.status-badge', '.link-card', '.footer'], {
       opacity: 0,
-      y: -10,
-      duration: 0.4,
-      stagger: 0.05,
+      y: -8,
+      duration: 0.35,
+      stagger: 0.04,
       ease: 'power2.in'
     }, 0);
   };
@@ -127,20 +128,23 @@ function App() {
       {!isAdminRoute && (loading || configLoading) && <Loader onComplete={() => setLoading(false)} />}
       
       <div className="theme-overlay">
-        <CircularProgress size={48} sx={{ color: 'var(--text-primary)' }} />
+        <CircularProgress size={44} sx={{ color: 'var(--text-primary)' }} />
       </div>
 
       <div className="app-container" ref={mainRef}>
-        <div className="bg-mesh"></div>
-
         {isAdminRoute ? (
           <AdminPortal onBackToHome={() => navigateTo('/')} />
         ) : (
           <div className="content-wrapper">
             <header className="header">
+              <div className="status-badge">
+                <span className="status-dot"></span>
+                <span>{lang === 'en' ? 'GATEWAY // ONLINE' : 'GERBANG // AKTIF'}</span>
+              </div>
+
               <div className="title-row">
                 <button 
-                  className="glass control-btn" 
+                  className="control-btn" 
                   onClick={() => handleToggle('lang', toggleLanguage)} 
                   disabled={transitionState !== null}
                   aria-label="Toggle Language"
@@ -149,7 +153,7 @@ function App() {
                 </button>
                 <h1>{t('title')}</h1>
                 <button 
-                  className="glass control-btn" 
+                  className="control-btn" 
                   onClick={() => handleToggle('theme', toggleTheme)} 
                   disabled={transitionState !== null}
                   aria-label="Toggle Theme"
@@ -157,6 +161,7 @@ function App() {
                   {transitionState === 'theme' ? <CircularProgress size={20} sx={{ color: 'inherit' }} /> : (theme === 'dark' ? <DarkMode /> : <LightMode />)}
                 </button>
               </div>
+
               <p className="subtitle">{t('subtitle')}</p>
               <p className="feature-hint">{t('hint')}</p>
               <p className="card-hint">{t('cardHint')}</p>
@@ -175,27 +180,15 @@ function App() {
               ))}
             </main>
 
-            <footer className="footer" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+            <footer className="footer">
               <p>{t('footer')}</p>
               <button 
                 onClick={() => navigateTo('/admin')} 
-                style={{ 
-                  display: 'inline-flex', 
-                  alignItems: 'center', 
-                  gap: '0.35rem', 
-                  fontSize: '0.75rem', 
-                  color: 'var(--text-secondary)',
-                  opacity: 0.7,
-                  padding: '4px 8px',
-                  borderRadius: '6px',
-                  transition: 'opacity 0.2s'
-                }}
-                onMouseEnter={e => e.currentTarget.style.opacity = '1'}
-                onMouseLeave={e => e.currentTarget.style.opacity = '0.7'}
+                className="admin-link-btn"
                 title="Admin Control Panel"
               >
                 <LockOutlined sx={{ fontSize: 13 }} />
-                <span>Admin</span>
+                <span>ADMIN</span>
               </button>
             </footer>
           </div>

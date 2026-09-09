@@ -1,37 +1,22 @@
-import React, { useRef, useState } from 'react';
-import gsap from 'gsap';
+import React, { useState } from 'react';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import CircularProgress from '@mui/material/CircularProgress';
 
+const ACCENT_COLORS = {
+  portfolio: 'var(--nb-blue)',
+  blog: 'var(--nb-yellow)',
+  status: 'var(--nb-green)',
+  github: 'var(--nb-purple)',
+  linkedin: 'var(--nb-blue)',
+  threads: 'var(--nb-pink)',
+  email: 'var(--nb-orange)',
+  whatsapp: 'var(--nb-lime)'
+};
+
 const LinkCard = ({ id, url, title, description, icon: Icon }) => {
-  const cardRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleMouseMove = (e) => {
-    if (isLoading || !cardRef.current) return;
-    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / 25; 
-    const y = (e.clientY - top - height / 2) / 25;
-
-    gsap.to(cardRef.current, {
-      rotationY: x,
-      rotationX: -y,
-      ease: 'power2.out',
-      transformPerspective: 900,
-      transformOrigin: 'center'
-    });
-  };
-
-  const handleMouseLeave = () => {
-    if (isLoading || !cardRef.current) return;
-    gsap.to(cardRef.current, {
-      rotationY: 0,
-      rotationX: 0,
-      scale: 1,
-      ease: 'elastic.out(1, 0.3)',
-      duration: 1
-    });
-  };
+  const accentColor = ACCENT_COLORS[id] || 'var(--nb-yellow)';
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -39,7 +24,7 @@ const LinkCard = ({ id, url, title, description, icon: Icon }) => {
     
     setIsLoading(true);
 
-    // Track click asynchronously via Cloudflare D1 without delaying user navigation
+    // Track click asynchronously via Cloudflare D1
     if (id) {
       try {
         fetch('/api/click', {
@@ -49,32 +34,15 @@ const LinkCard = ({ id, url, title, description, icon: Icon }) => {
           keepalive: true
         }).catch(() => {});
       } catch {
-        // ignore tracking failures gracefully
+        // ignore tracking errors gracefully
       }
     }
 
-    // Touch feedback / Push down animation
-    gsap.to(cardRef.current, {
-      scale: 0.95,
-      rotationY: 0,
-      rotationX: 0,
-      duration: 0.2,
-      ease: 'power2.out',
-      onComplete: () => {
-        // Wait a bit to simulate loading processing, then open link
-        setTimeout(() => {
-          // Bounce back
-          gsap.to(cardRef.current, {
-            scale: 1,
-            duration: 0.5,
-            ease: 'elastic.out(1, 0.5)'
-          });
-          
-          window.open(url, '_blank', 'noopener,noreferrer');
-          setIsLoading(false);
-        }, 350);
-      }
-    });
+    // Snappy physical button press feedback before navigation
+    setTimeout(() => {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      setIsLoading(false);
+    }, 180);
   };
 
   return (
@@ -84,24 +52,23 @@ const LinkCard = ({ id, url, title, description, icon: Icon }) => {
       rel="me noopener noreferrer"
       aria-label={`${title}: ${description}`}
       onClick={handleClick}
-      className={`glass link-card ${isLoading ? 'is-loading' : ''}`}
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      className={`link-card ${isLoading ? 'is-loading' : ''}`}
     >
       <div className="link-card-inner">
-        <div className="link-icon">
-          {Icon ? <Icon sx={{ fontSize: 24 }} /> : null}
+        <div className="link-icon" style={{ backgroundColor: accentColor }}>
+          {Icon ? <Icon sx={{ fontSize: 24, color: '#121316' }} /> : null}
         </div>
         <div className="link-content">
           <h2 className="link-title">{title}</h2>
           <p className="link-desc">{description}</p>
         </div>
-        {isLoading ? (
-           <CircularProgress size={20} className="link-arrow" sx={{ color: 'var(--text-secondary)' }} />
-        ) : (
-           <ArrowForward className="link-arrow" sx={{ fontSize: 20 }} />
-        )}
+        <div className="link-arrow-box">
+          {isLoading ? (
+            <CircularProgress size={18} sx={{ color: 'inherit' }} />
+          ) : (
+            <ArrowForward sx={{ fontSize: 20 }} />
+          )}
+        </div>
       </div>
     </a>
   );

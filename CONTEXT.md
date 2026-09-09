@@ -31,8 +31,8 @@
 | **Database** | Cloudflare D1 | `SQLite Edge` | `gateway-d1` (UUID: `f71f7c73-a7b9-4166-bfd1-d4bcc84caef8`) |
 | **Serverless API** | Cloudflare Pages Functions | `v3 runtime` | `/functions/api/` (Edge endpoints with D1 binding `DB`) |
 | **Auth** | GitHub OAuth + Signed HMAC | Native | Only `@fatahilah-mr` allowed admin session |
-| **Styling & Animation** | CSS3 / GSAP 3 | `3.12.x` | Glassmorphism, 3D interactive tilt cards |
-| **Icons** | MUI Material Icons | `9.x` | Centralized mapping via `iconMap.js` |
+| **Styling & Animation** | CSS3 Neo-Brutalism / GSAP 3 | `3.12.x` | Neo-Brutalism with small dot matrix grid, hard offset shadows, mechanical tactile interactions |
+| **Icons** | MUI Material Icons | `9.x` | Centralized mapping via `iconMap.js` with accent badge backgrounds |
 | **Admin Panel** | Native Integrated SPA | Custom `/admin` | Real-time CRUD, reordering, and click analytics |
 | **Notifications** | ntfy & Telegram | CLI scripts | `notify-ntfy` & `notify-tele` |
 | **CI / CD & Hosting** | Cloudflare Pages | `N/A` | Automated build & preview deployments on git push |
@@ -158,9 +158,10 @@ sequenceDiagram
 | `2026-07-28` | Antigravity AI | SEO & Canonical Enforcement | `SEOHead.jsx`, `public/_headers`, `public/_redirects` | Fixed duplicate page issues in Google Search Console |
 | `2026-08-01` | Antigravity AI | Project Documentation | `gateway.id.md`, `gateway.en.md` | Created GUIDE-PROJECT-AI.md compliant project gallery files |
 | `2026-08-27` | Antigravity AI | Context Setup | `CONTEXT.md`, `.gitignore` | Created CONTEXT.md template and ignored template folder |
-| `2026-09-09` | Antigravity AI | Total Overhaul: Cloudflare D1 & Native Admin | `functions/api/*`, `src/components/admin/*`, `src/hooks/useConfig.js`, `src/App.jsx`, `wrangler.toml` | Successfully overhauled to Cloudflare Pages + D1 with Native Admin Panel, GitHub OAuth, click tracking, 0-cache latency, and verified on live preview. |
+| `2026-09-09 (Part 1)` | Antigravity AI | Total Overhaul: Cloudflare D1 & Native Admin | `functions/api/*`, `src/components/admin/*`, `src/hooks/useConfig.js`, `src/App.jsx`, `wrangler.toml` | Overhauled to Cloudflare Pages + D1 with Native Admin, GitHub OAuth, click tracking, 0-cache latency. |
+| `2026-09-09 (Part 2)` | Antigravity AI | Frontend Neo-Brutalism & Dot Grid Redesign | `src/App.css`, `src/index.css`, `src/App.jsx`, `src/components/LinkCard.jsx`, `src/components/Loader.jsx`, `src/components/admin/admin.css`, `index.html` | Restyled public portal & admin to high-contrast Neo-Brutalism with 16px small dot grid, tactile physics, accent badges, and confirmed D1 migration. |
 
-### Session Entry: `2026-09-09` (Total Overhaul: Cloudflare D1 & Native Admin)
+### Session Entry: `2026-09-09 (Part 1)` (Total Overhaul: Cloudflare D1 & Native Admin)
 - **Objective:** Complete architecture revamp replacing static Git-based CMS with Cloudflare D1 relational database, Cloudflare Pages Functions serverless API, Native Integrated Admin Dashboard (`/admin`), GitHub OAuth security, real-time click tracking, and zero-cache latency.
 - **Completed Work:**
   - Branch `feat/overhaul-d1-revamp` created and linked.
@@ -176,7 +177,26 @@ sequenceDiagram
   - Installed 33 skills in `.agents/skills` and pushed cleanly.
   - Verified live preview deployment at `https://feat-overhaul-d1-revamp.web-gateway-2pd.pages.dev`.
   - Delivered push notifications via `notify-tele` and `ntfy` (`ntfy.sh/agent-vps-529b6e0b7cab`).
-- **Status:** Complete, tested, and verified on live Cloudflare Pages Preview.
+
+### Session Entry: `2026-09-09 (Part 2)` (Frontend Neo-Brutalism Overhaul & Data Migration Verification)
+- **Objective:**
+  1. Clarify whether legacy markdown data was migrated to Cloudflare D1 SQLite.
+  2. Redesign the entire frontend to **Neo-Brutalism** with a **small dot matrix background ("background dot kecil")**.
+  3. Keep `CONTEXT.md` strictly updated.
+- **Completed Work:**
+  - **Data Clarification:** Clarified that `gateway.id.md` and `gateway.en.md` in the root are portfolio project case study documents (from `GUIDE-PROJECT-AI.md`), while the actual runtime portal content (`public/content/config.json`) was 100% migrated into Cloudflare D1 SQLite (`site_config` & `links` tables via migrations `0001` and `0002`).
+  - **Background Substrate ("Dot Kecil"):** Implemented clean, tight dot matrix grid using CSS `radial-gradient(var(--dot-color) 1.25px, transparent 1.25px)` with `background-size: 16px 16px; background-attachment: fixed`. Removed heavy `.webp` background images and preloads for faster initial page load.
+  - **Neo-Brutalist Visual System:**
+    - Solid 2.5px borders (`var(--border-color)`), hard zero-blur offset drop shadows (`4px 4px 0px var(--shadow-color)` in light mode; electric cyan `#38bdf8` in dark mode).
+    - Chunky rounded control buttons with mechanical hover (`translate(-2px, -2px)`) and active click feedback (`translate(2px, 2px)`).
+    - Status pill badge `GATEWAY // ONLINE` with live pulsing emerald indicator.
+    - Vibrant, high-contrast accent backgrounds for card icons (`--nb-blue`, `--nb-yellow`, `--nb-green`, `--nb-purple`, `--nb-pink`, `--nb-orange`, `--nb-lime`).
+    - Mechanical lift-and-push interactions on link cards with dedicated arrow box indicator.
+    - Cohesive retro-modern loader box with monospace counter and system status badge.
+    - Harmonized Admin Dashboard (`admin.css`) with matching Neo-Brutalist cards, navigation, pills, form inputs, and modal dialogs.
+  - **Font Integration:** Imported `Space Mono` from Google Fonts to complement `Space Grotesk` and `Outfit`.
+  - **Quality Verification:** Ran `npm run build` (built in 5.9s) and `npm run lint` with zero errors.
+- **Status:** Complete, tested, and pushed to `feat/overhaul-d1-revamp`.
 
 ---
 
@@ -189,4 +209,6 @@ sequenceDiagram
 - [x] Zero-cache latency configuration.
 - [x] Live preview deployment verification (`feat/overhaul-d1-revamp`).
 - [x] Notifications via Telegram & ntfy.
+- [x] Neo-Brutalism frontend redesign with small dot grid substrate ("background dot kecil").
+- [x] Verification of legacy data migration into D1 SQLite.
 - [ ] Review preview and merge `feat/overhaul-d1-revamp` to `main` for production promotion to `fatah.web.id`.
