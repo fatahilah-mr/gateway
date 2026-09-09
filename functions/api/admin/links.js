@@ -22,7 +22,7 @@ export async function onRequest(context) {
   if (method === 'GET') {
     try {
       const result = await env.DB.prepare(
-        'SELECT * FROM links ORDER BY sort_order ASC'
+        'SELECT * FROM gw_links ORDER BY sort_order ASC'
       ).all();
 
       return jsonResponse({
@@ -56,7 +56,7 @@ export async function onRequest(context) {
       }
 
       // Check if id already exists
-      const existing = await env.DB.prepare('SELECT id FROM links WHERE id = ?').bind(id).first();
+      const existing = await env.DB.prepare('SELECT id FROM gw_links WHERE id = ?').bind(id).first();
       if (existing) {
         return errorResponse(`Link with id '${id}' already exists`, 409);
       }
@@ -64,12 +64,12 @@ export async function onRequest(context) {
       // Auto compute sort_order if not provided
       let order = sort_order;
       if (order === undefined || order === null) {
-        const maxOrderRow = await env.DB.prepare('SELECT MAX(sort_order) as max_order FROM links').first();
+        const maxOrderRow = await env.DB.prepare('SELECT MAX(sort_order) as max_order FROM gw_links').first();
         order = (maxOrderRow?.max_order || 0) + 1;
       }
 
       await env.DB.prepare(`
-        INSERT INTO links (
+        INSERT INTO gw_links (
           id, url, icon, en_title, en_description, id_title, id_description,
           sort_order, is_active, is_highlight, click_count, updated_at
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, CURRENT_TIMESTAMP)
@@ -113,13 +113,13 @@ export async function onRequest(context) {
         return errorResponse('Missing link id to update', 400);
       }
 
-      const existing = await env.DB.prepare('SELECT * FROM links WHERE id = ?').bind(id).first();
+      const existing = await env.DB.prepare('SELECT * FROM gw_links WHERE id = ?').bind(id).first();
       if (!existing) {
         return errorResponse(`Link with id '${id}' not found`, 404);
       }
 
       await env.DB.prepare(`
-        UPDATE links SET
+        UPDATE gw_links SET
           url = ?,
           icon = ?,
           en_title = ?,
@@ -169,7 +169,7 @@ export async function onRequest(context) {
         return errorResponse('Missing link id to delete', 400);
       }
 
-      await env.DB.prepare('DELETE FROM links WHERE id = ?').bind(id).run();
+      await env.DB.prepare('DELETE FROM gw_links WHERE id = ?').bind(id).run();
       return jsonResponse({ success: true, message: 'Link deleted successfully', id });
     } catch (err) {
       return errorResponse(`Failed to delete link: ${err.message}`, 500);

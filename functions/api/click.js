@@ -39,8 +39,8 @@ export async function onRequest(context) {
   const updatePromise = (async () => {
     try {
       await env.DB.batch([
-        env.DB.prepare('UPDATE links SET click_count = click_count + 1 WHERE id = ?').bind(linkId),
-        env.DB.prepare('INSERT INTO link_clicks (link_id, referer, country, user_agent) VALUES (?, ?, ?, ?)').bind(
+        env.DB.prepare('UPDATE gw_links SET click_count = click_count + 1 WHERE id = ?').bind(linkId),
+        env.DB.prepare('INSERT INTO gw_link_clicks (link_id, referer, country, user_agent) VALUES (?, ?, ?, ?)').bind(
           linkId,
           referer.slice(0, 255),
           country.slice(0, 10),

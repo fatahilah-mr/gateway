@@ -17,9 +17,9 @@ export async function onRequest(context) {
 
   try {
     const [totalClicksResult, topLinksResult, recentClicksResult] = await env.DB.batch([
-      env.DB.prepare('SELECT SUM(click_count) as total_clicks, COUNT(*) as total_links FROM links'),
-      env.DB.prepare('SELECT id, en_title, id_title, url, click_count, is_active FROM links ORDER BY click_count DESC'),
-      env.DB.prepare('SELECT id, link_id, referer, country, clicked_at FROM link_clicks ORDER BY clicked_at DESC LIMIT 50')
+      env.DB.prepare('SELECT SUM(click_count) as total_clicks, COUNT(*) as total_links FROM gw_links'),
+      env.DB.prepare('SELECT id, en_title, id_title, url, click_count, is_active FROM gw_links ORDER BY click_count DESC'),
+      env.DB.prepare('SELECT id, link_id, referer, country, clicked_at FROM gw_link_clicks ORDER BY clicked_at DESC LIMIT 50')
     ]);
 
     return jsonResponse({

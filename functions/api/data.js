@@ -11,8 +11,8 @@ export async function onRequest({ env }) {
   try {
     // 1. Fetch site_config and active links in parallel batch for maximum performance
     const [configResult, linksResult] = await env.DB.batch([
-      env.DB.prepare('SELECT * FROM site_config WHERE id = ?').bind('default'),
-      env.DB.prepare('SELECT * FROM links WHERE is_active = 1 ORDER BY sort_order ASC')
+      env.DB.prepare('SELECT * FROM gw_site_config WHERE id = ?').bind('default'),
+      env.DB.prepare('SELECT * FROM gw_links WHERE is_active = 1 ORDER BY sort_order ASC')
     ]);
 
     const rawConfig = configResult?.results?.[0] || {

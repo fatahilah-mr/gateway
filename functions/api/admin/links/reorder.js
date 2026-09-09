@@ -29,7 +29,7 @@ export async function onRequest(context) {
     }
 
     const statements = items.map(item => {
-      return env.DB.prepare('UPDATE links SET sort_order = ? WHERE id = ?').bind(
+      return env.DB.prepare('UPDATE gw_links SET sort_order = ? WHERE id = ?').bind(
         Number(item.sort_order),
         item.id
       );

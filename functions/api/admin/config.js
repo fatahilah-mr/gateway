@@ -18,7 +18,7 @@ export async function onRequest(context) {
   // 1. GET: Fetch current site_config
   if (request.method === 'GET') {
     try {
-      const config = await env.DB.prepare('SELECT * FROM site_config WHERE id = ?').bind('default').first();
+      const config = await env.DB.prepare('SELECT * FROM gw_site_config WHERE id = ?').bind('default').first();
       return jsonResponse({ success: true, config: config || {} });
     } catch (err) {
       return errorResponse(`Failed to fetch site config: ${err.message}`, 500);
@@ -44,10 +44,10 @@ export async function onRequest(context) {
         id_footer
       } = body;
 
-      const existing = await env.DB.prepare('SELECT * FROM site_config WHERE id = ?').bind('default').first();
+      const existing = await env.DB.prepare('SELECT * FROM gw_site_config WHERE id = ?').bind('default').first();
 
       await env.DB.prepare(`
-        INSERT INTO site_config (
+        INSERT INTO gw_site_config (
           id, name, short_name,
           en_title, en_subtitle, en_hint, en_card_hint, en_footer,
           id_title, id_subtitle, id_hint, id_card_hint, id_footer,
