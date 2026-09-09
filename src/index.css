@@ -1,47 +1,7 @@
-:root {
-  /* Light Mode - Minimalist Porcelain Gallery */
-  --bg-color: #f8fafc;
-  --bg-canvas: #f8fafc;
-  --text-primary: #09090b;
-  --text-secondary: #52525b;
-  --text-tertiary: #a1a1aa;
-  
-  /* Minimalist Surfaces (Light) */
-  --card-surface: rgba(255, 255, 255, 0.78);
-  --card-surface-mobile: rgba(255, 255, 255, 0.94);
-  --card-surface-hover: rgba(255, 255, 255, 0.96);
-  --card-surface-active: #ffffff;
-  --card-border: rgba(0, 0, 0, 0.08);
-  --card-border-hover: rgba(0, 0, 0, 0.22);
-  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-  --card-shadow-hover: 0 8px 26px rgba(0, 0, 0, 0.07);
-  --card-inner-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
-
-  --icon-surface: rgba(0, 0, 0, 0.04);
-  --icon-border: rgba(0, 0, 0, 0.08);
-  --icon-color: #09090b;
-
-  --pill-bg: rgba(0, 0, 0, 0.03);
-  --pill-border: rgba(0, 0, 0, 0.08);
-  --control-bg: rgba(255, 255, 255, 0.80);
-  --control-border: rgba(0, 0, 0, 0.10);
-  --control-hover: #ffffff;
-  --control-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-  
-  /* Status & Accents */
-  --accent-primary: #0284c7;
-  --status-dot: #16a34a;
-  --status-bg: rgba(22, 163, 74, 0.08);
-  --status-border: rgba(22, 163, 74, 0.22);
-  --status-text: #15803d;
-
-  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Space Mono', 'SF Mono', monospace;
-}
-
+:root,
 [data-theme='dark'] {
-  /* Dark Mode - Obsidian Minimalist OLED & Liquid Chrome */
+  color-scheme: dark;
+  /* Dark Mode - Obsidian Minimalist OLED & Liquid Chrome (Fixed Default) */
   --bg-color: #050507;
   --bg-canvas: #050507;
   --text-primary: #ffffff;
@@ -76,6 +36,10 @@
   --status-bg: rgba(74, 222, 128, 0.10);
   --status-border: rgba(74, 222, 128, 0.25);
   --status-text: #4ade80;
+
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Space Mono', 'SF Mono', monospace;
 }
 
 * {

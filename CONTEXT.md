@@ -389,6 +389,24 @@ sequenceDiagram
   - Removed initial `opacity: 0; transform: translateY(16px);` from `.header`, `.link-card`, and `.footer` in `src/App.css`, making all elements visible and clickable instantly.
 - **Verification:** Verified with `npm run lint` and `npm run build` (333 modules transformed, 0 errors, built in 5.43s).
 - **Status:** Complete, tested, and deployed to production.
+### Session Entry: `2026-09-10 (Part 15)` (Fixed Dark Mode, Edge Geo-Routing, and Option A Minimalist Language Switcher)
+- **Objective:** Fix the portal permanently to Dark Mode (removing theme toggle button & overlay), implement Cloudflare Pages Edge Geolocation Routing (`/id` for Indonesia, `/` for Global), and integrate Option A (ultra-minimalist `ID / EN` capsule switcher in header).
+- **Key Implementations:**
+  - **Fixed Dark Mode:**
+    - Locked `ThemeProvider.jsx` to permanently set `data-theme="dark"` and `color-scheme: dark`.
+    - Updated `index.html` with `<html lang="en" data-theme="dark">` and `<meta name="theme-color" content="#050507" />`.
+    - Made Dark Mode tokens the default `:root` variables in `src/index.css`.
+    - Removed theme switcher button, theme transition overlay, and associated icons (`LightMode`, `DarkMode`, `CircularProgress`), reducing JS bundle size by 71.6 kB (from 341.8 kB to 270.2 kB).
+  - **Edge Geolocation Routing (`functions/_middleware.js`):**
+    - Inspects `request.cf?.country` on Cloudflare Pages Edge: if `ID` (Indonesia) and root path `/` is accessed without explicit English cookie preference, redirects (302) to `/id`.
+    - Supports `lang_pref` cookie override so users on VPN or with explicit preferences are never trapped.
+    - Directly serves SPA `index.html` for `/id` and `/id/` requests.
+  - **Option A Minimalist Header Switcher (`src/App.jsx` & `src/App.css`):**
+    - Balanced `.header-top-row` housing the status capsule (`GATEWAY // ONLINE`) on one side and a discrete, sleek `ID / EN` pill switcher on the other.
+    - Synchronizes browser URL (`/id` vs `/`) via `history.pushState` and handles `popstate` events.
+    - Persists selection to `localStorage` and `lang_pref` cookie.
+- **Verification:** Verified with `npm run lint` and `npm run build` (328 modules transformed, 0 errors, built in 3.71s).
+- **Status:** Complete, tested, and ready for deployment.
 
 ---
 
@@ -415,7 +433,9 @@ sequenceDiagram
 - [x] Animated WebGL GradientWave background with fixed viewport lock (no mobile address bar jump).
 - [x] Minimalist UI overhaul & Pinterest Option 3 liquid glass artwork integration.
 - [x] Removal of initial loading screen & instant zero-latency render.
+- [x] Fixed Dark Mode, Cloudflare Edge Geo-Routing (`/id` & `/`), and Option A header language switcher.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
+
 
 
 

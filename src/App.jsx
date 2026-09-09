@@ -1,22 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import gsap from 'gsap';
 import { useLanguage } from './context/LanguageProvider';
-import { useTheme } from './context/ThemeProvider';
 import LinkCard from './components/LinkCard';
 import SEOHead from './components/SEOHead';
 import AdminPortal from './components/admin/AdminPortal';
-import LightMode from '@mui/icons-material/LightMode';
-import DarkMode from '@mui/icons-material/DarkMode';
-import CircularProgress from '@mui/material/CircularProgress';
 import LockOutlined from '@mui/icons-material/LockOutlined';
 import { ICON_MAP } from './data/iconMap';
 import './App.css';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
-  const [transitionState, setTransitionState] = useState(null);
-  const { t, lang, toggleLanguage, config } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
+  const { t, lang, switchLanguage, config } = useLanguage();
   const mainRef = useRef(null);
 
   // Sync route on browser navigation (back/forward)
@@ -43,91 +36,45 @@ function App() {
     icon: ICON_MAP[link.icon] || ICON_MAP.link
   })) ?? [];
 
-  const handleToggle = (type, action) => {
-    if (transitionState) return; // Prevent spam clicks
-    setTransitionState(type);
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        action();
-        
-        const delay = type === 'theme' ? 600 : 400;
-        
-        setTimeout(() => {
-          if (type === 'theme') {
-             gsap.to('.theme-overlay', { 
-               autoAlpha: 0, 
-               duration: 0.4 
-             });
-          }
-          
-          gsap.to(['.header h1', '.header p', '.status-badge', '.link-card', '.footer'], {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            stagger: 0.04,
-            ease: "power2.out",
-            clearProps: 'transform',
-            onComplete: () => setTransitionState(null)
-          });
-        }, delay); 
-      }
-    });
-
-    if (type === 'theme') {
-      tl.to('.theme-overlay', { autoAlpha: 1, duration: 0.25 }, 0);
-    }
-
-    tl.to(['.header h1', '.header p', '.status-badge', '.link-card', '.footer'], {
-      opacity: 0,
-      y: -8,
-      duration: 0.35,
-      stagger: 0.04,
-      ease: 'power2.in'
-    }, 0);
-  };
-
   return (
     <>
       <SEOHead />
       
-      <div className="theme-overlay">
-        <CircularProgress size={44} sx={{ color: 'var(--text-primary)' }} />
-      </div>
-
       <div className={`app-container ${isAdminRoute ? 'is-admin' : ''}`} ref={mainRef}>
         {isAdminRoute ? (
           <AdminPortal onBackToHome={() => navigateTo('/')} />
         ) : (
           <div className="content-wrapper">
             <header className="header">
-              <div className="status-badge">
-                <span className="status-dot"></span>
-                <span>{lang === 'en' ? 'GATEWAY // ONLINE' : 'GERBANG // AKTIF'}</span>
+              <div className="header-top-row">
+                <div className="status-badge">
+                  <span className="status-dot"></span>
+                  <span>{lang === 'en' ? 'GATEWAY // ONLINE' : 'GERBANG // AKTIF'}</span>
+                </div>
+
+                <div className="lang-switcher">
+                  <button 
+                    type="button" 
+                    className={`lang-btn ${lang === 'id' ? 'is-active' : ''}`}
+                    onClick={() => switchLanguage('id')}
+                    aria-label="Bahasa Indonesia"
+                  >
+                    ID
+                  </button>
+                  <span className="lang-divider">/</span>
+                  <button 
+                    type="button" 
+                    className={`lang-btn ${lang === 'en' ? 'is-active' : ''}`}
+                    onClick={() => switchLanguage('en')}
+                    aria-label="English"
+                  >
+                    EN
+                  </button>
+                </div>
               </div>
 
-              <div className="title-row">
-                <button 
-                  className="control-btn" 
-                  onClick={() => handleToggle('lang', toggleLanguage)} 
-                  disabled={transitionState !== null}
-                  aria-label="Toggle Language"
-                >
-                  {transitionState === 'lang' ? <CircularProgress size={20} sx={{ color: 'inherit' }} /> : (lang === 'en' ? '🇬🇧' : '🇮🇩')}
-                </button>
-                <h1>{t('title')}</h1>
-                <button 
-                  className="control-btn" 
-                  onClick={() => handleToggle('theme', toggleTheme)} 
-                  disabled={transitionState !== null}
-                  aria-label="Toggle Theme"
-                >
-                  {transitionState === 'theme' ? <CircularProgress size={20} sx={{ color: 'inherit' }} /> : (theme === 'dark' ? <DarkMode /> : <LightMode />)}
-                </button>
-              </div>
-
+              <h1 className="header-title">{t('title')}</h1>
               <p className="subtitle">{t('subtitle')}</p>
-              <p className="feature-hint">{t('hint')}</p>
               <p className="card-hint">{t('cardHint')}</p>
             </header>
 
