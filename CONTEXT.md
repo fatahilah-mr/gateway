@@ -312,6 +312,21 @@ sequenceDiagram
   - Clean build & linting verified (`npm run lint && npm run build`).
 - **Status:** Complete, tested, and ready for deployment.
 
+### Session Entry: `2026-09-09 (Part 10)` (Crystal-Clear FeralUI FLOW Wallpaper & Noise Elimination)
+- **Objective:** Eliminate coarse "burik" pixel noise/grain and restore the authentic, silky, radiant luminous ribbon wallpaper as shown in user's FeralUI screenshot.
+- **Root Cause Analysis:**
+  - `noise.png` with `opacity: 0.43` overlay was producing a harsh, sand-like gray pixelated static over the entire mobile screen.
+  - In dark mode, `flow-portrait-dark.webp` replaced the bright cyan-white ribbon (`#DFFBFF`) with dark muddy navy (`#0e2738`), destroying the radiant S-shaped ribbon of light and leaving the screen dark and dingy.
+  - `--glass-surface-mobile` was set to `0.90` (almost opaque), preventing the luminous background from refracting through cards.
+- **Completed Work:**
+  - Extracted the exact FeralUI live canvas frame (`240x160`) directly from Chromium headless runtime, preserving the authentic mathematical coordinates of the luminous white-cyan S-curve ribbon (`(208, 245, 253)`).
+  - Scaled using high-quality Lanczos interpolation to ultra-HD portrait (`1080x2400`, 43 KB) and landscape (`2560x1440`, 53 KB).
+  - Completely removed `body::after` coarse noise overlay (`display: none;`), restoring a buttery smooth, satiny, crystal-clear surface.
+  - Standardized `body::before` to use the authentic radiant wallpaper in both light and dark mode (`filter: brightness(0.92) contrast(1.05)` in dark mode to retain luminous beauty with subtle contrast).
+  - Lightened dark mode mobile card opacity from `0.90` to `0.65` for authentic frosted glass refraction.
+  - Verification: `npm run lint && npm run build` passed cleanly in 6.42s.
+- **Status:** Complete, tested, and deployed to production.
+
 ---
 
 ## 📋 7. Backlog & Next Actions
@@ -332,6 +347,7 @@ sequenceDiagram
 - [x] Mobile performance optimization: elimination of GPU blur fill-rate bottlenecks & 60-120 FPS mobile hardware acceleration.
 - [x] Electric Tide OKLab gradient + film grain noise texture background implementation.
 - [x] FeralUI FLOW fluid liquid mesh field replication (matching feralui.dev URL).
+- [x] Crystal-clear silky FeralUI wallpaper & elimination of "burik" coarse grain noise.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
 
 

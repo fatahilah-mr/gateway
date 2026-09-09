@@ -52,8 +52,8 @@
   --text-tertiary: #64748b;
   
   /* Glass Surfaces (Dark) */
-  --glass-surface: rgba(17, 24, 39, 0.60);
-  --glass-surface-mobile: rgba(18, 25, 40, 0.90);
+  --glass-surface: rgba(17, 24, 39, 0.58);
+  --glass-surface-mobile: rgba(18, 25, 40, 0.65);
   --glass-surface-hover: rgba(26, 36, 56, 0.72);
   --glass-surface-active: rgba(33, 47, 73, 0.82);
   --glass-border: rgba(255, 255, 255, 0.12);
@@ -106,7 +106,7 @@ body {
   position: relative;
 }
 
-/* Electric tide background - High Performance FeralUI FLOW Mesh */
+/* Electric tide background - Authentic FeralUI FLOW Silky Mesh */
 body::before {
   content: '';
   position: fixed;
@@ -119,7 +119,7 @@ body::before {
   background-position: center;
   background-repeat: no-repeat;
   transform: translateZ(0);
-  transition: opacity 0.4s ease;
+  transition: filter 0.4s ease;
 }
 
 @media (max-width: 768px) {
@@ -129,49 +129,25 @@ body::before {
 }
 
 [data-theme='dark'] body::before {
-  background-image: url('/flow-landscape-dark.webp');
+  /* Retain the exact radiant luminous Electric Tide ribbon with subtle ambient depth */
+  filter: brightness(0.92) contrast(1.05);
 }
 
-@media (max-width: 768px) {
-  [data-theme='dark'] body::before {
-    background-image: url('/flow-portrait-dark.webp');
-  }
-}
-
-/* FeralUI Grain Overlay (s.l = 43%) */
+/* Eliminate coarse pixel noise / burik: render crystal-clear silky smooth surface */
 body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image: url('/noise.png');
-  background-repeat: repeat;
-  mix-blend-mode: overlay;
-  opacity: 0.43;
-  transform: translateZ(0);
+  display: none;
 }
 
-/* Electric tide (FeralUI Denchou) Utility Class
- * MISTED SKY #DFFBFF
- * PALE LAGOON #6FD8F2
- * CLEAR HANADA #4C5BE0
- * NIGHT INDIGO #2A2450
- */
+/* Electric tide (FeralUI Denchou) Utility Class */
 .gradient-denchou {
   position: relative;
   background: url('/flow-landscape.webp') center / cover no-repeat;
 }
 
-.gradient-denchou::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('/noise.png');
-  background-repeat: repeat;
-  mix-blend-mode: overlay;
-  opacity: 0.43;
-  pointer-events: none;
+@media (max-width: 768px) {
+  .gradient-denchou {
+    background: url('/flow-portrait.webp') center / cover no-repeat;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
