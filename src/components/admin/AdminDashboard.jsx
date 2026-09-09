@@ -443,104 +443,32 @@ const AdminDashboard = ({ user, onLogout, onBackToHome }) => {
               </div>
 
               <form onSubmit={handleSaveConfig}>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label className="form-label">Nama Lengkap</label>
-                    <input 
-                      type="text" 
-                      className="form-input"
-                      value={config.name || ''} 
-                      onChange={e => setConfig({ ...config, name: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Nama Singkat / Brand</label>
-                    <input 
-                      type="text" 
-                      className="form-input"
-                      value={config.short_name || ''} 
-                      onChange={e => setConfig({ ...config, short_name: e.target.value })}
-                      required
-                    />
-                  </div>
+                {/* 1. NAMA LENGKAP / JUDUL UTAMA */}
+                <div className="form-group">
+                  <label className="form-label">Nama Lengkap / Judul Portal</label>
+                  <input 
+                    type="text" 
+                    className="form-input"
+                    value={config.name || ''} 
+                    onChange={e => {
+                      const val = e.target.value;
+                      setConfig(prev => ({ 
+                        ...prev, 
+                        name: val,
+                        en_title: val,
+                        id_title: val
+                      }));
+                    }}
+                    placeholder="Contoh: Fatahilah Miftahul Rahman"
+                    required
+                  />
+                  <p style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px' }}>
+                    Tampil sebagai judul hero utama di bagian atas website publik.
+                  </p>
                 </div>
 
+                {/* 2. PETUNJUK KARTU (ID & EN) */}
                 <div className="form-row">
-                  <div className="form-group">
-                    <label className="form-label">Judul Utama (EN)</label>
-                    <input 
-                      type="text" 
-                      className="form-input"
-                      value={config.en_title || ''} 
-                      onChange={e => setConfig({ ...config, en_title: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Judul Utama (ID)</label>
-                    <input 
-                      type="text" 
-                      className="form-input"
-                      value={config.id_title || ''} 
-                      onChange={e => setConfig({ ...config, id_title: e.target.value })}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label className="form-label">Subjudul / Profesi (EN)</label>
-                    <input 
-                      type="text" 
-                      className="form-input"
-                      value={config.en_subtitle || ''} 
-                      onChange={e => setConfig({ ...config, en_subtitle: e.target.value })}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Subjudul / Profesi (ID)</label>
-                    <input 
-                      type="text" 
-                      className="form-input"
-                      value={config.id_subtitle || ''} 
-                      onChange={e => setConfig({ ...config, id_subtitle: e.target.value })}
-                    />
-                  </div>
-                </div>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label className="form-label">Hint Tema & Bahasa (EN)</label>
-                    <input 
-                      type="text" 
-                      className="form-input"
-                      value={config.en_hint || ''} 
-                      onChange={e => setConfig({ ...config, en_hint: e.target.value })}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Hint Tema & Bahasa (ID)</label>
-                    <input 
-                      type="text" 
-                      className="form-input"
-                      value={config.id_hint || ''} 
-                      onChange={e => setConfig({ ...config, id_hint: e.target.value })}
-                    />
-                  </div>
-                </div>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label className="form-label">Petunjuk Kartu (EN)</label>
-                    <input 
-                      type="text" 
-                      className="form-input"
-                      value={config.en_card_hint || ''} 
-                      onChange={e => setConfig({ ...config, en_card_hint: e.target.value })}
-                    />
-                  </div>
                   <div className="form-group">
                     <label className="form-label">Petunjuk Kartu (ID)</label>
                     <input 
@@ -548,27 +476,45 @@ const AdminDashboard = ({ user, onLogout, onBackToHome }) => {
                       className="form-input"
                       value={config.id_card_hint || ''} 
                       onChange={e => setConfig({ ...config, id_card_hint: e.target.value })}
+                      placeholder="👇 Ketuk kartu di bawah untuk membuka tautannya"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Petunjuk Kartu (EN)</label>
+                    <input 
+                      type="text" 
+                      className="form-input"
+                      value={config.en_card_hint || ''} 
+                      onChange={e => setConfig({ ...config, en_card_hint: e.target.value })}
+                      placeholder="👇 Tap a card to visit the link"
+                      required
                     />
                   </div>
                 </div>
 
+                {/* 3. FOOTER COPYRIGHT (ID & EN) */}
                 <div className="form-row">
                   <div className="form-group">
-                    <label className="form-label">Footer Copyright (EN)</label>
-                    <input 
-                      type="text" 
-                      className="form-input"
-                      value={config.en_footer || ''} 
-                      onChange={e => setConfig({ ...config, en_footer: e.target.value })}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Footer Copyright (ID)</label>
+                    <label className="form-label">Footer Hak Cipta (ID)</label>
                     <input 
                       type="text" 
                       className="form-input"
                       value={config.id_footer || ''} 
                       onChange={e => setConfig({ ...config, id_footer: e.target.value })}
+                      placeholder="© 2026 Fatahilah Miftahul Rahman. Hak Cipta Dilindungi."
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Footer Hak Cipta (EN)</label>
+                    <input 
+                      type="text" 
+                      className="form-input"
+                      value={config.en_footer || ''} 
+                      onChange={e => setConfig({ ...config, en_footer: e.target.value })}
+                      placeholder="© 2026 Fatahilah Miftahul Rahman. All Rights Reserved."
+                      required
                     />
                   </div>
                 </div>
