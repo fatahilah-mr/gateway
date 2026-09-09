@@ -91,7 +91,7 @@
 }
 
 html {
-  background-color: #2A2450;
+  background-color: #090D56;
 }
 
 body {
@@ -106,15 +106,15 @@ body {
   position: relative;
 }
 
-/* Electric tide background - Authentic FeralUI FLOW Silky Mesh */
+/* Circles / Edge Glow background - Glowing spheres on Black Current (#090D56) */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  background-color: #2A2450;
-  background-image: url('/flow-landscape.webp');
+  background-color: #090D56;
+  background-image: url('/circles-landscape.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -124,13 +124,12 @@ body::before {
 
 @media (max-width: 768px) {
   body::before {
-    background-image: url('/flow-portrait.webp');
+    background-image: url('/circles-portrait.webp');
   }
 }
 
 [data-theme='dark'] body::before {
-  /* Retain the exact radiant luminous Electric Tide ribbon with subtle ambient depth */
-  filter: brightness(0.92) contrast(1.05);
+  filter: brightness(0.95) contrast(1.05);
 }
 
 /* Eliminate coarse pixel noise / burik: render crystal-clear silky smooth surface */
@@ -138,15 +137,22 @@ body::after {
   display: none;
 }
 
-/* Electric tide (FeralUI Denchou) Utility Class */
+/* Circles (FeralUI Edge Glow) Utility Class */
+.gradient-edge-glow,
 .gradient-denchou {
   position: relative;
-  background: url('/flow-landscape.webp') center / cover no-repeat;
+  background: linear-gradient(135deg, #090D56 16.7%, #1AFFCE 50.0%, #4B8CFF 83.3%);
+  background: linear-gradient(135deg in oklab, #090D56 16.7%, #1AFFCE 50.0%, #4B8CFF 83.3%);
+  background-image: url('/circles-landscape.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 768px) {
+  .gradient-edge-glow,
   .gradient-denchou {
-    background: url('/flow-portrait.webp') center / cover no-repeat;
+    background-image: url('/circles-portrait.webp');
   }
 }
 

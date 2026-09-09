@@ -325,6 +325,20 @@ sequenceDiagram
   - Standardized `body::before` to use the authentic radiant wallpaper in both light and dark mode (`filter: brightness(0.92) contrast(1.05)` in dark mode to retain luminous beauty with subtle contrast).
   - Lightened dark mode mobile card opacity from `0.90` to `0.65` for authentic frosted glass refraction.
   - Verification: `npm run lint && npm run build` passed cleanly in 6.42s.
+### Session Entry: `2026-09-09 (Part 11)` (Circles / Edge Glow Background Implementation)
+- **Objective:** Apply user's selected "Circles" / Edge Glow background palette (`BLACK CURRENT #090D56`, `PINE LEAF #1AFFCE`, `GLAZED AZURE #4B8CFF`) with glowing circle orbs exported directly from FeralUI.
+- **Analysis & Assets:**
+  - Inspected the user's provided PNG asset (`media_1788989307280.png`, 819x1024 RGBA) featuring three glowing edge-glow spheres: large Pine Leaf mint glow (`#1AFFCE`) at top-left, Glazed Azure (`#4B8CFF`) on the right, and cyan glow at the bottom against deep midnight navy `#090D56`.
+  - Converted the asset to ultra-efficient WebP:
+    - Mobile Portrait: `public/circles-portrait.webp` (59 KB, 819x1024, WebP Q88).
+    - Desktop Landscape: `public/circles-landscape.webp` (168 KB, 1920x1080, Lanczos centered crop, WebP Q88).
+- **Completed Work:**
+  - Updated `html` base background color to `#090D56`.
+  - Updated `body::before` in `src/index.css` to load `circles-landscape.webp` on desktop and `circles-portrait.webp` on mobile ($\le 768\text{px}$).
+  - Updated utility class `.gradient-edge-glow` and `.gradient-denchou` with exact fallback sRGB and OKLab linear gradient stops:
+    `linear-gradient(135deg in oklab, #090D56 16.7%, #1AFFCE 50.0%, #4B8CFF 83.3%)`.
+  - Preserved crystal-clear visual fidelity: `body::after` grain noise overlay remains disabled (`display: none;`) to prevent any "burik" pixelation.
+  - Verified clean build (`npm run lint && npm run build`) with zero errors.
 - **Status:** Complete, tested, and deployed to production.
 
 ---
@@ -348,7 +362,9 @@ sequenceDiagram
 - [x] Electric Tide OKLab gradient + film grain noise texture background implementation.
 - [x] FeralUI FLOW fluid liquid mesh field replication (matching feralui.dev URL).
 - [x] Crystal-clear silky FeralUI wallpaper & elimination of "burik" coarse grain noise.
+- [x] Circles / Edge Glow background (`#090D56`, `#1AFFCE`, `#4B8CFF`) with glowing spheres.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
+
 
 
 
