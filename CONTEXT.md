@@ -355,7 +355,30 @@ sequenceDiagram
     - Retained `#090D56` base fallback on `body::before`.
   - **Integration in `src/App.jsx`:** Mounted `<GradientWave colors={["#090D56", "#1AFFCE", "#4B8CFF", "#2A2450"]} />`.
   - **Verification:** Verified with `npm run lint` and `npm run build` (passed cleanly in 4.62s).
-- **Status:** Complete, tested, and deployed to production.
+### Session Entry: `2026-09-10 (Part 13)` (Minimalist UI Overhaul & Pinterest Option 3 Liquid Glass Artwork)
+- **Objective:** Complete overhaul of the website to a refined Minimalist UI aesthetic ("sekalian UI websitenya DIUBAH TOTAL JADI MINIMALIST UI"), utilizing Pinterest Option 3 high-resolution obsidian liquid glass with prismatic caustics (`i.pinimg.com/originals/6a/f2/17/6af2172919de0faa72b91b79a2c02fc1.jpg`) converted to optimized WebP formats for mobile portrait and desktop landscape.
+- **Key Implementations:**
+  - **Asset Optimization:**
+    - Downloaded full 2000×4346 original render and processed into ultra-sharp WebP assets:
+      - `public/minimal-liquid-portrait.webp` (1080×2348, 138 KB, mobile-first framing).
+      - `public/minimal-liquid-landscape.webp` (1920×1080, 74 KB, centered desktop composition).
+  - **Fixed Viewport & Zero-Jitter Background (`src/index.css`):**
+    - Configured `body::before` with `position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; z-index: -2;` utilizing responsive media queries for portrait and landscape WebPs.
+    - Zero resize jitter or stretching when mobile tab/address bars expand or collapse during scroll.
+  - **Minimalist Design Tokens & Clean Typography (`src/index.css`):**
+    - Replaced heavy frosted glassmorphism and multi-color gradients with minimalist OLED obsidian surfaces (`--card-surface: rgba(12, 12, 16, 0.70)`), crisp hairline borders (`rgba(255, 255, 255, 0.08)`), and high-contrast typography (`--text-primary: #f8fafc`).
+    - Light mode configured with pure gallery porcelain aesthetic (`--bg-color: #f8fafc`, `--card-surface: rgba(255, 255, 255, 0.85)`).
+  - **UI Simplification (`src/App.jsx` & `src/App.css`):**
+    - Removed WebGL shader overhead, reducing bundle size, battery consumption, and eliminating GPU load.
+    - Compact 520px focused single-column container (`.portal-container`).
+    - Ultra-clean status pill with monochrome dot indicator and uppercase mono typography.
+    - Floating action buttons redesigned into minimalist circular ghost buttons with hairline borders.
+  - **Minimalist Link Cards (`src/components/LinkCard.jsx`):**
+    - Removed colorful gradient bubbles (`ICON_THEMES`) in favor of unified, refined monochrome glass badges.
+    - Subtle `-2px` hover lift and quiet hairline glow.
+    - Integrated subtle directional arrow cue with micro-translation on hover.
+- **Verification:** Verified with `npm run lint` and `npm run build` (333 modules transformed, 0 errors, built in 5.11s).
+- **Status:** Complete, tested, and ready for deployment.
 
 ---
 
@@ -380,7 +403,9 @@ sequenceDiagram
 - [x] Crystal-clear silky FeralUI wallpaper & elimination of "burik" coarse grain noise.
 - [x] Circles / Edge Glow background (`#090D56`, `#1AFFCE`, `#4B8CFF`) with glowing spheres.
 - [x] Animated WebGL GradientWave background with fixed viewport lock (no mobile address bar jump).
+- [x] Minimalist UI overhaul & Pinterest Option 3 liquid glass artwork integration.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
+
 
 
 

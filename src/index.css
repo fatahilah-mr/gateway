@@ -1,85 +1,79 @@
 :root {
-  /* Light Mode - Apple Frosted Acrylic & Luminous Porcelain */
-  --bg-color: #f6f8fb;
-  --bg-canvas: #f6f8fb;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary: #94a3b8;
+  /* Light Mode - Minimalist Porcelain Gallery */
+  --bg-color: #f8fafc;
+  --bg-canvas: #f8fafc;
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-tertiary: #a1a1aa;
   
-  /* Glass Surfaces (Light) */
-  --glass-surface: rgba(255, 255, 255, 0.72);
-  --glass-surface-mobile: rgba(255, 255, 255, 0.88);
-  --glass-surface-hover: rgba(255, 255, 255, 0.88);
-  --glass-surface-active: rgba(255, 255, 255, 0.95);
-  --glass-border: rgba(255, 255, 255, 0.80);
-  --glass-border-hover: rgba(255, 255, 255, 1);
-  --glass-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
-  --glass-shadow-hover: 0 18px 40px -8px rgba(15, 23, 42, 0.12), 0 0 24px 0 rgba(56, 189, 248, 0.14);
-  --glass-inner-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+  /* Minimalist Surfaces (Light) */
+  --card-surface: rgba(255, 255, 255, 0.78);
+  --card-surface-mobile: rgba(255, 255, 255, 0.94);
+  --card-surface-hover: rgba(255, 255, 255, 0.96);
+  --card-surface-active: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --card-border-hover: rgba(0, 0, 0, 0.22);
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  --card-shadow-hover: 0 8px 26px rgba(0, 0, 0, 0.07);
+  --card-inner-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+
+  --icon-surface: rgba(0, 0, 0, 0.04);
+  --icon-border: rgba(0, 0, 0, 0.08);
+  --icon-color: #09090b;
+
+  --pill-bg: rgba(0, 0, 0, 0.03);
+  --pill-border: rgba(0, 0, 0, 0.08);
+  --control-bg: rgba(255, 255, 255, 0.80);
+  --control-border: rgba(0, 0, 0, 0.10);
+  --control-hover: #ffffff;
+  --control-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
   
-  /* Ambient Orbs (Light) */
-  --orb-1: rgba(56, 189, 248, 0.28);
-  --orb-2: rgba(168, 85, 247, 0.20);
-  --orb-3: rgba(251, 146, 60, 0.18);
-  --orb-4: rgba(52, 211, 153, 0.20);
-  
-  /* Pills & Controls */
-  --pill-bg: rgba(255, 255, 255, 0.65);
-  --pill-border: rgba(255, 255, 255, 0.75);
-  --control-bg: rgba(255, 255, 255, 0.75);
-  --control-border: rgba(255, 255, 255, 0.85);
-  --control-hover: rgba(255, 255, 255, 0.95);
-  --control-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.06);
-  
-  /* Accents */
+  /* Status & Accents */
   --accent-primary: #0284c7;
   --status-dot: #16a34a;
-  --status-bg: rgba(34, 197, 94, 0.10);
-  --status-border: rgba(34, 197, 94, 0.25);
+  --status-bg: rgba(22, 163, 74, 0.08);
+  --status-border: rgba(22, 163, 74, 0.22);
   --status-text: #15803d;
 
-  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-  --font-body: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'Space Mono', 'SF Mono', monospace;
 }
 
 [data-theme='dark'] {
-  /* Dark Mode - Apple VisionOS / macOS Deep Space Frosted Glass */
-  --bg-color: #080b11;
-  --bg-canvas: #080b11;
-  --text-primary: #f8fafc;
+  /* Dark Mode - Obsidian Minimalist OLED & Liquid Chrome */
+  --bg-color: #050507;
+  --bg-canvas: #050507;
+  --text-primary: #ffffff;
   --text-secondary: #94a3b8;
   --text-tertiary: #64748b;
   
-  /* Glass Surfaces (Dark) */
-  --glass-surface: rgba(17, 24, 39, 0.58);
-  --glass-surface-mobile: rgba(18, 25, 40, 0.65);
-  --glass-surface-hover: rgba(26, 36, 56, 0.72);
-  --glass-surface-active: rgba(33, 47, 73, 0.82);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-border-hover: rgba(255, 255, 255, 0.24);
-  --glass-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.50), 0 2px 8px 0 rgba(0, 0, 0, 0.3);
-  --glass-shadow-hover: 0 22px 50px -10px rgba(0, 0, 0, 0.65), 0 0 30px rgba(56, 189, 248, 0.16);
-  --glass-inner-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+  /* Minimalist Surfaces (Dark) */
+  --card-surface: rgba(14, 14, 18, 0.65);
+  --card-surface-mobile: rgba(14, 14, 18, 0.88);
+  --card-surface-hover: rgba(22, 22, 28, 0.80);
+  --card-surface-active: rgba(30, 30, 38, 0.90);
+  --card-border: rgba(255, 255, 255, 0.10);
+  --card-border-hover: rgba(255, 255, 255, 0.26);
+  --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.50);
+  --card-shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.70);
+  --card-inner-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+
+  --icon-surface: rgba(255, 255, 255, 0.06);
+  --icon-border: rgba(255, 255, 255, 0.12);
+  --icon-color: #ffffff;
+
+  --pill-bg: rgba(255, 255, 255, 0.04);
+  --pill-border: rgba(255, 255, 255, 0.10);
+  --control-bg: rgba(255, 255, 255, 0.06);
+  --control-border: rgba(255, 255, 255, 0.12);
+  --control-hover: rgba(255, 255, 255, 0.16);
+  --control-shadow: 0 4px 16px rgba(0, 0, 0, 0.40);
   
-  /* Ambient Orbs (Dark) */
-  --orb-1: rgba(56, 189, 248, 0.16);
-  --orb-2: rgba(139, 92, 246, 0.15);
-  --orb-3: rgba(20, 184, 166, 0.12);
-  --orb-4: rgba(244, 63, 94, 0.10);
-  
-  /* Pills & Controls */
-  --pill-bg: rgba(255, 255, 255, 0.06);
-  --pill-border: rgba(255, 255, 255, 0.12);
-  --control-bg: rgba(255, 255, 255, 0.08);
-  --control-border: rgba(255, 255, 255, 0.14);
-  --control-hover: rgba(255, 255, 255, 0.18);
-  --control-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.35);
-  
-  /* Accents */
+  /* Status & Accents */
   --accent-primary: #38bdf8;
   --status-dot: #4ade80;
-  --status-bg: rgba(74, 222, 128, 0.12);
+  --status-bg: rgba(74, 222, 128, 0.10);
   --status-border: rgba(74, 222, 128, 0.25);
   --status-text: #4ade80;
 }
@@ -91,7 +85,7 @@
 }
 
 html {
-  background-color: #090D56;
+  background-color: #050507;
 }
 
 body {
@@ -99,6 +93,7 @@ body {
   background-color: transparent;
   color: var(--text-primary);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   -webkit-font-smoothing: antialiased;
@@ -106,41 +101,39 @@ body {
   position: relative;
 }
 
-/* Fixed Background Foundation & WebGL Fallback */
+/* Minimalist Liquid Glass Artwork (Option 3) - Fixed Viewport (No Scroll Jitter) */
 body::before {
   content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  background-color: #090D56;
-  transform: translateZ(0);
-}
-
-/* Animated WebGL Gradient Wave Background - Fixed Viewport (No Mobile Resize Jitter) */
-.gradient-wave-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  height: 100lvh; /* Largest viewport height: prevents jumping when mobile address bar hides/shows */
-  min-height: 100vh;
+  height: 100lvh; /* Largest viewport height: locks background firmly against mobile address bar resizing */
+  z-index: -2;
   pointer-events: none;
-  z-index: -1;
-  touch-action: none;
+  background-color: #050507;
+  background-image: url('/minimal-liquid-landscape.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  opacity: 0.96;
-  transition: opacity 0.4s ease;
+  transition: filter 0.4s ease;
 }
 
-[data-theme='dark'] .gradient-wave-canvas {
-  opacity: 0.90;
-  filter: contrast(1.05) brightness(0.92);
+@media (max-width: 768px) {
+  body::before {
+    background-image: url('/minimal-liquid-portrait.webp');
+  }
+}
+
+[data-theme='light'] body::before {
+  filter: brightness(1.2) contrast(0.9) opacity(0.25);
+}
+
+[data-theme='dark'] body::before {
+  filter: brightness(0.95) contrast(1.05);
 }
 
 /* Eliminate coarse pixel noise / burik: render crystal-clear silky smooth surface */

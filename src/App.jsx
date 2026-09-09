@@ -11,7 +11,6 @@ import DarkMode from '@mui/icons-material/DarkMode';
 import CircularProgress from '@mui/material/CircularProgress';
 import LockOutlined from '@mui/icons-material/LockOutlined';
 import { ICON_MAP } from './data/iconMap';
-import GradientWave from './components/ui/gradient-wave';
 import './App.css';
 
 function App() {
@@ -126,7 +125,6 @@ function App() {
   return (
     <>
       <SEOHead />
-      <GradientWave colors={["#090D56", "#1AFFCE", "#4B8CFF", "#2A2450"]} />
       {!isAdminRoute && (loading || configLoading) && <Loader onComplete={() => setLoading(false)} />}
       
       <div className="theme-overlay">

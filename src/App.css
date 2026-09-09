@@ -1,9 +1,10 @@
-/* src/App.css - High Performance Apple Frosted Glassmorphism */
+/* src/App.css - Pure Minimalist UI Architecture */
 
 /* App Container */
 .app-container {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +21,7 @@
 
 .content-wrapper {
   width: 100%;
-  max-width: 580px;
+  max-width: 520px;
   padding: 3.5rem 1.25rem 4.5rem;
   z-index: 10;
   display: flex;
@@ -31,36 +32,37 @@
 /* Header */
 .header {
   text-align: center;
-  margin-bottom: 2.75rem;
+  margin-bottom: 2.5rem;
   opacity: 0; /* Animated by GSAP */
-  transform: translateY(20px);
+  transform: translateY(16px);
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Status Badge - Lightweight, zero backdrop-filter */
+/* Status Badge - Minimalist Capsule */
 .status-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 6px 16px;
+  gap: 0.5rem;
+  padding: 5px 14px;
   border: 1px solid var(--status-border);
   background: var(--status-bg);
   color: var(--status-text);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   border-radius: 9999px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
 }
 
 .status-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--status-dot);
   box-shadow: 0 0 6px var(--status-dot);
@@ -68,96 +70,97 @@
 }
 
 @keyframes pulseDot {
-  0% { transform: scale(0.9); opacity: 0.8; }
-  50% { transform: scale(1.25); opacity: 1; }
-  100% { transform: scale(0.9); opacity: 0.8; }
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
 }
 
 .title-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.1rem;
+  gap: 1.15rem;
   margin-bottom: 0.65rem;
   width: 100%;
 }
 
 .header h1 {
-  font-size: clamp(1.65rem, 5.5vw, 2.5rem);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  font-size: clamp(1.75rem, 5vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
   word-break: break-word;
   overflow-wrap: break-word;
-  max-width: min(380px, 64vw);
+  max-width: min(360px, 64vw);
   text-align: center;
   color: var(--text-primary);
 }
 
 .header .subtitle {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
   font-weight: 400;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
   line-height: 1.5;
+  max-width: 440px;
+  text-wrap: balance;
 }
 
 .header .feature-hint {
   display: inline-block;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
   background: var(--pill-bg);
   border: 1px solid var(--pill-border);
   border-radius: 9999px;
-  padding: 5px 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  padding: 4px 14px;
   margin-top: 0.35rem;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 .header .feature-hint:hover {
   transform: translateY(-1px);
-  background: var(--glass-surface-hover);
+  color: var(--text-primary);
+  background: var(--control-hover);
 }
 
 .header .card-hint {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-family: var(--font-mono);
   color: var(--text-tertiary);
-  font-weight: 500;
-  margin-top: 0.85rem;
-  letter-spacing: 0.02em;
+  font-weight: 400;
+  margin-top: 0.75rem;
+  letter-spacing: 0.03em;
 }
 
-/* Control Buttons */
+/* Minimalist Ghost Control Buttons */
 .control-btn {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   border-radius: 50%;
   border: 1px solid var(--control-border);
-  box-shadow: var(--control-shadow), var(--glass-inner-highlight);
+  box-shadow: var(--control-shadow);
   background: var(--control-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   line-height: 1;
   -webkit-tap-highlight-color: transparent;
   outline: none;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .control-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   background: var(--control-hover);
-  border-color: var(--glass-border-hover);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-color: var(--card-border-hover);
 }
 
 .control-btn:active {
@@ -165,7 +168,7 @@
 }
 
 .control-btn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
@@ -174,67 +177,72 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.95rem;
+  gap: 0.85rem;
 }
 
-/* High-Performance Apple Frosted Link Card */
+/* Minimalist Link Card */
 .link-card {
   display: flex;
   align-items: center;
-  padding: 1.05rem 1.25rem;
-  border-radius: 20px;
-  background: var(--glass-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow), var(--glass-inner-highlight);
+  padding: 0.95rem 1.15rem;
+  border-radius: 16px;
+  background: var(--card-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow), var(--card-inner-highlight);
   text-decoration: none;
   color: var(--text-primary);
   opacity: 0; /* Animated by GSAP */
-  transform: translateY(20px);
+  transform: translateY(16px);
   cursor: pointer;
   position: relative;
   contain: content;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.2s ease, 
+              border-color 0.2s ease;
 }
 
 .link-card:hover {
-  transform: translateY(-3px);
-  background: var(--glass-surface-hover);
-  border-color: var(--glass-border-hover);
-  box-shadow: var(--glass-shadow-hover), var(--glass-inner-highlight);
+  transform: translateY(-2px);
+  background: var(--card-surface-hover);
+  border-color: var(--card-border-hover);
+  box-shadow: var(--card-shadow-hover), var(--card-inner-highlight);
 }
 
 .link-card:active,
 .link-card.is-loading {
   transform: translateY(1px) scale(0.99);
-  background: var(--glass-surface-active);
+  background: var(--card-surface-active);
 }
 
 .link-card-inner {
   display: flex;
   align-items: center;
   width: 100%;
-  gap: 1.15rem;
+  gap: 1rem;
   pointer-events: none;
 }
 
-/* Icon Box - Pure CSS Gradient, ZERO nested blur */
+/* Minimalist Icon Badge */
 .link-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: var(--text-primary);
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--icon-surface);
+  border: 1px solid var(--icon-border);
+  color: var(--icon-color);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .link-card:hover .link-icon {
-  transform: scale(1.06);
+  transform: scale(1.04);
+  border-color: var(--card-border-hover);
 }
 
 .link-content {
@@ -244,61 +252,56 @@
 
 .link-title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.18rem;
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin-bottom: 0.12rem;
   letter-spacing: -0.015em;
   color: var(--text-primary);
 }
 
 .link-desc {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-secondary);
-  line-height: 1.4;
+  line-height: 1.35;
   font-weight: 400;
 }
 
-/* Arrow Box - Pure CSS Pill, ZERO nested blur */
+/* Minimalist Action Arrow */
 .link-arrow-box {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--pill-border);
-  background: var(--pill-bg);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--text-secondary);
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease;
+  color: var(--text-tertiary);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
 }
 
 .link-card:hover .link-arrow-box {
-  background: var(--control-hover);
-  border-color: var(--glass-border-hover);
   color: var(--text-primary);
   transform: translateX(3px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
 }
 
 /* Footer */
 .footer {
-  margin-top: 3.5rem;
-  padding-bottom: 2.5rem;
+  margin-top: 3.25rem;
+  padding-bottom: 2.25rem;
   text-align: center;
   opacity: 0; /* GSAP */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
 .footer p {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-tertiary);
   font-weight: 400;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 .admin-link-btn {
@@ -306,26 +309,26 @@
   align-items: center;
   gap: 0.45rem;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.70rem;
   font-weight: 500;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   color: var(--text-secondary);
-  padding: 6px 14px;
+  padding: 5px 14px;
   border-radius: 9999px;
   background: var(--pill-bg);
   border: 1px solid var(--pill-border);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .admin-link-btn:hover {
   color: var(--text-primary);
-  background: var(--glass-surface-hover);
-  border-color: var(--glass-border-hover);
+  background: var(--control-hover);
+  border-color: var(--card-border-hover);
   transform: translateY(-1px);
 }
 
-/* Loader Styling */
+/* Minimalist Loader */
 .loader-container {
   position: fixed;
   inset: 0;
@@ -340,19 +343,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
-  padding: 2rem 2.75rem;
-  background: var(--glass-surface);
+  gap: 0.75rem;
+  padding: 1.75rem 2.5rem;
+  background: var(--card-surface);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow-hover), var(--glass-inner-highlight);
-  border-radius: 28px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  border-radius: 20px;
 }
 
 .loader-badge {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--text-secondary);
@@ -360,16 +363,16 @@
 
 .loader-counter {
   font-family: var(--font-display);
-  font-size: 2.75rem;
-  font-weight: 800;
+  font-size: 2.5rem;
+  font-weight: 700;
   letter-spacing: -0.04em;
   color: var(--text-primary);
 }
 
 .loader-progress-bar {
-  width: 140px;
-  height: 4px;
-  background: rgba(148, 163, 184, 0.2);
+  width: 120px;
+  height: 3px;
+  background: rgba(148, 163, 184, 0.15);
   border-radius: 9999px;
   overflow: hidden;
   position: relative;
@@ -377,10 +380,9 @@
 
 .loader-progress-fill {
   height: 100%;
-  background: var(--accent-primary);
+  background: var(--text-primary);
   border-radius: 9999px;
   transition: width 0.1s linear;
-  box-shadow: 0 0 10px var(--accent-primary);
 }
 
 /* Theme Transition Overlay */
@@ -399,7 +401,6 @@
 
 /* =========================================================
    Mobile Optimization (Hardware-Accelerated 60-120 FPS Mode)
-   Eliminates costly GPU backdrop-filter blur passes on mobile
    ========================================================= */
 @media (max-width: 768px) {
   .link-card,
@@ -408,16 +409,16 @@
   .loader-box {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    background: var(--glass-surface-mobile) !important;
+    background: var(--card-surface-mobile) !important;
   }
 
   .content-wrapper {
-    padding: 2.25rem 1rem 3.5rem;
+    padding: 2.25rem 1.15rem 3.5rem;
   }
   
   .link-card {
-    padding: 0.95rem 1.05rem;
-    border-radius: 18px;
+    padding: 0.88rem 1.05rem;
+    border-radius: 14px;
   }
   
   .link-card-inner {
@@ -425,22 +426,22 @@
   }
   
   .link-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
   }
   
   .link-title {
-    font-size: 1.02rem;
+    font-size: 0.98rem;
   }
   
   .link-desc {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
   
   .link-arrow-box {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
 }
 
