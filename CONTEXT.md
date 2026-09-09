@@ -406,7 +406,18 @@ sequenceDiagram
     - Synchronizes browser URL (`/id` vs `/`) via `history.pushState` and handles `popstate` events.
     - Persists selection to `localStorage` and `lang_pref` cookie.
 - **Verification:** Verified with `npm run lint` and `npm run build` (328 modules transformed, 0 errors, built in 3.71s).
-- **Status:** Complete, tested, and ready for deployment.
+- **Status:** Complete, tested, and deployed to production.
+### Session Entry: `2026-09-10 (Part 16)` (Removal of Status Badge & Header Typography Contrast Optimization)
+- **Objective:** Fulfill user request to remove status capsule badge (`GERBANG // AKTIF` / `GATEWAY // ONLINE`), and resolve contrast issues on the header title/subtitle caused by bright specular reflections in the liquid glass background ("apa solusinya agar kontrasnya cukup baik... apa dikasih stroke hitam tipis di hurufnya agar ga menyatu sama warna putih yg ada di background").
+- **Key Solutions & Implementation:**
+  - **Removed Status Badge:** Completely removed `.status-badge` from `src/App.jsx` and `src/App.css`. Repositioned `.lang-switcher` to an elegant top-right alignment via `.header-top-row` (`justify-content: flex-end;`).
+  - **3-Layer Typography Contrast Shield:**
+    1. **Radial Vignette Mask on Wallpaper (`src/index.css`):** Layered a subtle `radial-gradient(ellipse 95% 42% at 50% 18%, rgba(5, 5, 7, 0.76) 0%, rgba(5, 5, 7, 0.35) 45%, transparent 75%)` directly over `minimal-liquid-portrait.webp` in `body::before`. This gently tones down the bright white/yellow specular reflection right behind the header text from peak brightness down to a calm obsidian tone, preserving the outer chromatic flares.
+    2. **Hairline Text Stroke (`src/App.css`):** Applied `-webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.85); paint-order: stroke fill;` to `.header-title`, creating a crisp black hairline contour around every glyph without distorting font weight.
+    3. **Multi-Layer Dark Ambient Drop Shadows (`src/App.css`):** Applied deep `text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 4px 22px rgba(0, 0, 0, 0.9), 0 1px 2px #000000;` to elevate the text above any bright caustics.
+    4. **Subtitle & Card Hint Brightness:** Raised `.subtitle` to crisp `#f1f5f9` (weight 500) and `.card-hint` to `#e2e8f0` with ambient shadows.
+- **Verification:** Verified with `npm run lint` and `npm run build` (328 modules transformed, 0 errors, built in 3.97s).
+- **Status:** Complete, tested, and deployed to production.
 
 ---
 
@@ -434,7 +445,9 @@ sequenceDiagram
 - [x] Minimalist UI overhaul & Pinterest Option 3 liquid glass artwork integration.
 - [x] Removal of initial loading screen & instant zero-latency render.
 - [x] Fixed Dark Mode, Cloudflare Edge Geo-Routing (`/id` & `/`), and Option A header language switcher.
+- [x] Removal of status badge and 3-layer header typography contrast enhancement.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
+
 
 
 

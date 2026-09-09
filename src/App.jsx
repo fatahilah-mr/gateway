@@ -47,11 +47,6 @@ function App() {
           <div className="content-wrapper">
             <header className="header">
               <div className="header-top-row">
-                <div className="status-badge">
-                  <span className="status-dot"></span>
-                  <span>{lang === 'en' ? 'GATEWAY // ONLINE' : 'GERBANG // AKTIF'}</span>
-                </div>
-
                 <div className="lang-switcher">
                   <button 
                     type="button" 

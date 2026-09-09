@@ -77,27 +77,22 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background-color: #050507;
-  background-image: url('/minimal-liquid-landscape.webp');
+  background-image: 
+    radial-gradient(ellipse 70% 35% at 50% 18%, rgba(5, 5, 7, 0.65) 0%, rgba(5, 5, 7, 0.2) 50%, transparent 80%),
+    url('/minimal-liquid-landscape.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
-  transition: filter 0.4s ease;
 }
 
 @media (max-width: 768px) {
   body::before {
-    background-image: url('/minimal-liquid-portrait.webp');
+    background-image: 
+      radial-gradient(ellipse 95% 42% at 50% 18%, rgba(5, 5, 7, 0.76) 0%, rgba(5, 5, 7, 0.35) 45%, transparent 75%),
+      url('/minimal-liquid-portrait.webp');
   }
-}
-
-[data-theme='light'] body::before {
-  filter: brightness(1.2) contrast(0.9) opacity(0.25);
-}
-
-[data-theme='dark'] body::before {
-  filter: brightness(0.95) contrast(1.05);
 }
 
 /* Eliminate coarse pixel noise / burik: render crystal-clear silky smooth surface */
