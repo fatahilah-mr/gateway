@@ -28,6 +28,18 @@ function App() {
 
   const isAdminRoute = currentPath.startsWith('/admin');
 
+  // Detach heavy wallpaper from GPU compositing tree when on admin route for 120 FPS scrolling
+  useEffect(() => {
+    if (isAdminRoute) {
+      document.body.classList.add('is-admin-mode');
+    } else {
+      document.body.classList.remove('is-admin-mode');
+    }
+    return () => {
+      document.body.classList.remove('is-admin-mode');
+    };
+  }, [isAdminRoute]);
+
   const links = config?.links.map(link => ({
     id: link.id,
     url: link.url,

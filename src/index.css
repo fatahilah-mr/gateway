@@ -111,6 +111,15 @@ body::after {
   display: none;
 }
 
+/* Disable heavy wallpaper and force pure solid dark canvas in admin mode for 120 FPS scrolling */
+body.is-admin-mode {
+  background-color: #0b0d13 !important;
+}
+
+body.is-admin-mode::before {
+  display: none !important;
+}
+
 /* Circles (FeralUI Edge Glow) Utility Class */
 .gradient-edge-glow,
 .gradient-denchou {
