@@ -40,7 +40,8 @@ export async function onRequest(context) {
 
   // 3. GitHub OAuth Login initiation: GET /api/auth or GET /api/auth/login
   if (pathname === '/api/auth' || pathname === '/api/auth/login') {
-    if (!env.GITHUB_CLIENT_ID) {
+    const clientId = env.GITHUB_CLIENT_ID || 'Ov23liIwKf0kpPwkG1nI';
+    if (!clientId) {
       return errorResponse('Missing GITHUB_CLIENT_ID in Cloudflare Pages environment variables', 500);
     }
 
@@ -48,7 +49,7 @@ export async function onRequest(context) {
     const redirectParam = url.searchParams.get('redirect') || '/admin';
 
     const params = new URLSearchParams({
-      client_id: env.GITHUB_CLIENT_ID,
+      client_id: clientId,
       redirect_uri: `${url.origin}/api/auth/callback`,
       scope: 'read:user',
       state: encodeURIComponent(JSON.stringify({ redirect: redirectParam, nonce: state }))
