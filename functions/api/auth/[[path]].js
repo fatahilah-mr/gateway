@@ -65,7 +65,8 @@ export async function onRequest(context) {
       return errorResponse('Missing code parameter from GitHub OAuth', 400);
     }
 
-    if (!env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET) {
+    const clientId = env.GITHUB_CLIENT_ID || 'Ov23liIwKf0kpPwkG1nI';
+    if (!clientId || !env.GITHUB_CLIENT_SECRET) {
       return errorResponse('Missing GitHub OAuth credentials in environment variables', 500);
     }
 
@@ -78,7 +79,7 @@ export async function onRequest(context) {
         'User-Agent': 'Gateway-Auth'
       },
       body: JSON.stringify({
-        client_id: env.GITHUB_CLIENT_ID,
+        client_id: clientId,
         client_secret: env.GITHUB_CLIENT_SECRET,
         code
       })
