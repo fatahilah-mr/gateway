@@ -17,6 +17,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Save from '@mui/icons-material/Save';
 import Close from '@mui/icons-material/Close';
 
+import { Toaster, toast } from 'sonner';
+
 import { ICON_MAP } from '../../data/iconMap';
 import './admin.css';
 
@@ -39,7 +41,6 @@ const AdminDashboard = ({ user, onLogout, onBackToHome }) => {
   const [analytics, setAnalytics] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [feedback, setFeedback] = useState(null);
 
   // Modal State
   const [modalOpen, setModalOpen] = useState(false);
@@ -47,8 +48,13 @@ const AdminDashboard = ({ user, onLogout, onBackToHome }) => {
   const [linkFormData, setLinkFormData] = useState(DEFAULT_LINK_FORM);
 
   const showFeedback = (type, message) => {
-    setFeedback({ type, message });
-    setTimeout(() => setFeedback(null), 5000);
+    if (type === 'success') {
+      toast.success(message);
+    } else if (type === 'error') {
+      toast.error(message);
+    } else {
+      toast.info(message);
+    }
   };
 
   // Fetch all data
@@ -276,15 +282,25 @@ const AdminDashboard = ({ user, onLogout, onBackToHome }) => {
         </div>
       </header>
 
-      {/* Feedback Banner */}
-      {feedback && (
-        <div className={`feedback-banner ${feedback.type}`}>
-          <span>{feedback.message}</span>
-          <button onClick={() => setFeedback(null)} style={{ color: 'inherit' }}>
-            <Close sx={{ fontSize: 16 }} />
-          </button>
-        </div>
-      )}
+      {/* Toast Notifications via Sonner */}
+      <Toaster 
+        position="top-right" 
+        richColors 
+        theme="dark" 
+        closeButton
+        duration={3500}
+        toastOptions={{
+          style: {
+            fontFamily: 'inherit',
+            background: 'rgba(18, 18, 26, 0.95)',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
+            backdropFilter: 'blur(16px)',
+            color: '#f8fafc',
+            borderRadius: '12px',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)'
+          }
+        }}
+      />
 
       {/* Tabs */}
       <nav className="glass admin-tabs">

@@ -514,7 +514,18 @@ sequenceDiagram
   - **Write Spam Shield (`functions/api/click.js`):**
     - **Bot Filtering:** RegEx filter blocking automated crawlers/bots (`bot`, `spider`, `crawl`, `curl`, `wget`, `headless`, `python`, etc.) before they touch D1.
     - **Edge IP Debounce:** Utilizes Cloudflare Workers Edge Cache API (`caches.default`) to enforce a 5-second lock window per `clientIp + linkId`. Spammers or double-clickers attempting repeated clicks in succession have subsequent writes absorbed at the edge with 0 D1 write operations.
-- **Verification:** Verified with `npm run build` (328 modules transformed, built in 4.13s).
+### Session Entry: `2026-09-10 (Part 22)` (Admin Notifications Modernization with Sonner Toast)
+- **Objective:** Modernize all admin notifications across the Admin Dashboard by migrating from the legacy inline alert banner to modern, floating, non-blocking toast notifications using `sonner`.
+- **Key Implementations:**
+  - **Dependency:** Installed `sonner` package via `npm install sonner`.
+  - **Admin Dashboard Integration (`src/components/admin/AdminDashboard.jsx`):**
+    - Imported `{ Toaster, toast } from 'sonner'`.
+    - Integrated `<Toaster position="top-right" richColors theme="dark" closeButton duration={3500} />` with obsidian glass styling and ambient drop shadow.
+    - Updated `showFeedback` to invoke `toast.success()`, `toast.error()`, and `toast.info()`.
+    - Eliminated legacy inline `{feedback && ...}` feedback banner that previously caused content jump/layout shifts.
+  - **CSS Pruning (`src/components/admin/admin.css`):**
+    - Removed obsolete `.feedback-banner`, `.feedback-banner.success`, and `.feedback-banner.error` CSS declarations.
+- **Verification:** Verified with `npm run lint` and `npm run build` (329 modules transformed, 0 errors, built in 4.25s).
 - **Status:** Complete, tested, and deployed to production.
 
 ---
