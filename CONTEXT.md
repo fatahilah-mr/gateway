@@ -430,6 +430,25 @@ sequenceDiagram
     - Optimized transition durations to `0.15s` for instant, snappy mobile responsiveness.
 - **Verification:** Verified with `npm run lint` and `npm run build` (328 modules transformed, 0 errors, built in 3.88s).
 - **Status:** Complete, tested, and deployed to production.
+### Session Entry: `2026-09-10 (Part 18)` (Admin Panel Contrast Enhancement & Frosted Glass Obsidian Re-Architecture)
+- **Objective:** Fulfill user request to repair the Admin Panel (`/admin`), where contrast was severely impaired and text was blending/colliding into the white caustics of the wallpaper background across all tabs (links list, profile & settings, analytics, and modals).
+- **Root Cause Analysis:**
+  - When the project was overhauled to Minimalist UI in Part 14, `--glass-surface` and `--glass-surface-mobile` tokens were omitted from `:root` in `src/index.css`.
+  - In `src/components/admin/admin.css`, all admin panels, cards, navbars, and form inputs relied on `var(--glass-surface)` which evaluated to `transparent`.
+  - On mobile screens (`max-width: 640px`), `backdrop-filter: none !important;` stripped all blurring while setting `background: var(--glass-surface-mobile) !important;` (also `transparent`), causing text to float directly over intense specular light streaks.
+- **Key Solutions & Implementation:**
+  - **Full-Screen Dark Ambient Veil (`src/App.css`):**
+    - Configured `.app-container.is-admin` with `background: rgba(5, 5, 8, 0.90); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);` to provide an elegant, deep obsidian isolation layer across the entire admin viewport.
+  - **Global Glass Tokens Restored (`src/index.css`):**
+    - Defined `--glass-surface: rgba(16, 16, 22, 0.88);`, `--glass-surface-hover: rgba(26, 26, 36, 0.96);`, and `--glass-surface-mobile: rgba(14, 14, 18, 0.95);` in `:root`.
+  - **Admin Design System Overhaul (`src/components/admin/admin.css`):**
+    - **Admin Cards & Surfaces:** Configured `.admin-link-card` with `rgba(22, 22, 30, 0.94)`, hairline border `rgba(255, 255, 255, 0.14)`, and inner highlight for crisp structural separation.
+    - **Typography & Labels:** Boosted `.link-primary-title` to stark `#ffffff` with `text-shadow: 0 1px 4px rgba(0,0,0,0.7)`. Upgraded `.link-url-sub` from dark slate to bright `#94a3b8`. Elevated `.form-label` to bold `#e2e8f0` with uppercase mono styling and ambient text-shadow.
+    - **Form Inputs:** Replaced transparent input backgrounds with deep obsidian `rgba(8, 8, 12, 0.94)`, bright white text `#ffffff`, and `rgba(255, 255, 255, 0.18)` borders with cyan accent glow on focus.
+    - **Analytics & Stat Cards:** Elevated `.stat-card` to `rgba(20, 20, 28, 0.94)` with 2.5rem bold white numbers and `#cbd5e1` stat labels. Set `.activity-table` headers and rows with solid contrast backgrounds and borders.
+    - **Mobile Viewport Contrast (`max-width: 640px`):** Replaced see-through mobile overrides with solid `rgba(14, 14, 20, 0.97) !important` and `rgba(22, 22, 30, 0.98) !important` surfaces, ensuring flawless legibility on Android/iOS devices without bright glare collisions.
+- **Verification:** Verified with `npm run lint` and `npm run build` (328 modules transformed, 0 errors, built in 3.90s).
+- **Status:** Complete, tested, and deployed to production.
 
 ---
 
@@ -459,6 +478,7 @@ sequenceDiagram
 - [x] Fixed Dark Mode, Cloudflare Edge Geo-Routing (`/id` & `/`), and Option A header language switcher.
 - [x] Removal of status badge and 3-layer header typography contrast enhancement.
 - [x] Removal of subtitle and custom Apple-grade tactile touch feedback.
+- [x] Admin Panel contrast enhancement & frosted glass obsidian re-architecture.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
 
 

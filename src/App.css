@@ -17,6 +17,11 @@
   justify-content: flex-start;
   align-items: stretch;
   overflow: visible;
+  background: rgba(5, 5, 8, 0.90);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  min-height: 100vh;
+  min-height: 100lvh;
 }
 
 .content-wrapper {
