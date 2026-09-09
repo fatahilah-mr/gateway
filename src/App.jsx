@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { useLanguage } from './context/LanguageProvider';
 import { useTheme } from './context/ThemeProvider';
-import Loader from './components/Loader';
 import LinkCard from './components/LinkCard';
 import SEOHead from './components/SEOHead';
 import AdminPortal from './components/admin/AdminPortal';
@@ -15,9 +14,8 @@ import './App.css';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
-  const [loading, setLoading] = useState(true);
   const [transitionState, setTransitionState] = useState(null);
-  const { t, lang, toggleLanguage, config, configLoading } = useLanguage();
+  const { t, lang, toggleLanguage, config } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const mainRef = useRef(null);
 
@@ -44,39 +42,6 @@ function App() {
     descKey: lang === 'en' ? link.en_description : link.id_description,
     icon: ICON_MAP[link.icon] || ICON_MAP.link
   })) ?? [];
-
-  // GSAP Entrance Animation for Public Portal
-  useEffect(() => {
-    if (!isAdminRoute && !configLoading && !loading && mainRef.current) {
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline();
-        
-        tl.to('.header', {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power2.out',
-          clearProps: 'transform'
-        })
-        .to('.link-card', {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.06,
-          ease: 'power2.out',
-          clearProps: 'transform'
-        }, "-=0.4")
-        .to('.footer', {
-          opacity: 1,
-          duration: 0.6,
-          ease: 'power2.out',
-          clearProps: 'transform'
-        }, "-=0.3");
-      }, mainRef);
-
-      return () => ctx.revert();
-    }
-  }, [loading, configLoading, isAdminRoute]);
 
   const handleToggle = (type, action) => {
     if (transitionState) return; // Prevent spam clicks
@@ -125,7 +90,6 @@ function App() {
   return (
     <>
       <SEOHead />
-      {!isAdminRoute && (loading || configLoading) && <Loader onComplete={() => setLoading(false)} />}
       
       <div className="theme-overlay">
         <CircularProgress size={44} sx={{ color: 'var(--text-primary)' }} />

@@ -378,7 +378,17 @@ sequenceDiagram
     - Subtle `-2px` hover lift and quiet hairline glow.
     - Integrated subtle directional arrow cue with micro-translation on hover.
 - **Verification:** Verified with `npm run lint` and `npm run build` (333 modules transformed, 0 errors, built in 5.11s).
-- **Status:** Complete, tested, and ready for deployment.
+- **Status:** Complete, tested, and deployed to production.
+### Session Entry: `2026-09-10 (Part 14)` (Removal of Initial Loading Screen & Instant Zero-Latency Render)
+- **Objective:** Eliminate the initial loading screen and progress counter on web open ("efek loading pas web dibuka di hilangkan aja bisa ga?"), enabling instant, snappy zero-delay page loads.
+- **Root Cause & Solution:**
+  - Previously, opening the site mounted `<Loader />` which executed an artificial 1.6s progress counter (0% → 100%) plus a 0.7s curtain slide-up, imposing an artificial ~2.3s block before showing any content.
+  - Furthermore, `src/hooks/useConfig.js` initialized with `config: null`, which made the UI rely on the loader while waiting for `/api/data`.
+  - Added `src/data/defaultConfig.json` as synchronous initial state in `useConfig.js`. The portal renders full titles, descriptions, and link cards on frame 0 with zero delay, while `/api/data` continues to update in the background.
+  - Removed `<Loader />` component and unneeded `loading` state from `src/App.jsx`.
+  - Removed initial `opacity: 0; transform: translateY(16px);` from `.header`, `.link-card`, and `.footer` in `src/App.css`, making all elements visible and clickable instantly.
+- **Verification:** Verified with `npm run lint` and `npm run build` (333 modules transformed, 0 errors, built in 5.43s).
+- **Status:** Complete, tested, and deployed to production.
 
 ---
 
@@ -404,7 +414,9 @@ sequenceDiagram
 - [x] Circles / Edge Glow background (`#090D56`, `#1AFFCE`, `#4B8CFF`) with glowing spheres.
 - [x] Animated WebGL GradientWave background with fixed viewport lock (no mobile address bar jump).
 - [x] Minimalist UI overhaul & Pinterest Option 3 liquid glass artwork integration.
+- [x] Removal of initial loading screen & instant zero-latency render.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
+
 
 
 

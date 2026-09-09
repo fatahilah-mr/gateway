@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
+import defaultConfig from '../data/defaultConfig.json';
 
 export function useConfig() {
-  const [config, setConfig] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [config, setConfig] = useState(defaultConfig);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchConfig = useCallback(async () => {
