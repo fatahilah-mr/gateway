@@ -131,7 +131,7 @@ function App() {
         <CircularProgress size={44} sx={{ color: 'var(--text-primary)' }} />
       </div>
 
-      <div className="app-container" ref={mainRef}>
+      <div className={`app-container ${isAdminRoute ? 'is-admin' : ''}`} ref={mainRef}>
         {isAdminRoute ? (
           <AdminPortal onBackToHome={() => navigateTo('/')} />
         ) : (

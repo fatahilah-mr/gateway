@@ -10,6 +10,12 @@
   overflow: hidden;
 }
 
+.app-container.is-admin {
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow: visible;
+}
+
 /* Eliminate old photo mesh so the small dot background is 100% visible */
 .bg-mesh {
   display: none;

@@ -161,6 +161,8 @@ sequenceDiagram
 | `2026-09-09 (Part 1)` | Antigravity AI | Total Overhaul: Cloudflare D1 & Native Admin | `functions/api/*`, `src/components/admin/*`, `src/hooks/useConfig.js`, `src/App.jsx`, `wrangler.toml` | Overhauled to Cloudflare Pages + D1 with Native Admin, GitHub OAuth, click tracking, 0-cache latency. |
 | `2026-09-09 (Part 2)` | Antigravity AI | Frontend Neo-Brutalism & Dot Grid Redesign | `src/App.css`, `src/index.css`, `src/App.jsx`, `src/components/LinkCard.jsx`, `src/components/Loader.jsx`, `src/components/admin/admin.css`, `index.html` | Restyled public portal & admin to high-contrast Neo-Brutalism with 16px small dot grid, tactile physics, accent badges, and confirmed D1 migration. |
 | `2026-09-09 (Part 3)` | Antigravity AI | Custom Subdomain link.fmr.web.id Setup | Cloudflare Pages Custom Domains, Zone `fmr.web.id` DNS | Added `link.fmr.web.id` to `web-gateway`, created CNAME DNS record, and verified SSL edge routing. |
+| `2026-09-09 (Part 4)` | Antigravity AI | GitHub OAuth Configuration | Cloudflare Pages Environment Variables | Injected user's GitHub OAuth client ID and encrypted secret. |
+| `2026-09-09 (Part 5)` | Antigravity AI | Admin Dashboard Padding Optimization | `src/components/admin/admin.css`, `src/App.css`, `src/App.jsx` | Reduced excessive horizontal padding and widened max-width to eliminate narrow/cramped layout on /admin. |
 
 ### Session Entry: `2026-09-09 (Part 1)` (Total Overhaul: Cloudflare D1 & Native Admin)
 - **Objective:** Complete architecture revamp replacing static Git-based CMS with Cloudflare D1 relational database, Cloudflare Pages Functions serverless API, Native Integrated Admin Dashboard (`/admin`), GitHub OAuth security, real-time click tracking, and zero-cache latency.
@@ -215,7 +217,24 @@ sequenceDiagram
   - Configured `GITHUB_CLIENT_ID` (`Ov23liY7TkeLfzyHzZsA`) and `GITHUB_CLIENT_SECRET` (encrypted secret text) in Cloudflare Pages `deployment_configs` for both `production` and `preview`.
   - Triggered production deployment (`c83ae9c3`) to bake the updated OAuth credentials into the runtime functions.
   - Verified authentication redirect at `https://link.fmr.web.id/api/auth/login`.
-- **Status:** GitHub OAuth credentials active and live.
+### Session Entry: `2026-09-09 (Part 5)` (Admin Dashboard Padding & Layout Optimization)
+- **Objective:** Fix the narrow, cramped feeling of the admin dashboard (`/admin`) caused by excessive horizontal padding and restricted container width ("paddingnya bisa dikecilkan ga, di halaman adminnya, soalnya terlalu gede padding kanan kirinya jadi sempit rasanya").
+- **Root Cause:**
+  1. `.app-container` in `src/App.css` used `align-items: center; justify-content: center; overflow: hidden`, constraining admin content horizontally and centering it tightly.
+  2. `.admin-wrapper` was constrained to `max-width: 920px` with `1rem` horizontal padding.
+  3. Inside that, `.admin-panel` had another `2rem` (32px) padding on both left and right, effectively consuming over 80px of horizontal room and severely squeezing link items and forms.
+- **Completed Work:**
+  - Added conditional class `is-admin` to `.app-container` in `src/App.jsx` (`isAdminRoute ? 'is-admin' : ''`).
+  - Added `.app-container.is-admin { justify-content: flex-start; align-items: stretch; overflow: visible; }` in `src/App.css` to allow full horizontal stretch on admin pages.
+  - Overhauled `src/components/admin/admin.css`:
+    - Expanded `.admin-wrapper` max-width from `920px` to `1080px`, reduced padding from `1.5rem 1rem` to `1rem 0.5rem 4rem`.
+    - Reduced `.admin-panel` desktop padding from `2rem` (32px) down to `1.15rem 1rem 1.5rem` (16px), and down to `0.85rem 0.5rem` on mobile $\le 640\text{px}$.
+    - Reduced `.admin-navbar` padding from `1rem 1.5rem` to `0.65rem 0.85rem`.
+    - Tightened `.admin-tab` padding from `0.6rem 1.25rem` to `0.45rem 0.85rem`.
+    - Compacted `.admin-link-card` padding to `0.65rem 0.85rem` and widened `.link-url-sub` max-width to `min(520px, 55vw)`.
+    - Reduced `.modal-content` padding from `2.25rem` to `1.35rem 1.15rem`.
+    - Verified clean build (`npm run build && npm run lint`) with zero errors.
+- **Status:** Complete, tested, and deployed to production.
 
 ---
 
@@ -233,4 +252,6 @@ sequenceDiagram
 - [x] Custom subdomain `link.fmr.web.id` connected and active.
 - [x] Cloudflare Pages `production_branch` switched to `feat/overhaul-d1-revamp` for live production serving.
 - [x] GitHub OAuth credentials configured and active.
+- [x] Admin dashboard horizontal padding & layout spacing optimization.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
+
