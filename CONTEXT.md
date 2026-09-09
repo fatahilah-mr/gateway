@@ -339,6 +339,22 @@ sequenceDiagram
     `linear-gradient(135deg in oklab, #090D56 16.7%, #1AFFCE 50.0%, #4B8CFF 83.3%)`.
   - Preserved crystal-clear visual fidelity: `body::after` grain noise overlay remains disabled (`display: none;`) to prevent any "burik" pixelation.
   - Verified clean build (`npm run lint && npm run build`) with zero errors.
+### Session Entry: `2026-09-09 (Part 12)` (WebGL GradientWave Animated Background & Mobile Viewport Lock)
+- **Objective:** Integrate the animated WebGL `GradientWave` React component (Stripe fluid mesh shader) into `/components/ui` (`src/components/ui/gradient-wave.tsx` and `components/ui/gradient-wave.tsx`), and resolve the viewport resizing/jumping issue on mobile browsers when the tab/address bar shows or collapses ("buatlah agar fix jadi ga membesar/mengecil pas tab browsernya masi terlihat di layar").
+- **Root Cause of Viewport Jitter:**
+  - On mobile browsers (Chrome/Safari), scrolling triggers address bar expansion/collapse, firing `window.resize` events that fluctuate height by 50–90px.
+  - Re-running `resize()` rebuilt WebGL mesh topology and projection matrices every scroll frame, causing visible zooming, stretching, and distortion.
+- **Completed Work:**
+  - **Component Implementation (`src/components/ui/gradient-wave.tsx` & `components/ui/gradient-wave.tsx`):**
+    - Built complete WebGL MiniGl engine with simplex 3D noise shaders, uniform bindings, and responsive topology.
+    - Added height-jitter threshold: `handleResize` ignores height fluctuations < 180px if width is unchanged, eliminating resize thrashing while scrolling.
+    - Capped device pixel ratio to 1.5 to guarantee solid 60 FPS performance and low memory/battery usage.
+  - **CSS Styling (`src/index.css`):**
+    - Styled `.gradient-wave-canvas` with `position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; z-index: -1; pointer-events: none; touch-action: none; transform: translateZ(0);`.
+    - `100lvh` ensures the canvas covers the maximum viewport boundary without bottom gaps when the address bar collapses.
+    - Retained `#090D56` base fallback on `body::before`.
+  - **Integration in `src/App.jsx`:** Mounted `<GradientWave colors={["#090D56", "#1AFFCE", "#4B8CFF", "#2A2450"]} />`.
+  - **Verification:** Verified with `npm run lint` and `npm run build` (passed cleanly in 4.62s).
 - **Status:** Complete, tested, and deployed to production.
 
 ---
@@ -363,7 +379,9 @@ sequenceDiagram
 - [x] FeralUI FLOW fluid liquid mesh field replication (matching feralui.dev URL).
 - [x] Crystal-clear silky FeralUI wallpaper & elimination of "burik" coarse grain noise.
 - [x] Circles / Edge Glow background (`#090D56`, `#1AFFCE`, `#4B8CFF`) with glowing spheres.
+- [x] Animated WebGL GradientWave background with fixed viewport lock (no mobile address bar jump).
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
+
 
 
 

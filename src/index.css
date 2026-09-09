@@ -106,7 +106,7 @@ body {
   position: relative;
 }
 
-/* Circles / Edge Glow background - Glowing spheres on Black Current (#090D56) */
+/* Fixed Background Foundation & WebGL Fallback */
 body::before {
   content: '';
   position: fixed;
@@ -114,22 +114,33 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background-color: #090D56;
-  background-image: url('/circles-landscape.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   transform: translateZ(0);
-  transition: filter 0.4s ease;
 }
 
-@media (max-width: 768px) {
-  body::before {
-    background-image: url('/circles-portrait.webp');
-  }
+/* Animated WebGL Gradient Wave Background - Fixed Viewport (No Mobile Resize Jitter) */
+.gradient-wave-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100lvh; /* Largest viewport height: prevents jumping when mobile address bar hides/shows */
+  min-height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  touch-action: none;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  opacity: 0.96;
+  transition: opacity 0.4s ease;
 }
 
-[data-theme='dark'] body::before {
-  filter: brightness(0.95) contrast(1.05);
+[data-theme='dark'] .gradient-wave-canvas {
+  opacity: 0.90;
+  filter: contrast(1.05) brightness(0.92);
 }
 
 /* Eliminate coarse pixel noise / burik: render crystal-clear silky smooth surface */
