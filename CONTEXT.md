@@ -4,6 +4,7 @@
 > **Instructions for AI Coding Assistants:**
 > 1. Read this entire document before proposing or executing code changes to understand the project architecture, domain models, conventions, and previous session history.
 > 2. Whenever you finish a significant milestone or end a session, update the **Session History & Progress Log** section at the bottom of this file so subsequent sessions maintain continuity.
+> 3. **Mandatory Rule:** At the conclusion of EVERY session or after completing changes, you MUST update this `CONTEXT.md` file with the latest state, files touched, and next actions.
 
 ---
 
@@ -11,7 +12,10 @@
 
 - **Project Name:** `Gateway Link Hub & Personal Portal`
 - **Repository:** `fatahilah-mr/gateway`
-- **Branch:** `feat/overhaul-d1-revamp` (Transitioning to production)
+- **Active Feature Branch:** `feat/overhaul-d1-revamp`
+- **Live Preview URL:** [https://feat-overhaul-d1-revamp.web-gateway-2pd.pages.dev](https://feat-overhaul-d1-revamp.web-gateway-2pd.pages.dev)
+- **Live Admin Portal:** [https://feat-overhaul-d1-revamp.web-gateway-2pd.pages.dev/admin](https://feat-overhaul-d1-revamp.web-gateway-2pd.pages.dev/admin)
+- **Production Domain:** [https://fatah.web.id](https://fatah.web.id)
 - **Current Version / Milestone:** `v2.0.0 (D1 Edge Dynamic Portal)`
 - **Core Value Proposition:** An independent, ultra-fast, responsive, and elegant personal link portal and portfolio hub. Powered by Cloudflare Pages + Cloudflare D1 (Edge SQLite) with an integrated Native Admin Control Panel, GitHub OAuth authentication, real-time link click analytics, zero-cache latency, bilingual support (ID/EN), dynamic theming, and GSAP-powered 3D tilt animations.
 - **Primary Users / Consumers:** Recruiters, clients, peers, and the project owner for managing personal and professional links seamlessly.
@@ -30,7 +34,8 @@
 | **Styling & Animation** | CSS3 / GSAP 3 | `3.12.x` | Glassmorphism, 3D interactive tilt cards |
 | **Icons** | MUI Material Icons | `9.x` | Centralized mapping via `iconMap.js` |
 | **Admin Panel** | Native Integrated SPA | Custom `/admin` | Real-time CRUD, reordering, and click analytics |
-| **CI / CD & Hosting** | Cloudflare Pages | `N/A` | Automated build on git push |
+| **Notifications** | ntfy & Telegram | CLI scripts | `notify-ntfy` & `notify-tele` |
+| **CI / CD & Hosting** | Cloudflare Pages | `N/A` | Automated build & preview deployments on git push |
 
 ---
 
@@ -85,6 +90,7 @@ sequenceDiagram
 
 ```text
 /
+├── .agents/skills/                # Installed project skills (33 skills for architecture, react, ui/ux)
 ├── functions/                     # Cloudflare Pages Serverless Functions
 │   └── api/
 │       ├── _auth.js               # Shared HMAC token, cookie parser & auth utilities
@@ -103,8 +109,7 @@ sequenceDiagram
 │   └── 0002_seed_data.sql         # Seed data from original config.json
 ├── public/                        # Static assets & routing rules
 │   ├── _headers                   # HTTP headers (Canonical, anti-cache, noindex admin)
-│   ├── _redirects                 # 301 Redirects & SPA fallback (/admin -> index.html)
-│   ├── admin/                     # Legacy Sveltia CMS static files (retained for fallback)
+│   ├── _redirects                 # 301 Redirects & SPA fallback (/* -> /index.html 200)
 │   └── content/                   # config.json (retained as offline fallback)
 ├── src/                           # React 18 Source Code
 │   ├── components/
@@ -140,6 +145,7 @@ sequenceDiagram
 3. **⚡ Zero-Cache Latency:** Any public endpoint reading dynamic content (`/api/data`) MUST enforce `Cache-Control: no-store, no-cache, must-revalidate, max-age=0` to ensure changes made in the admin panel appear instantly to visitors without CDN delay.
 4. **🌐 SEO Compliance:** Ensure canonical links and 301 redirects are maintained in `SEOHead.jsx`, `public/_headers`, and `public/_redirects`. Admin route `/admin` must remain `noindex`.
 5. **🛡️ Resilient Fallback:** `src/hooks/useConfig.js` must always support graceful fallback to `public/content/config.json` if the D1 API is unavailable during local development.
+6. **📝 Mandatory CONTEXT.md Maintenance:** Every AI assistant MUST update `CONTEXT.md` (including the Session History & Progress Log) at the conclusion of every session or upon making code changes, so that future sessions always maintain unbroken continuity.
 
 ---
 
@@ -152,7 +158,7 @@ sequenceDiagram
 | `2026-07-28` | Antigravity AI | SEO & Canonical Enforcement | `SEOHead.jsx`, `public/_headers`, `public/_redirects` | Fixed duplicate page issues in Google Search Console |
 | `2026-08-01` | Antigravity AI | Project Documentation | `gateway.id.md`, `gateway.en.md` | Created GUIDE-PROJECT-AI.md compliant project gallery files |
 | `2026-08-27` | Antigravity AI | Context Setup | `CONTEXT.md`, `.gitignore` | Created CONTEXT.md template and ignored template folder |
-| `2026-09-09` | Antigravity AI | Total Overhaul: Cloudflare D1 & Native Admin | `functions/api/*`, `src/components/admin/*`, `src/hooks/useConfig.js`, `src/App.jsx`, `wrangler.toml` | Successfully overhauled to Cloudflare Pages + D1 with Native Admin Panel, GitHub OAuth, click tracking, and 0-cache latency. |
+| `2026-09-09` | Antigravity AI | Total Overhaul: Cloudflare D1 & Native Admin | `functions/api/*`, `src/components/admin/*`, `src/hooks/useConfig.js`, `src/App.jsx`, `wrangler.toml` | Successfully overhauled to Cloudflare Pages + D1 with Native Admin Panel, GitHub OAuth, click tracking, 0-cache latency, and verified on live preview. |
 
 ### Session Entry: `2026-09-09` (Total Overhaul: Cloudflare D1 & Native Admin)
 - **Objective:** Complete architecture revamp replacing static Git-based CMS with Cloudflare D1 relational database, Cloudflare Pages Functions serverless API, Native Integrated Admin Dashboard (`/admin`), GitHub OAuth security, real-time click tracking, and zero-cache latency.
@@ -162,11 +168,15 @@ sequenceDiagram
   - Created D1 migration schemas and seed data in `migrations/0001_initial_schema.sql` and `0002_seed_data.sql`.
   - Built Cloudflare Pages Functions API: `data.js`, `click.js`, `auth/[[path]].js`, `admin/links.js`, `admin/links/reorder.js`, `admin/config.js`, `admin/analytics.js`, `_auth.js`.
   - Built Native Admin Dashboard in `src/components/admin/`: `AdminPortal.jsx`, `AdminLogin.jsx`, `AdminDashboard.jsx`, `admin.css`.
+  - Removed legacy Sveltia files (`public/admin/`) to enable pure SPA routing to the native admin interface.
   - Updated `useConfig.js` to dynamically load from `/api/data` with `cache: 'no-store'` and fallback to `config.json`.
   - Updated `LinkCard.jsx` with non-blocking click tracking to `/api/click`.
   - Updated `public/_redirects` and `public/_headers` for SPA `/admin` route fallback and SEO `noindex`.
   - Added `wrangler.toml` with D1 database binding and verified zero-error `npm run build` and `npm run lint`.
-- **Status:** Complete, tested, and ready for deployment.
+  - Installed 33 skills in `.agents/skills` and pushed cleanly.
+  - Verified live preview deployment at `https://feat-overhaul-d1-revamp.web-gateway-2pd.pages.dev`.
+  - Delivered push notifications via `notify-tele` and `ntfy` (`ntfy.sh/agent-vps-529b6e0b7cab`).
+- **Status:** Complete, tested, and verified on live Cloudflare Pages Preview.
 
 ---
 
@@ -177,5 +187,6 @@ sequenceDiagram
 - [x] Native Admin Panel with GitHub OAuth.
 - [x] Real-time link click analytics.
 - [x] Zero-cache latency configuration.
-- [ ] Push branch to remote and test live preview deployment on Cloudflare Pages.
-- [ ] Merge `feat/overhaul-d1-revamp` to `main` once reviewed by owner.
+- [x] Live preview deployment verification (`feat/overhaul-d1-revamp`).
+- [x] Notifications via Telegram & ntfy.
+- [ ] Review preview and merge `feat/overhaul-d1-revamp` to `main` for production promotion to `fatah.web.id`.
