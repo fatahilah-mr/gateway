@@ -40,7 +40,7 @@ export async function onRequest(context) {
 
   // 3. GitHub OAuth Login initiation: GET /api/auth or GET /api/auth/login
   if (pathname === '/api/auth' || pathname === '/api/auth/login') {
-    const clientId = env.GITHUB_CLIENT_ID || 'Ov23liIwKf0kpPwkG1nI';
+    const clientId = env.GITHUB_CLIENT_ID || 'Ov23liY7TkeLfzyHzZsA';
     if (!clientId) {
       return errorResponse('Missing GITHUB_CLIENT_ID in Cloudflare Pages environment variables', 500);
     }
@@ -65,7 +65,7 @@ export async function onRequest(context) {
       return errorResponse('Missing code parameter from GitHub OAuth', 400);
     }
 
-    const clientId = env.GITHUB_CLIENT_ID || 'Ov23liIwKf0kpPwkG1nI';
+    const clientId = env.GITHUB_CLIENT_ID || 'Ov23liY7TkeLfzyHzZsA';
     if (!clientId || !env.GITHUB_CLIENT_SECRET) {
       return errorResponse('Missing GitHub OAuth credentials in environment variables', 500);
     }

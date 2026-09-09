@@ -2,6 +2,9 @@ name = "web-gateway"
 pages_build_output_dir = "dist"
 compatibility_date = "2026-09-09"
 
+[vars]
+GITHUB_CLIENT_ID = "Ov23liY7TkeLfzyHzZsA"
+
 [[d1_databases]]
 binding = "DB"
 database_name = "gateway-d1"
