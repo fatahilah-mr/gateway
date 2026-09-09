@@ -132,13 +132,6 @@ function App() {
       </div>
 
       <div className={`app-container ${isAdminRoute ? 'is-admin' : ''}`} ref={mainRef}>
-        <div className="ambient-background" aria-hidden="true">
-          <div className="ambient-orb orb-1"></div>
-          <div className="ambient-orb orb-2"></div>
-          <div className="ambient-orb orb-3"></div>
-          <div className="ambient-orb orb-4"></div>
-        </div>
-
         {isAdminRoute ? (
           <AdminPortal onBackToHome={() => navigateTo('/')} />
         ) : (

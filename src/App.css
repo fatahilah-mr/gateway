@@ -1,84 +1,4 @@
-/* src/App.css - Apple Frosted Glassmorphism Styling */
-
-/* Ambient Floating Background Orbs */
-.ambient-background {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.ambient-orb {
-  position: absolute;
-  border-radius: 50%;
-  mix-blend-mode: normal;
-  will-change: transform;
-}
-
-.orb-1 {
-  width: 550px;
-  height: 550px;
-  top: -120px;
-  left: -100px;
-  background: radial-gradient(circle, var(--orb-1) 0%, transparent 68%);
-  filter: blur(80px);
-  animation: floatOrb1 20s infinite alternate ease-in-out;
-}
-
-.orb-2 {
-  width: 600px;
-  height: 600px;
-  top: 35%;
-  right: -140px;
-  background: radial-gradient(circle, var(--orb-2) 0%, transparent 68%);
-  filter: blur(90px);
-  animation: floatOrb2 24s infinite alternate ease-in-out;
-}
-
-.orb-3 {
-  width: 520px;
-  height: 520px;
-  bottom: -100px;
-  left: 20%;
-  background: radial-gradient(circle, var(--orb-3) 0%, transparent 68%);
-  filter: blur(85px);
-  animation: floatOrb3 22s infinite alternate ease-in-out;
-}
-
-.orb-4 {
-  width: 400px;
-  height: 400px;
-  top: 65%;
-  left: -80px;
-  background: radial-gradient(circle, var(--orb-4) 0%, transparent 68%);
-  filter: blur(75px);
-  animation: floatOrb4 26s infinite alternate ease-in-out;
-}
-
-@keyframes floatOrb1 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(60px, 40px, 0) scale(1.08); }
-  100% { transform: translate3d(-30px, 70px, 0) scale(0.95); }
-}
-
-@keyframes floatOrb2 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-70px, -50px, 0) scale(1.1); }
-  100% { transform: translate3d(40px, 60px, 0) scale(0.92); }
-}
-
-@keyframes floatOrb3 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-50px, -40px, 0) scale(1.05); }
-  100% { transform: translate3d(60px, -60px, 0) scale(0.96); }
-}
-
-@keyframes floatOrb4 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(40px, -30px, 0) scale(1.12); }
-  100% { transform: translate3d(-20px, 40px, 0) scale(0.9); }
-}
+/* src/App.css - High Performance Apple Frosted Glassmorphism */
 
 /* App Container */
 .app-container {
@@ -120,7 +40,7 @@
   align-items: center;
 }
 
-/* Status Badge */
+/* Status Badge - Lightweight, zero backdrop-filter */
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -129,14 +49,12 @@
   border: 1px solid var(--status-border);
   background: var(--status-bg);
   color: var(--status-text);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   border-radius: 9999px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), var(--glass-inner-highlight);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
   margin-bottom: 1.5rem;
 }
 
@@ -145,13 +63,13 @@
   height: 7px;
   border-radius: 50%;
   background: var(--status-dot);
-  box-shadow: 0 0 8px var(--status-dot);
+  box-shadow: 0 0 6px var(--status-dot);
   animation: pulseDot 2.2s infinite ease-in-out;
 }
 
 @keyframes pulseDot {
   0% { transform: scale(0.9); opacity: 0.8; }
-  50% { transform: scale(1.35); opacity: 1; box-shadow: 0 0 12px var(--status-dot); }
+  50% { transform: scale(1.25); opacity: 1; }
   100% { transform: scale(0.9); opacity: 0.8; }
 }
 
@@ -191,13 +109,11 @@
   color: var(--text-primary);
   background: var(--pill-bg);
   border: 1px solid var(--pill-border);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border-radius: 9999px;
   padding: 5px 16px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03), var(--glass-inner-highlight);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
   margin-top: 0.35rem;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .header .feature-hint:hover {
@@ -223,8 +139,8 @@
   border: 1px solid var(--control-border);
   box-shadow: var(--control-shadow), var(--glass-inner-highlight);
   background: var(--control-bg);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: var(--text-primary);
   display: flex;
   align-items: center;
@@ -234,14 +150,14 @@
   -webkit-tap-highlight-color: transparent;
   outline: none;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .control-btn:hover {
   transform: translateY(-2px);
   background: var(--control-hover);
   border-color: var(--glass-border-hover);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), var(--glass-inner-highlight);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .control-btn:active {
@@ -261,15 +177,15 @@
   gap: 0.95rem;
 }
 
-/* Apple Frosted Link Card */
+/* High-Performance Apple Frosted Link Card */
 .link-card {
   display: flex;
   align-items: center;
   padding: 1.05rem 1.25rem;
   border-radius: 20px;
   background: var(--glass-surface);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow), var(--glass-inner-highlight);
   text-decoration: none;
@@ -278,29 +194,12 @@
   transform: translateY(20px);
   cursor: pointer;
   position: relative;
-  overflow: hidden;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), background 0.28s ease, border-color 0.28s ease;
-}
-
-.link-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
-  transform: skewX(-20deg);
-  transition: left 0.75s ease;
-  pointer-events: none;
-}
-
-.link-card:hover::before {
-  left: 150%;
+  contain: content;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .link-card:hover {
-  transform: translateY(-3.5px) scale(1.008);
+  transform: translateY(-3px);
   background: var(--glass-surface-hover);
   border-color: var(--glass-border-hover);
   box-shadow: var(--glass-shadow-hover), var(--glass-inner-highlight);
@@ -320,7 +219,7 @@
   pointer-events: none;
 }
 
-/* Icon Box */
+/* Icon Box - Pure CSS Gradient, ZERO nested blur */
 .link-icon {
   display: flex;
   align-items: center;
@@ -329,15 +228,13 @@
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: var(--text-primary);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .link-card:hover .link-icon {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .link-content {
@@ -361,21 +258,19 @@
   font-weight: 400;
 }
 
-/* Arrow Box */
+/* Arrow Box - Pure CSS Pill, ZERO nested blur */
 .link-arrow-box {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   border: 1px solid var(--pill-border);
   background: var(--pill-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   color: var(--text-secondary);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease;
 }
 
 .link-card:hover .link-arrow-box {
@@ -383,7 +278,7 @@
   border-color: var(--glass-border-hover);
   color: var(--text-primary);
   transform: translateX(3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
 }
 
 /* Footer */
@@ -419,10 +314,8 @@
   border-radius: 9999px;
   background: var(--pill-bg);
   border: 1px solid var(--pill-border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), var(--glass-inner-highlight);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 .admin-link-btn:hover {
@@ -450,8 +343,8 @@
   gap: 0.85rem;
   padding: 2rem 2.75rem;
   background: var(--glass-surface);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow-hover), var(--glass-inner-highlight);
   border-radius: 28px;
@@ -495,8 +388,6 @@
   position: fixed;
   inset: 0;
   background: var(--bg-color);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   z-index: 999;
   display: flex;
   align-items: center;
@@ -506,7 +397,20 @@
   will-change: opacity;
 }
 
-@media (max-width: 480px) {
+/* =========================================================
+   Mobile Optimization (Hardware-Accelerated 60-120 FPS Mode)
+   Eliminates costly GPU backdrop-filter blur passes on mobile
+   ========================================================= */
+@media (max-width: 768px) {
+  .link-card,
+  .glass-panel,
+  .control-btn,
+  .loader-box {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--glass-surface-mobile) !important;
+  }
+
   .content-wrapper {
     padding: 2.25rem 1rem 3.5rem;
   }
@@ -533,8 +437,10 @@
   .link-desc {
     font-size: 0.8rem;
   }
+  
   .link-arrow-box {
     width: 32px;
     height: 32px;
   }
 }
+
