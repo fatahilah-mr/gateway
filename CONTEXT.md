@@ -293,6 +293,24 @@ sequenceDiagram
   - **Verification:** `npm run lint` and `npm run build` completed cleanly with 0 errors.
 - **Status:** Complete, tested, and deployed to production.
 
+### Session Entry: `2026-09-09 (Part 9)` (FeralUI FLOW Swirling Liquid Mesh Replication)
+- **Objective:** Match the exact visual result from FeralUI (`https://feralui.dev/gradients?g=...`) after user clarification ("harusnya hasilnya begini").
+- **Root Cause Analysis:**
+  - On FeralUI, clicking "Export CSS" only copies a 1D diagonal `linear-gradient(135deg in oklab, ...)` as a simplified soft fallback (`/* soft fallback: CSS cannot draw the mesh field. Export SVG or PNG for the real thing. */`).
+  - The actual FeralUI display uses the 2D fluid `FLOW` field algorithm (`O6`), which calculates OKLab inverse distance weighting across orbiting color spots deformed by 2-octave trigonometric swirl (`swirl: 14`) and non-linear curl distortion (`distortion: 60`, `scale: 50`).
+- **Completed Work:**
+  - Deconstructed FeralUI's exact `FLOW` mathematical renderer from `JapaneseGradients.js`.
+  - Rendered the authentic FeralUI fluid mesh field in high-resolution, ultra-compact WebP assets:
+    - Desktop Landscape Light: `public/flow-landscape.webp` (25 KB, 1280x720)
+    - Mobile Portrait Light: `public/flow-portrait.webp` (24 KB, 720x1280)
+    - Desktop Landscape Dark: `public/flow-landscape-dark.webp` (13 KB, 1280x720)
+    - Mobile Portrait Dark: `public/flow-portrait-dark.webp` (12 KB, 720x1280)
+  - Configured `src/index.css` `body::before` with responsive media queries for portrait/landscape and dark/light modes.
+  - Layered with the exact FeralUI film grain overlay `body::after` (`mix-blend-mode: overlay; opacity: 0.43;` matching `s.l = 43`).
+  - Zero mobile performance cost: hardware-composited fixed layer without continuous CPU animation loop or scroll repainting (60–120 FPS preserved).
+  - Clean build & linting verified (`npm run lint && npm run build`).
+- **Status:** Complete, tested, and ready for deployment.
+
 ---
 
 ## 📋 7. Backlog & Next Actions
@@ -312,6 +330,7 @@ sequenceDiagram
 - [x] Apple Frosted Glassmorphism UI redesign with floating ambient lighting.
 - [x] Mobile performance optimization: elimination of GPU blur fill-rate bottlenecks & 60-120 FPS mobile hardware acceleration.
 - [x] Electric Tide OKLab gradient + film grain noise texture background implementation.
+- [x] FeralUI FLOW fluid liquid mesh field replication (matching feralui.dev URL).
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
 
 

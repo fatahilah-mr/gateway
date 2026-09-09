@@ -106,26 +106,39 @@ body {
   position: relative;
 }
 
-/* Electric tide background - High Performance Fixed Composited Layer */
+/* Electric tide background - High Performance FeralUI FLOW Mesh */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  background: linear-gradient(135deg, #DFFBFF 12.5%, #6FD8F2 37.5%, #4C5BE0 62.5%, #2A2450 87.5%); /* fallback: engines without oklab interpolation */
-  background: linear-gradient(135deg in oklab, #DFFBFF 12.5%, #6FD8F2 37.5%, #4C5BE0 62.5%, #2A2450 87.5%);
+  background-color: #2A2450;
+  background-image: url('/flow-landscape.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   transform: translateZ(0);
-  transition: background 0.4s ease;
+  transition: opacity 0.4s ease;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    background-image: url('/flow-portrait.webp');
+  }
 }
 
 [data-theme='dark'] body::before {
-  /* Electric tide - Deep Space Midnight Edition */
-  background: linear-gradient(135deg, #0e2738 12.5%, #103b54 37.5%, #1d266e 62.5%, #130f29 87.5%);
-  background: linear-gradient(135deg in oklab, #0e2738 12.5%, #103b54 37.5%, #1d266e 62.5%, #130f29 87.5%);
+  background-image: url('/flow-landscape-dark.webp');
 }
 
-/* Base64 / Static Noise Texture Grain Overlay */
+@media (max-width: 768px) {
+  [data-theme='dark'] body::before {
+    background-image: url('/flow-portrait-dark.webp');
+  }
+}
+
+/* FeralUI Grain Overlay (s.l = 43%) */
 body::after {
   content: '';
   position: fixed;
@@ -135,11 +148,11 @@ body::after {
   background-image: url('/noise.png');
   background-repeat: repeat;
   mix-blend-mode: overlay;
-  opacity: 0.35;
+  opacity: 0.43;
   transform: translateZ(0);
 }
 
-/* Electric tide
+/* Electric tide (FeralUI Denchou) Utility Class
  * MISTED SKY #DFFBFF
  * PALE LAGOON #6FD8F2
  * CLEAR HANADA #4C5BE0
@@ -147,9 +160,7 @@ body::after {
  */
 .gradient-denchou {
   position: relative;
-  background: linear-gradient(135deg, #DFFBFF 12.5%, #6FD8F2 37.5%, #4C5BE0 62.5%, #2A2450 87.5%); /* fallback: engines without oklab interpolation */
-  background: linear-gradient(135deg in oklab, #DFFBFF 12.5%, #6FD8F2 37.5%, #4C5BE0 62.5%, #2A2450 87.5%);
-  /* soft fallback: CSS cannot draw the mesh field. Export SVG or PNG for the real thing. */
+  background: url('/flow-landscape.webp') center / cover no-repeat;
 }
 
 .gradient-denchou::after {
@@ -159,7 +170,7 @@ body::after {
   background: url('/noise.png');
   background-repeat: repeat;
   mix-blend-mode: overlay;
-  opacity: 0.35;
+  opacity: 0.43;
   pointer-events: none;
 }
 
