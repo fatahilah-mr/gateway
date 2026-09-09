@@ -39,6 +39,9 @@ const Loader = ({ onComplete }) => {
         <div className="loader-counter">
           {progress}%
         </div>
+        <div className="loader-progress-bar">
+          <div className="loader-progress-fill" style={{ width: `${progress}%` }}></div>
+        </div>
       </div>
     </div>
   );

@@ -31,7 +31,7 @@
 | **Database** | Cloudflare D1 | `SQLite Edge` | `gateway-d1` (UUID: `f71f7c73-a7b9-4166-bfd1-d4bcc84caef8`) |
 | **Serverless API** | Cloudflare Pages Functions | `v3 runtime` | `/functions/api/` (Edge endpoints with D1 binding `DB`) |
 | **Auth** | GitHub OAuth + Signed HMAC | Native | Only `@fatahilah-mr` allowed admin session |
-| **Styling & Animation** | CSS3 Neo-Brutalism / GSAP 3 | `3.12.x` | Neo-Brutalism with small dot matrix grid, hard offset shadows, mechanical tactile interactions |
+| **Styling & Animation** | CSS3 Apple Frosted Glassmorphism / GSAP 3 | `3.12.x` | Frosted acrylic surfaces, ambient floating gradient orbs, inner rim highlights, refined squircle cards |
 | **Icons** | MUI Material Icons | `9.x` | Centralized mapping via `iconMap.js` with accent badge backgrounds |
 | **Admin Panel** | Native Integrated SPA | Custom `/admin` | Real-time CRUD, reordering, and click analytics |
 | **Notifications** | ntfy & Telegram | CLI scripts | `notify-ntfy` & `notify-tele` |
@@ -163,6 +163,7 @@ sequenceDiagram
 | `2026-09-09 (Part 3)` | Antigravity AI | Custom Subdomain link.fmr.web.id Setup | Cloudflare Pages Custom Domains, Zone `fmr.web.id` DNS | Added `link.fmr.web.id` to `web-gateway`, created CNAME DNS record, and verified SSL edge routing. |
 | `2026-09-09 (Part 4)` | Antigravity AI | GitHub OAuth Configuration | Cloudflare Pages Environment Variables | Injected user's GitHub OAuth client ID and encrypted secret. |
 | `2026-09-09 (Part 5)` | Antigravity AI | Admin Dashboard Padding Optimization | `src/components/admin/admin.css`, `src/App.css`, `src/App.jsx` | Reduced excessive horizontal padding and widened max-width to eliminate narrow/cramped layout on /admin. |
+| `2026-09-09 (Part 6)` | Antigravity AI | Apple Frosted Glassmorphism UI Redesign | `src/index.css`, `src/App.css`, `src/App.jsx`, `src/components/LinkCard.jsx`, `src/components/Loader.jsx`, `src/components/admin/admin.css`, `index.html` | Redesigned frontend to Apple Frosted Glassmorphism with floating ambient gradient orbs, blurred acrylic surfaces, inner highlights, and refined typography. |
 
 ### Session Entry: `2026-09-09 (Part 1)` (Total Overhaul: Cloudflare D1 & Native Admin)
 - **Objective:** Complete architecture revamp replacing static Git-based CMS with Cloudflare D1 relational database, Cloudflare Pages Functions serverless API, Native Integrated Admin Dashboard (`/admin`), GitHub OAuth security, real-time click tracking, and zero-cache latency.
@@ -234,6 +235,29 @@ sequenceDiagram
     - Compacted `.admin-link-card` padding to `0.65rem 0.85rem` and widened `.link-url-sub` max-width to `min(520px, 55vw)`.
     - Reduced `.modal-content` padding from `2.25rem` to `1.35rem 1.15rem`.
     - Verified clean build (`npm run build && npm run lint`) with zero errors.
+### Session Entry: `2026-09-09 (Part 6)` (Apple Frosted Glassmorphism UI Redesign)
+- **Objective:** Overhaul the visual interface from Neo-Brutalism to **Apple Frosted Glassmorphism** based on user preference ("kurang sreg sama neobrutalism").
+- **Completed Work:**
+  - **Design System Overhaul (`src/index.css`):**
+    - Introduced translucent frosted acrylic surfaces (`backdrop-filter: blur(20px) saturate(180%)`).
+    - Added Apple signature inner rim highlights (`inset 0 1px 0 0 rgba(255, 255, 255, 0.95)` in light, `0.18` in dark).
+    - Replaced heavy black offset shadows with diffused ambient depth shadows.
+    - Switched font pairing to **Plus Jakarta Sans** + **Outfit** for sleek Apple-like typography.
+  - **Ambient Glowing Floating Orbs (`src/App.jsx`, `src/App.css`):**
+    - Rendered 4 background ambient glowing orbs (`.ambient-orb`) in fixed viewport layer with large blur radii (75px-90px) and gentle multi-axis floating keyframe physics.
+    - Provides authentic frosted glass depth both in dark space mode and porcelain light mode.
+  - **Link Cards (`src/components/LinkCard.jsx`, `src/App.css`):**
+    - Redesigned as continuous squircle cards with subtle sheen light sweeps on hover (`::before` reflection sweep).
+    - Icons now sit in luminous frosted glass pebbles with tailored gradients and ambient glow per service (portfolio, blog, status, github, linkedin, threads, email, whatsapp).
+    - Replaced clunky square arrow box with floating circular glass pill that fluidly slides on hover.
+  - **Controls & Navigation:**
+    - Control buttons (language & theme) transformed into floating circular frosted glass capsules.
+    - Status badge converted to a translucent floating pill with a live pulsing emerald dot.
+  - **Loader (`src/components/Loader.jsx`):**
+    - Elevated into a sleek frosted glass capsule with blurred backdrop, clean typography, and a glowing progress indicator.
+  - **Admin Dashboard (`src/components/admin/admin.css`):**
+    - Completely adapted to an Apple macOS Control Center aesthetic: frosted panels, macOS segmented control tabs, translucent form inputs with cyan focus glow, and frosted analytics stat cards.
+  - **Quality Verification:** Verified with `npm run build` and `npm run lint` (0 errors, 0 warnings, clean 5.25s build).
 - **Status:** Complete, tested, and deployed to production.
 
 ---
@@ -247,11 +271,12 @@ sequenceDiagram
 - [x] Zero-cache latency configuration.
 - [x] Live preview deployment verification (`feat/overhaul-d1-revamp`).
 - [x] Notifications via Telegram & ntfy.
-- [x] Neo-Brutalism frontend redesign with small dot grid substrate ("background dot kecil").
 - [x] Verification of legacy data migration into D1 SQLite.
 - [x] Custom subdomain `link.fmr.web.id` connected and active.
 - [x] Cloudflare Pages `production_branch` switched to `feat/overhaul-d1-revamp` for live production serving.
 - [x] GitHub OAuth credentials configured and active.
 - [x] Admin dashboard horizontal padding & layout spacing optimization.
+- [x] Apple Frosted Glassmorphism UI redesign with floating ambient lighting.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
+
 
