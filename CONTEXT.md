@@ -598,7 +598,39 @@ sequenceDiagram
 - [x] Admin Panel contrast enhancement & frosted glass obsidian re-architecture.
 - [x] Admin Profile form redundancy pruning & mobile scroll 60-120 FPS optimization.
 - [x] Option B: Shared D1 database prefix standardization & dynamic AI Agent registry.
+- [x] Edge Intrusion & Anomaly Monitoring with dual-platform alerts (Telegram @fatah_monitor_bot & self-hosted ntfy).
+- [x] Zero-Secrets in Git enforcement & Pre-commit Hook Shield.
+- [x] Automated Serverless Cloudflare Worker for D1 backups to R2 (gateway-d1-backup) with daily 03:00 WIB cron & 30-day auto-pruning.
 - [ ] (Optional) Fast-forward merge `feat/overhaul-d1-revamp` into `main` whenever desired for git repository parity.
+
+### Session Entry: `2026-09-10 (Part 25)` (Cloudflare Edge Anomaly Monitoring, Zero-Secret Vault Hardening, and Automated D1 Backup to R2)
+- **Objective:**
+  1. Implement automated, disaster-recovery backups for Cloudflare D1 database (`gateway-d1`) directly to Cloudflare R2 bucket (`cloud-backup`).
+  2. Implement an automated intrusion & traffic anomaly monitoring system that dispatches real-time alerts across dual platforms: Telegram Bot (`@fatah_monitor_bot`) and self-hosted ntfy server (`https://ntfy.fmr.web.id/agent`).
+  3. Enforce strict Zero-Secret in Code policy with Git Pre-Commit Hook protection.
+- **Architectural Implementation:**
+  - **1. Zero-Secret Vault Injection (Cloudflare Pages API):**
+    - Removed all plaintext fallback credentials from the codebase.
+    - Injected all tokens (`TELEGRAM_MONITOR_BOT_TOKEN`, `NTFY_AUTH_TOKEN`, etc.) into Cloudflare Pages encrypted vault (`type: secret_text`).
+    - Installed a strict git `pre-commit` hook in `.git/hooks/pre-commit` and VPS global template `/root/.config/git/templates/hooks/pre-commit` scanning and aborting commits if tokens or private keys are staged.
+  - **2. Edge Anomaly & Intrusion Sensor (`functions/_middleware.js` & `functions/_monitor.js`):**
+    - Intercepts scanner probes (`.env`, `/.git`, `/wp-login.php`, `setup.cgi`, etc.) and malicious injection attempts (`UNION SELECT`, `' OR '1'='1`, XSS, path traversal).
+    - Blocks attacks instantly with `403 Forbidden` and OWASP security headers.
+    - Implements cross-datacenter edge cache throttling (max 1 notification per 5 minutes per attacker IP) to protect user devices from alert floods.
+    - Dispatches alerts asynchronously via `context.waitUntil()` to Telegram and ntfy with 0ms visitor overhead.
+  - **3. Serverless D1 Auto-Backup Worker (`gateway-d1-backup`):**
+    - Deployed dedicated Cloudflare Worker bound directly to `gateway-d1` (D1) and `cloud-backup` (R2).
+    - Scheduled to run daily at 03:00 AM WIB (`0 20 * * *` UTC) via Cloudflare Cron Trigger.
+    - Exports all user tables and schemas into structured JSON, compressed on-the-fly using `CompressionStream('gzip')`.
+    - Uploads snapshot to `cloud-backup/d1-snapshots/gateway-d1/YYYY-MM-DD/`.
+    - Implements automatic 30-day retention pruning.
+    - Dispatches dual-platform notification upon completion or failure.
+- **Verification:**
+  - `git commit` cfb7099 verified clean with zero secrets and pushed.
+  - Cloudflare Pages deployment `d6844ff9-9cb7-422e-98c2-83cc01ccd8ca` passed with `status: success`.
+  - Live probe test (`curl -i https://link.fmr.web.id/.env`) returned `403 Forbidden` and dispatched alert.
+  - Live backup test (`POST /backup`) executed successfully in 1038ms: 4 tables, 18 rows, 2.00 KB compressed, saved to R2, and alerted both platforms.
+- **Status:** Complete, hardened, verified, and live in production.
 
 
 
