@@ -86,6 +86,8 @@ export async function onRequest(context) {
     if (!throttled && context.waitUntil) {
       context.waitUntil(
         sendSecurityAlert(env, {
+          service: 'Gateway Portal',
+          host: url.hostname,
           type: anomalyType,
           ip,
           country,
@@ -122,6 +124,8 @@ export async function onRequest(context) {
       if (context.waitUntil) {
         context.waitUntil(
           sendSecurityAlert(env, {
+            service: 'Gateway Portal',
+            host: url.hostname,
             type: '500 Server Exception',
             ip,
             country,

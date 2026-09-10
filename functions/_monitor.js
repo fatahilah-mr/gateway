@@ -10,6 +10,8 @@ export async function sendSecurityAlert(env, data) {
   const ntfyToken = env?.NTFY_AUTH_TOKEN;
 
   const {
+    service = 'Gateway Portal',
+    host = 'fatah.web.id',
     type = 'Traffic Anomali',
     ip = 'Unknown',
     country = 'ID',
@@ -21,16 +23,20 @@ export async function sendSecurityAlert(env, data) {
   } = data;
 
   const timestamp = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
+  const fullTargetUrl = `https://${host}${path}${query ? query : ''}`;
+  const alertTitle = `[Gateway | ${host}] 🚨 Anomali: ${type}`;
   const promises = [];
 
   // 1. Dispatch Telegram Alert if configured
   if (telegramBotToken && telegramChatId) {
     const teleMessage = [
-      `🚨 *[SECURITY ALERT] Traffic Tidak Wajar Terdeteksi!*`,
+      `🚨 *[SECURITY ALERT]* \`${service}\` (${host})`,
+      `*Traffic Tidak Wajar Terdeteksi!*`,
       ``,
+      `• *Layanan*: ${service} (\`${host}\`)`,
       `• *Kategori*: ${type}`,
       `• *IP*: \`${ip}\` (${country})`,
-      `• *Path*: \`${path}${query ? query : ''}\``,
+      `• *Target URL*: \`${fullTargetUrl}\``,
       `• *User-Agent*: \`${userAgent.slice(0, 80)}\``,
       `• *Waktu*: ${timestamp} WIB`,
       `• *Tindakan*: ${action}`,
@@ -53,20 +59,32 @@ export async function sendSecurityAlert(env, data) {
   // 2. Dispatch ntfy Alert if configured
   if (ntfyServer && ntfyTopic) {
     const headers = {
-      'Title': `🚨 Anomali Traffic: ${type}`,
+      'Title': alertTitle,
       'Priority': '4',
-      'Tags': 'rotating_light,shield',
+      'Tags': 'gateway,shield,rotating_light',
+      'Click': fullTargetUrl,
       'Content-Type': 'text/plain; charset=utf-8'
     };
     if (ntfyToken) {
       headers['Authorization'] = `Bearer ${ntfyToken}`;
     }
 
+    const ntfyBody = [
+      `Layanan: ${service} (Cloudflare Pages)`,
+      `Host / Domain: ${host}`,
+      `Kategori: ${type}`,
+      `IP Penyerang: ${ip} (${country})`,
+      `Target URL: ${fullTargetUrl}`,
+      `Tindakan: ${action}`,
+      `Waktu: ${timestamp} WIB`,
+      details ? `Catatan: ${details}` : null
+    ].filter(Boolean).join('\n');
+
     promises.push(
       fetch(`${ntfyServer.replace(/\/$/, '')}/${ntfyTopic}`, {
         method: 'POST',
         headers,
-        body: `Kategori: ${type}\nIP: ${ip} (${country})\nTarget: ${path}${query ? query : ''}\nTindakan: ${action}\nWaktu: ${timestamp} WIB${details ? `\nCatatan: ${details}` : ''}`
+        body: ntfyBody
       }).catch((err) => console.error('ntfy alert dispatch error:', err))
     );
   }
