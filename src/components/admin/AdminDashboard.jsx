@@ -263,6 +263,11 @@ const AdminDashboard = ({ user, onLogout, onBackToHome }) => {
       }
 
       showFeedback('success', 'Pengaturan situs dan profil berhasil diperbarui di Cloudflare D1');
+      try {
+        localStorage.removeItem('gw_config_cache');
+      } catch {
+        // ignore
+      }
     } catch (err) {
       showFeedback('error', err.message);
     } finally {

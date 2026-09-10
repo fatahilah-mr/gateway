@@ -1,8 +1,27 @@
 import { useState, useEffect, useCallback } from 'react';
 import defaultConfig from '../data/defaultConfig.json';
 
+const CACHE_KEY = 'gw_config_cache';
+
+const getInitialConfig = () => {
+  if (typeof window !== 'undefined') {
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed && parsed.name && parsed.links) {
+          return parsed;
+        }
+      }
+    } catch {
+      // ignore parse errors
+    }
+  }
+  return defaultConfig;
+};
+
 export function useConfig() {
-  const [config, setConfig] = useState(defaultConfig);
+  const [config, setConfig] = useState(getInitialConfig);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -36,6 +55,11 @@ export function useConfig() {
             }))
           };
           setConfig(formattedConfig);
+          try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify(formattedConfig));
+          } catch {
+            // ignore
+          }
           setLoading(false);
           return;
         }

@@ -5,14 +5,14 @@
     "title": "Fatahilah Miftahul Rahman",
     "subtitle": "Network Engineer & Web Developer",
     "hint": "Tap the icons above to change language or theme",
-    "cardHint": "👇 Tap a card to visit the link",
+    "cardHint": "Tap a card to visit the link",
     "footer": "© 2026 Fatahilah Miftahul Rahman. All Rights Reserved."
   },
   "id": {
     "title": "Fatahilah Miftahul Rahman",
     "subtitle": "Teknisi Jaringan & Pengembang Web",
     "hint": "Ketuk ikon di atas untuk mengubah bahasa atau tema",
-    "cardHint": "👇 Ketuk kartu di bawah untuk membuka tautannya",
+    "cardHint": "Ketuk kartu di bawah untuk membuka tautannya",
     "footer": "© 2026 Fatahilah Miftahul Rahman. Hak Cipta Dilindungi."
   },
   "links": [
@@ -78,15 +78,6 @@
       "en_description": "Send me a message or business inquiry via email",
       "id_title": "Email",
       "id_description": "Kirim pesan atau tawaran kerja melalui email"
-    },
-    {
-      "id": "whatsapp",
-      "url": "https://wa.me/6285117470256?text=%3E%20_from%20gateway_%0AHello%20Fatah!",
-      "icon": "phone",
-      "en_title": "WhatsApp",
-      "en_description": "Contact me directly for a fast response",
-      "id_title": "WhatsApp",
-      "id_description": "Hubungi saya secara langsung untuk respons cepat"
     }
   ]
 }
