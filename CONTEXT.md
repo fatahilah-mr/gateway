@@ -632,6 +632,20 @@ sequenceDiagram
   - Live backup test (`POST /backup`) executed successfully in 1038ms: 4 tables, 18 rows, 2.00 KB compressed, saved to R2, and alerted both platforms.
 - **Status:** Complete, hardened, verified, and live in production.
 
+### Session Entry: `2026-09-11 (Part 26)` (Security Alert Standardization with Service & Host Identity)
+- **Objective:** Eliminate ambiguity in edge intrusion alerts across Telegram and ntfy by enforcing explicit service naming (`Gateway Portal`), target host domain (`fatah.web.id` / `link.fmr.web.id`), and standardized header formatting.
+- **Completed Work:**
+  - Updated `functions/_middleware.js` to pass `service: 'Gateway Portal'` and `host: url.hostname` into `sendSecurityAlert`.
+  - Updated `functions/_monitor.js` alert templates:
+    - Standardized Title: `[Gateway | ${host}] 🚨 Anomali: ${type}`
+    - Added explicit fields: `Layanan`, `Host / Domain`, `Target URL: https://${host}...`, and direct tap link (`Click: fullTargetUrl`).
+    - Standardized ntfy tags: `gateway,shield,rotating_light`.
+  - Built and verified with `npm run lint && npm run build` (0 errors, 329 modules transformed in 6.23s).
+  - Pushed to `feat/overhaul-d1-revamp` on GitHub.
+  - Published global standard skill `.agents/skills/notification-alert-standards/SKILL.md` and updated `/root/AGENTS.md` & `/root/GEMINI.md`.
+- **Status:** Complete, verified, and deployed.
+
+
 
 
 
