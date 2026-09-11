@@ -28,6 +28,6 @@ INSERT INTO links (id, url, icon, en_title, en_description, id_title, id_descrip
 ('github', 'https://github.com/fatahilah-mr', 'github', 'GitHub', 'Open source contributions & code', 'GitHub', 'Kontribusi kode sumber terbuka', 4, 1, 0, 0),
 ('linkedin', 'https://linkedin.com/in/fatahilah-mr', 'linkedin', 'LinkedIn', 'Professional network & resume', 'LinkedIn', 'Jaringan profesional & resume', 5, 1, 0, 0),
 ('threads', 'https://www.threads.com/@fatah_f100', 'chat', 'Threads', 'Short thoughts and updates', 'Threads', 'Pikiran singkat dan pembaruan', 6, 1, 0, 0),
-('email', 'mailto:fatahilah.f10@gmail.com', 'email', 'Email', 'Send me a message or business inquiry via email', 'Email', 'Kirim pesan atau tawaran kerja melalui email', 7, 1, 0, 0),
+('email', 'mailto:fatahilah@protonmail.com', 'email', 'Email', 'Send me a message or business inquiry via email', 'Email', 'Kirim pesan atau tawaran kerja melalui email', 7, 1, 0, 0),
 ('whatsapp', 'https://wa.me/6285117470256?text=%3E%20_from%20gateway_%0AHello%20Fatah!', 'phone', 'WhatsApp', 'Contact me directly for a fast response', 'WhatsApp', 'Hubungi saya secara langsung untuk respons cepat', 8, 1, 0, 0)
 ON CONFLICT(id) DO NOTHING;

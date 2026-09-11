@@ -645,11 +645,15 @@ sequenceDiagram
   - Published global standard skill `.agents/skills/notification-alert-standards/SKILL.md` and updated `/root/AGENTS.md` & `/root/GEMINI.md`.
 - **Status:** Complete, verified, and deployed.
 
-
-
-
-
-
+### Session Entry: `2026-09-12 (Part 27)` (Update Public Contact Email to ProtonMail)
+- **Objective:** Update public-facing inquiry email from `fatahilah.f10@gmail.com` to `fatahilah@protonmail.com` across live D1 database and static fallbacks to protect against spam/harvesting, while strictly leaving administrative/GitHub OAuth credentials untouched.
+- **Completed Work:**
+  - Updated Cloudflare D1 `gw_links` table (`id = 'email'`) setting `url = 'mailto:fatahilah@protonmail.com'`.
+  - Synchronized static/SSR fallbacks in `src/data/defaultConfig.json` and `public/content/config.json`.
+  - Updated migration seed dataset in `migrations/0002_seed_data.sql`.
+  - Audited OAuth authentication logic (`functions/api/_auth.js`) confirming zero dependencies on public email address.
+  - Validated build & lint checks (`npm run lint` & `npm run build` passing with 0 errors).
+- **Status:** Complete, verified, and deployed.
 
 
 
